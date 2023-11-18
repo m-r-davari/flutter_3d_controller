@@ -15,7 +15,7 @@ A Flutter package for rendering interactive 3D models in the GLB and glTF format
 
 ## Features
 
-- Play and control (play, pause) 3d models animation in GLB & glTF formats
+- Play and control (play, pause, switch) 3d models animation in GLB & glTF formats
 - Get list of available animations in 3d models
 - Switch between available animations
 - Control camera position and orbit

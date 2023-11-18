@@ -23,8 +23,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
   @override
   void initState() {
     super.initState();
-    //do something with controllers
-    //initial controllers
+    //todo : initial controllers
   }
 
   @override
