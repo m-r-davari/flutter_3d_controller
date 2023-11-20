@@ -8,9 +8,9 @@ import 'package:webview_flutter/webview_flutter.dart';
 class Flutter3DViewer extends StatefulWidget {
 
   final String src;
-  final Flutter3DController? flutter3dController;
+  final Flutter3DController? controller;
 
-  const Flutter3DViewer({Key? key,required this.src,this.flutter3dController,}) : super(key: key);
+  const Flutter3DViewer({Key? key,required this.src,this.controller,}) : super(key: key);
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
@@ -23,8 +23,8 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
 
   @override
   void initState() {
+    _controller = widget.controller;
     super.initState();
-    _controller == widget.flutter3dController;
   }
 
   @override

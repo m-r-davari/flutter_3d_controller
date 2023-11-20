@@ -31,6 +31,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  Flutter3DController controller = Flutter3DController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,11 +41,39 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton.small(
+            onPressed: (){
+              controller.playAnimation();
+            },
+            child: const Icon(Icons.play_arrow),
+          ),
+          const SizedBox(height: 4,),
+          FloatingActionButton.small(
+            onPressed: (){
+              controller.pauseAnimation();
+            },
+            child: const Icon(Icons.pause),
+          ),
+          const SizedBox(height: 4,),
+          FloatingActionButton.small(
+            onPressed: ()async{
+              final result = await controller.getAvailableAnimations();
+              print('Anims : $result');
+            },
+            child: const Icon(Icons.format_list_bulleted_outlined),
+          )
+        ],
+      ),
       body: Container(
         color: Colors.blueAccent,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: const Flutter3DViewer(
+        child: Flutter3DViewer(
+          controller: controller,
           src: 'assets/dancing_girl.glb',
         ),
       ),

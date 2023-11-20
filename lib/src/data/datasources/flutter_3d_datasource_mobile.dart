@@ -34,11 +34,13 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableAnimations() async {
-    final result = await executeCustomJsCodeWithResult(
+    print('-------callerx------3');
+    executeCustomJsCode(
         "const modelViewer = document.querySelector(\"model-viewer\");"
             "const anims = modelViewer.availableAnimations;"
+            "console.log(anims);"
     );
-    return result as List<String>;
+    return [''] ;
   }
 
 
