@@ -62,9 +62,16 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton.small(
             onPressed: ()async{
               final result = await controller.getAvailableAnimations();
-              print('Anims : $result');
+              print('Animations : $result -- Length : ${result.length}' );
             },
             child: const Icon(Icons.format_list_bulleted_outlined),
+          ),
+          const SizedBox(height: 4,),
+          FloatingActionButton.small(
+            onPressed: (){
+              controller.setCameraOrbit(20, 20, 5);
+            },
+            child: const Icon(Icons.camera_alt),
           )
         ],
       ),

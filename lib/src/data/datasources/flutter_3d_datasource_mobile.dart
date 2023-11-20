@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -34,13 +36,10 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableAnimations() async {
-    print('-------callerx------3');
-    executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-            "const anims = modelViewer.availableAnimations;"
-            "console.log(anims);"
+    final result = await executeCustomJsCodeWithResult(
+        "document.querySelector(\"model-viewer\").availableAnimations;"
     );
-    return [''] ;
+    return jsonDecode(result as String).map<String>((e) => e.toString()).toList();
   }
 
 
@@ -68,12 +67,14 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     ''');
   }
 
+
+
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
-    final result = await _webViewController?.runJavaScriptReturningResult('''(() => {
-        customEvaluate('$code'); 
-      })();
-    ''');
+    final result = await _webViewController?.runJavaScriptReturningResult(code);
     return result;
   }
+
+
+
 
 }
