@@ -1,15 +1,5 @@
-
-import 'package:flutter_3d_controller/src/data/datasources/flutter_3d_datasource.dart';
-
-abstract class IFlutter3DRepository{
-  void playAnimation();
-  void pauseAnimation();
-  void switchAnimation();
-  Future<List<String>> getAvailableAnimations();
-  void setCameraOrbit();
-  void setCameraTarget();
-}
-
+import 'package:flutter_3d_controller/src/data/repositories/i_flutter_3d_repository.dart';
+import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 
 class Flutter3DRepository extends IFlutter3DRepository{
 
@@ -18,8 +8,8 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
 
   @override
-  void playAnimation() {
-    _datasource.playAnimation();
+  void playAnimation({String? animationName}) {
+    _datasource.playAnimation(animationName: animationName);
   }
 
 
@@ -28,25 +18,21 @@ class Flutter3DRepository extends IFlutter3DRepository{
     _datasource.pauseAnimation();
   }
 
-  @override
-  void switchAnimation() {
-    _datasource.switchAnimation();
-  }
 
   @override
-  Future<List<String>> getAvailableAnimations() {
-    return _datasource.getAvailableAnimations();
+  Future<List<String>> getAvailableAnimations()async{
+    return await _datasource.getAvailableAnimations();
   }
 
 
   @override
-  void setCameraOrbit() {
-    _datasource.setCameraOrbit();
+  void setCameraOrbit(double theta, double phi, double radius) {
+    _datasource.setCameraOrbit(theta,phi,radius);
   }
 
   @override
-  void setCameraTarget() {
-    _datasource.setCameraTarget();
+  void setCameraTarget(double x, double y, double z) {
+    _datasource.setCameraTarget(x,y,z);
   }
 
 

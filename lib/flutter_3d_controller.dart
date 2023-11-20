@@ -1,5 +1,4 @@
 library flutter_3d_controller;
 
-
-export './src/models/camera_orbit.dart';
-export './src/models/camera_target.dart';
+export './src/widgets/flutter_3d_viewer.dart';
+export './src/controllers/flutter_3d_controller.dart';

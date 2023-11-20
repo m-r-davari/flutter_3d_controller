@@ -1,28 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_3d_controller/src/controllers/i_flutter_3d_controller.dart';
+import 'package:flutter_3d_controller/src/data/repositories/i_flutter_3d_repository.dart';
 
-import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repository.dart';
 
-abstract class Flutter3DController{
-  void executeCustomJsCode(String code){
-    UnimplementedError();
+class Flutter3DController extends IFlutter3DController with ChangeNotifier {
+
+  late IFlutter3DRepository _repository;
+  Flutter3DController();
+
+  void init(IFlutter3DRepository repository){
+    _repository = repository;
   }
-}
-
-abstract class ControllerAnimationInterface {
-  void playAnimation();
-  void pauseAnimation();
-  void switchAnimation();
-  Future<List<String>> getAvailableAnimations();
-}
-
-abstract class ControllerCameraInterface {
-  void setCameraOrbit();
-  void setCameraTarget();
-}
-
-class Flutter3DAnimationController extends Flutter3DController implements ControllerAnimationInterface{
-
-  final IFlutter3DRepository _repository;
-  Flutter3DAnimationController(this._repository);
 
   @override
   void playAnimation(){
@@ -35,31 +23,18 @@ class Flutter3DAnimationController extends Flutter3DController implements Contro
   }
 
   @override
-  void switchAnimation(){
-    _repository.switchAnimation();
-  }
-
-  @override
   Future<List<String>> getAvailableAnimations(){
     return _repository.getAvailableAnimations();
   }
 
-}
-
-
-class Flutter3DCameraController extends Flutter3DController implements ControllerCameraInterface{
-
-  final IFlutter3DRepository _repository;
-  Flutter3DCameraController(this._repository);
-
   @override
-  void setCameraOrbit(){
-    _repository.setCameraOrbit();
+  void setCameraOrbit(double theta, double phi, double radius){
+    _repository.setCameraOrbit(theta,phi,radius);
   }
 
   @override
-  void setCameraTarget(){
-    _repository.setCameraTarget();
+  void setCameraTarget(double x, double y, double z){
+    _repository.setCameraTarget(x,y,z);
   }
 
 }

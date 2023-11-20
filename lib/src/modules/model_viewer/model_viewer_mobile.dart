@@ -236,7 +236,7 @@ class ModelViewerState extends State<ModelViewer> {
         case '/':
         case '/index.html':
           final htmlTemplate = await rootBundle
-              .loadString('packages/model_viewer_plus/assets/template.html');
+              .loadString('packages/flutter_3d_controller/assets/template.html');
           final html = utf8.encode(_buildHTML(htmlTemplate));
           response
             ..statusCode = HttpStatus.ok
@@ -246,7 +246,7 @@ class ModelViewerState extends State<ModelViewer> {
           await response.close();
         case '/model-viewer.min.js':
           final code = await _readAsset(
-            'packages/model_viewer_plus/assets/model-viewer.min.js',
+            'packages/flutter_3d_controller/assets/model-viewer.min.js',
           );
           response
             ..statusCode = HttpStatus.ok
