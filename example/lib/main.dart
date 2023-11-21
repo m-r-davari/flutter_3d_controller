@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        color: Colors.blueAccent,
+        color: Colors.grey,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Flutter3DViewer(
