@@ -1,6 +1,6 @@
 
 abstract class IFlutter3DController{
-  void playAnimation();
+  void playAnimation({String? animationName});
   void pauseAnimation();
   Future<List<String>> getAvailableAnimations();
   void setCameraOrbit(double theta, double phi, double radius);

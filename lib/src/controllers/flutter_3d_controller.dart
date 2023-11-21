@@ -13,8 +13,8 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
   }
 
   @override
-  void playAnimation(){
-    _repository?.playAnimation();
+  void playAnimation({String? animationName}){
+    _repository?.playAnimation(animationName: animationName);
   }
 
   @override
