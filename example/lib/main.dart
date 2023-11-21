@@ -33,7 +33,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   Flutter3DController controller = Flutter3DController();
+  Flutter3DController controller2 = Flutter3DController();
   String? chosenAnimation;
+  String? chosenAnimation2;
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +85,13 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.grey,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Flutter3DViewer(
-          controller: controller,
-          src: 'assets/dancing_girl.glb',
+        child: Stack(
+          children: [
+            Flutter3DViewer(
+              controller: controller,
+              src: 'assets/dancing_girl.glb',
+            ),
+          ],
         ),
       ),
     );
