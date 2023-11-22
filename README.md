@@ -13,6 +13,10 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 ## Screenshot
 
 
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="model1" width="100%" loading="lazy"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="model2" width="100%" loading="lazy"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="model3" width="100%" loading="lazy"/>
+
 
 ## Compatibility
 
@@ -21,6 +25,8 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 - Web
 
 ## Notes
+
+For now this package only support GLB format, other 3d formats coming soon.
 
 ## Installation
 
@@ -83,8 +89,3 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
   <script type="module" src="./assets/packages/flutter_3d_controller/assets/model-viewer.min.js" defer></script>
 </head>
 ```
-
-`./assets/packages/flutter_3d_controller/assets/model-viewer.min.js` will use the default js file which is included in this package's asset. The [official site](https://modelviewer.dev) uses unpkg, by using `https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js`, you are using the latest version of `<model-viewier>`. You may replace the
-value of `src` attribute with another CDN mirror's URL. But please notice that our model-viewer-plus maybe not able to keep up with the `<model-viewier>`'s latest version.
-
-The render quality maybe low on some mobile devices. Please consider adding `<meta name="viewport" content="width=device-width, initial-scale=1" />` to the `<head>` of your `web/index.html`.

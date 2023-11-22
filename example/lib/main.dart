@@ -85,13 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.grey,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            Flutter3DViewer(
-              controller: controller,
-              src: 'assets/dancing_girl.glb',
-            ),
-          ],
+        child: Flutter3DViewer(
+          controller: controller,
+          src: 'assets/business_man.glb',
         ),
       ),
     );

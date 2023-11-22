@@ -43,7 +43,6 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
       autoPlay: false,
       autoRotate: false,
       debugLogging: false,
-      withCredentials: false,
       interactionPrompt: InteractionPrompt.none,
       onWebViewCreated: (WebViewController value) {
         _controller?.init(Flutter3DRepository(IFlutter3DDatasource(value)));
