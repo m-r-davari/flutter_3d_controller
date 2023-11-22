@@ -13,9 +13,9 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 ## Screenshot
 
 
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="model1" width="100%" loading="lazy"/>
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="model2" width="100%" loading="lazy"/>
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="model3" width="100%" loading="lazy"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="model1" width="25%" loading="lazy"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="model2" width="25%" loading="lazy"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="model3" width="25%" loading="lazy"/>
 
 
 ## Compatibility
