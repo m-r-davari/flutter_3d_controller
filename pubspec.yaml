@@ -4,11 +4,11 @@ version: 1.0.0
 homepage: https://github.com/m-r-davari/flutter_3d_controller
 
 topics:
-  - "3d-models"
+  - "model-viewer"
   - "models3d"
   - "models-3d"
-  - "model-viewer"
-  - "3d-objects"
+  - "animation-3d"
+  - "obj-object-glb"
 
 platforms:
   android:
