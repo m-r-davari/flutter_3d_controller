@@ -10,17 +10,19 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 - Control camera position
 - Control camera orbit
 
+## Todo (Next Versions)
+
+- Fix changing model source with setState
+- Load models from local storage
+- Load models from web
+- Support glTF, Fbx, Obj, USDZ
+
 ## Samples
-
-
-<!-- <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="model1" width="25%" loading="lazy"/> -->
-<!-- <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="model2" width="25%" loading="lazy"/> -->
-<!-- <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="model3" width="25%" loading="lazy"/> -->
 
 |                                                  Model1                                                  |                                                                   Model2                                                                    |                                                                   Model3                                                                    |
 |:---------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
 
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/sc1.png" alt="Model1" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/sc2.png" alt="Model2" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/sc3.png" alt="Model3" width="32%"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="32%"/>
 <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="Model1" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="Model2" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="Model3" width="32%"/>
 
 
@@ -95,3 +97,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
   <script type="module" src="./assets/packages/flutter_3d_controller/assets/model-viewer.min.js" defer></script>
 </head>
 ```
+
+## More Info
+
+This library use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of library will change in future to support all type of 3D models
