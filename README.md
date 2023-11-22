@@ -19,15 +19,8 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 
 ## Samples
 
-|                                                  Model1                          |                                                                   Model2                                     |                                                                   Model3                                                                    |
-|:--------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="27%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="27%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="27%"/> |
-
-
-
-
-| <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="32%"/> |
-| <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="Model1" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="Model2" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="Model3" width="32%"/> |
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="32%"/> <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="32%"/> <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="32%"/>
+<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="Model1" width="32%"/> <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="Model2" width="32%"/> <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="Model3" width="32%"/>
 
 
 ## Compatibility
@@ -38,7 +31,8 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 
 ## Notes
 
-For now this package only support GLB format, other 3d formats coming soon.
+- For now this package only support GLB format, other 3d formats coming soon.
+- Visit the example to see how to use this package
 
 ## Installation
 
@@ -104,4 +98,4 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
 ## More Info
 
-This library use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of library will change in future to support all type of 3D models
+This package use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models
