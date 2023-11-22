@@ -19,11 +19,11 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 
 ## Samples
 
-|                                                  Model1                                                  |                                                                   Model2                                                                    |                                                                   Model3                                                                    |
-|:---------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
+|                                                            Model1                                                              |                                                            Model2                                                              |                                                            Model3                                                              |
+|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------:|
 
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="32%"/>
-<img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="Model1" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="Model2" width="32%"/>  <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="Model3" width="32%"/>
+| <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.png" alt="Model1" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.png" alt="Model2" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.png" alt="Model3" width="32%"/> |
+| <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model1.gif" alt="Model1" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model2.gif" alt="Model2" width="32%"/> | <img src="https://github.com/m-r-davari/flutter_3d_controller/blob/main/example/samples/model3.gif" alt="Model3" width="32%"/> |
 
 
 ## Compatibility
@@ -42,7 +42,7 @@ For now this package only support GLB format, other 3d formats coming soon.
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^0.0.3
+  flutter_3d_controller: ^1.0.0
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
