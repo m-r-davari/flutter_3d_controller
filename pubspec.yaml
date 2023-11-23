@@ -7,8 +7,8 @@ topics:
   - "model-viewer"
   - "models3d"
   - "models-3d"
-  - "animation-3d"
-  - "obj-object-glb"
+  - "objects-3d"
+  - "viewer-3d"
 
 platforms:
   android:

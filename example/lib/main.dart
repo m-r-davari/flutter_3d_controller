@@ -8,7 +8,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,9 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   Flutter3DController controller = Flutter3DController();
-  Flutter3DController controller2 = Flutter3DController();
   String? chosenAnimation;
-  String? chosenAnimation2;
 
   @override
   Widget build(BuildContext context) {
