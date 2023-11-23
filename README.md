@@ -40,7 +40,7 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.0.0
+  flutter_3d_controller: ^1.0.1
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
