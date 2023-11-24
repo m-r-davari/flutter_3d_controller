@@ -1,4 +1,4 @@
-## 1.0.0
+## v1.0.0
 
 ### Features
 * Play and control (play, pause, switch) 3d models animation in GLB format
@@ -9,7 +9,7 @@
 ### Fixes
 * Fix controller issue
 
-## 0.0.2
+## v0.0.2
 
 ### Features
 * Implementing Flutter3DController class
@@ -17,7 +17,7 @@
 * Fix 3d model viewer widget
 
 
-## 0.0.1
+## v0.0.1
 
 ### Features
 * Implementing Flutter3DViewer widget
