@@ -1,9 +1,32 @@
+## v1.0.3
+
+### Features
+* First stable version
+* Play and control (play, pause, switch) 3d models animation in GLB format
+* Get list of available animations from 3d models
+* Switch between available animations
+* Control camera position
+* Control camera orbit
+### Fixes
+* Fix controller bugs
+
+
+## v1.0.2
+
+### Fixes
+* Fix some bugs
+
+
+## v1.0.1
+
+### Fixes
+* Fix some bugs
+
+
 ## v1.0.0
 
 ### Features
 * Play and control (play, pause, switch) 3d models animation in GLB format
-* Get list of available animations from 3d models
-* Switch between available animations
 * Control camera position
 * Control camera orbit
 ### Fixes
