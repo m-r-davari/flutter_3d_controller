@@ -1,6 +1,6 @@
-# 3D Model Viewer for Flutter
+# Flutter 3D Controller (3D Model Viewer/Controller for Flutter)
 
-A Flutter package for rendering interactive 3D models in the GLB format with ability to control camera and animations.
+A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control camera and animations.
 
 ## Features
 
@@ -40,7 +40,7 @@ A Flutter package for rendering interactive 3D models in the GLB format with abi
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.0.3
+  flutter_3d_controller: ^1.1.0
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)

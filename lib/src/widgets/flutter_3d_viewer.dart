@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/src/controllers/flutter_3d_controller.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
@@ -21,30 +22,32 @@ class Flutter3DViewer extends StatefulWidget {
 class _Flutter3DViewerState extends State<Flutter3DViewer> {
 
   Flutter3DController? _controller;
-  late String relatedJs;
-  late String id;
-  Utils utils = Utils();
+  late String _id;
+  final Utils _utils = Utils();
 
   @override
   void initState() {
+    _id = _utils.generateId();
     _controller = widget.controller;
-    id = utils.generateId;
-    relatedJs = utils.relatedJs(id: id);
+    _controller = widget.controller ?? Flutter3DController();
+    if(kIsWeb){
+      _controller?.init(Flutter3DRepository(IFlutter3DDatasource(null)));
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return ModelViewer(
-      id: id,
+      id: _id,
       src: widget.src,
-      relatedJs: relatedJs,
+      relatedJs: _utils.injectedJS(),
       ar: false,
       autoPlay: false,
       autoRotate: false,
       debugLogging: false,
       interactionPrompt: InteractionPrompt.none,
-      onWebViewCreated: (WebViewController value) {
+      onWebViewCreated: kIsWeb ? null : (WebViewController value) {
         _controller?.init(Flutter3DRepository(IFlutter3DDatasource(value)));
       },
     );

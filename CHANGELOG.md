@@ -1,3 +1,16 @@
+## v1.1.0
+
+### Features
+* Mobile and Web stable version
+* Web animation control (play, pause, switch)
+* Web available animation list
+* web camera position/orbit control
+### Fixes
+* Fix web data source
+* Fix web example
+* Some improvements
+
+
 ## v1.0.3
 
 ### Features

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -45,21 +44,23 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   void setCameraOrbit(double theta, double phi, double radius) {
-    _webViewController?.runJavaScript('''(() => {
-        cameraOrbit($theta, $phi, $radius); 
-      })();
-    ''');
+    executeCustomJsCode(
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";"//def orbit = "0deg 75deg 105%"
+    );
   }
+
 
   @override
   void setCameraTarget(double x, double y, double z) {
-    _webViewController?.runJavaScript('''(() => {
-        cameraTarget($x, $y, $z); 
-      })();
-    ''');
+    executeCustomJsCode(
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"//def target = "auto auto auto"
+    );
   }
 
 
+  @override
   void executeCustomJsCode(String code) {
     _webViewController?.runJavaScript('''(() => {
         customEvaluate('$code'); 
@@ -69,6 +70,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
 
 
+  @override
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
     final result = await _webViewController?.runJavaScriptReturningResult(code);
     return result;

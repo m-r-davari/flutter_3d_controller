@@ -1,6 +1,6 @@
 name: flutter_3d_controller
-description: A Flutter package for rendering interactive 3D models in GLB format with ability to control camera and animations.
-version: 1.0.3
+description: A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control camera and animations.
+version: 1.1.0
 homepage: https://github.com/m-r-davari/flutter_3d_controller
 
 topics:
@@ -33,6 +33,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+
 
 
 flutter:

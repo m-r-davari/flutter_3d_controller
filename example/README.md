@@ -1,6 +1,6 @@
 # example
 
-A Flutter example project for flutter_3d_controller package
+A Flutter example project for showcasing how to use flutter_3d_controller package
 
 ## Getting Started
 

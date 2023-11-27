@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton.small(
             onPressed: (){
               controller.setCameraOrbit(20, 20, 5);
-              //controller.cameraTarget(1.6, 1.2, 3.9);
+              //controller.setCameraTarget(1.6, 1.2, 3.9);
             },
             child: const Icon(Icons.camera_alt),
           )
