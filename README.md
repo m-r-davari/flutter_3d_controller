@@ -1,5 +1,4 @@
 # Flutter 3D Controller
-(3D Model Viewer/Controller for Flutter)
 
 A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control camera and animations.
 
