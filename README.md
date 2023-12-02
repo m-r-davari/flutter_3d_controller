@@ -1,6 +1,6 @@
 # Flutter 3D Controller
 
-A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control camera and animations.
+A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control animations, textures, and camera.
 
 ## Features
 
@@ -22,7 +22,7 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 - Fix changing model source with setState
 - Load models from local storage
 - Load models from web
-- Support Obj, USDZ
+- Support Obj, fbx
 
 ## Samples
 
@@ -84,6 +84,7 @@ controller.resetCameraOrbit();
 ```
 
 ```dart
+// The 3D viewer widget
 Flutter3DViewer(
           controller: controller,
           src: 'assets/business_man.glb',
