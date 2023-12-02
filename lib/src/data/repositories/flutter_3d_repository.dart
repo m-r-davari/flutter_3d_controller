@@ -32,6 +32,18 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
 
   @override
+  void setTexture({required String textureName}) {
+    _datasource.setTexture(textureName: textureName);
+  }
+
+
+  @override
+  Future<List<String>> getAvailableTextures()async{
+    return await _datasource.getAvailableTextures();
+  }
+
+
+  @override
   void setCameraTarget(double x, double y, double z) {
     _datasource.setCameraTarget(x,y,z);
   }

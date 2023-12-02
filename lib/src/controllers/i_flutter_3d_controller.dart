@@ -15,6 +15,13 @@ abstract class IFlutter3DController{
   /// It will return available animations list of 3D model as List<String>
   Future<List<String>> getAvailableAnimations();
 
+  /// It will change Texture of 3D model
+  /// Can be used to load desire Texture of 3D model
+  void setTexture({required String textureName});
+
+  ///It will return available 3D models texture as List<String>
+  Future<List<String>> getAvailableTextures();
+
   ///It will change camera target
   void setCameraTarget(double x, double y, double z);
 

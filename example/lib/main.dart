@@ -70,22 +70,33 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: ()async{
               List<String> availableAnimations = await controller.getAvailableAnimations();
               print('Animations : $availableAnimations -- Length : ${availableAnimations.length}' );
-              chosenAnimation = await showAnimPickerDialog(availableAnimations,chosenAnimation);
+              chosenAnimation = await showPickerDialog(availableAnimations,chosenAnimation);
               controller.playAnimation(animationName: chosenAnimation);
             },
             child: const Icon(Icons.format_list_bulleted_outlined),
           ),
           const SizedBox(height: 4,),
           FloatingActionButton.small(
+            onPressed: ()async{
+              List<String> availableTextures = await controller.getAvailableTextures();
+              print('Textures : $availableTextures -- Length : ${availableTextures.length}' );
+              String? chosenTexture = await showPickerDialog(availableTextures,'') ?? '';
+              controller.setTexture(textureName: chosenTexture);
+            },
+            child: const Icon(Icons.list_alt_rounded),
+          ),
+          const SizedBox(height: 4,),
+          FloatingActionButton.small(
             onPressed: (){
               controller.setCameraOrbit(20, 20, 5);
-              //controller.setCameraTarget(1.6, 1.2, 3.9);
+              //controller.setCameraTarget(0.3, 0.2, 0.4);
             },
             child: const Icon(Icons.camera_alt),
           ),const SizedBox(height: 4,),
           FloatingActionButton.small(
             onPressed: (){
               controller.resetCameraOrbit();
+              //controller.resetCameraTarget();
             },
             child: const Icon(Icons.cameraswitch_outlined),
           )
@@ -97,13 +108,14 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height,
         child: Flutter3DViewer(
           controller: controller,
-          src: 'assets/business_man.glb',
+          //src: 'assets/business_man.glb',
+          src: 'assets/sheen_chair.glb',
         ),
       ),
     );
   }
 
-  Future<String?> showAnimPickerDialog(List<String> animationList,[String? chosenAnimation])async{
+  Future<String?> showPickerDialog(List<String> animationList,[String? chosenItem])async{
     return await showModalBottomSheet<String>(context: context, builder: (ctx){
       return SizedBox(
         height: 250,

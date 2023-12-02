@@ -51,6 +51,25 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     return jsonDecode(result as String).map<String>((e) => e.toString()).toList();
   }
 
+
+  @override
+  void setTexture({required String textureName}) {
+    executeCustomJsCode(
+        "const modelViewer = document.querySelector(\"model-viewer\");"
+            "modelViewer.variantName = \"$textureName\";"
+    );
+  }
+
+
+  @override
+  Future<List<String>> getAvailableTextures()async{
+    final result = await executeCustomJsCodeWithResult(
+        "document.querySelector(\"model-viewer\").availableVariants;"
+    );
+    return jsonDecode(result as String).map<String>((e) => e.toString()).toList();
+  }
+
+
   @override
   void setCameraTarget(double x, double y, double z) {
     executeCustomJsCode(
@@ -94,16 +113,11 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   }
 
 
-
   @override
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
     final result = await _webViewController?.runJavaScriptReturningResult(code);
     return result;
   }
-
-
-
-
 
 
 }

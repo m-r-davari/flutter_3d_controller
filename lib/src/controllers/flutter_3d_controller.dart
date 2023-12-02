@@ -36,6 +36,18 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
 
 
   @override
+  void setTexture({required String textureName}) {
+    _repository?.setTexture(textureName: textureName);
+  }
+
+
+  @override
+  Future<List<String>> getAvailableTextures()async{
+    return await _repository?.getAvailableTextures() ?? [];
+  }
+
+
+  @override
   void setCameraTarget(double x, double y, double z){
     _repository?.setCameraTarget(x,y,z);
   }
