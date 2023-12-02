@@ -26,8 +26,8 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ## Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.png" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.png" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.png" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.png" alt="Model3" width="24%"/>
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.gif" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model1.png" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model2.png" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model3.png" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model4.png" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model1.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model2.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model3.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/dev/example/samples/model4.gif" alt="Model3" width="24%"/>
 
 
 ## Compatibility
@@ -44,15 +44,42 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 ## Brief Example
 
 ```dart
-/// create controller object to control 3D model.
+// create controller object to control 3D model.
 Flutter3DController controller = Flutter3DController();
 
-/// controller functions,
-/// Play method will play 3d model animation, you can use it to play or switch between animations
+// It will play 3d model animation, you can use it to play or switch between animations.
 controller.playAnimation();
-/// If you pass specific animation name it will play that specific animation
-/// If you pass null and your model has at least 1 animation it will play first animation
+
+// If you pass specific animation name it will play that specific animation.
+// If you pass null and your model has at least 1 animation it will play first animation.
 controller.playAnimation(animationName: chosenAnimation);
+
+// It will pause the animation at current frame.
+controller.pauseAnimation();
+
+// It will play animation from first frame (from beginning).
+controller.resetAnimation();
+
+// It will return available animation list of 3D model.
+await controller.getAvailableAnimations();
+
+// It will load desired texture of 3D model, you need to pass texture name.
+controller.setTexture(textureName: chosenTexture);
+
+// It will return available textures list of 3D model.
+await controller.getAvailableTextures();
+
+//It will set your desired camera target.
+controller.setCameraTarget(0.3, 0.2, 0.4);
+
+// It will reset the camera target to default.
+controller.resetCameraTarget();
+
+//It will set your desired camera orbit.
+controller.setCameraOrbit(20, 20, 5);
+
+//It will reset the camera orbit to default.
+controller.resetCameraOrbit();
 
 ```
 
