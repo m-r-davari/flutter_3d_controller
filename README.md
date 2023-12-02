@@ -38,8 +38,30 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ## Notes
 
-- For now this package only support GLB format, other 3d formats coming soon.
-- Visit the example to see how to use this package
+- For now this package only support GLB & glTF format, other 3d formats coming soon.
+- Visit the full example to see how to use this package
+
+## Brief Example
+
+```dart
+/// create controller object to control 3D model.
+Flutter3DController controller = Flutter3DController();
+
+/// controller functions,
+/// Play method will play 3d model animation, you can use it to play or switch between animations
+controller.playAnimation();
+/// If you pass specific animation name it will play that specific animation
+/// If you pass null and your model has at least 1 animation it will play first animation
+controller.playAnimation(animationName: chosenAnimation);
+
+```
+
+```dart
+Flutter3DViewer(
+          controller: controller,
+          src: 'assets/business_man.glb',
+        )
+```
 
 ## Installation
 
