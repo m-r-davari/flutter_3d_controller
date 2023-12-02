@@ -20,8 +20,26 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
 
   @override
+  void resetAnimation() {
+    // TODO: implement resetAnimation
+  }
+
+
+  @override
   Future<List<String>> getAvailableAnimations()async{
     return await _datasource.getAvailableAnimations();
+  }
+
+
+  @override
+  void setCameraTarget(double x, double y, double z) {
+    _datasource.setCameraTarget(x,y,z);
+  }
+
+
+  @override
+  void resetCameraTarget() {
+    // TODO: implement resetCameraTarget
   }
 
 
@@ -30,9 +48,10 @@ class Flutter3DRepository extends IFlutter3DRepository{
     _datasource.setCameraOrbit(theta,phi,radius);
   }
 
+
   @override
-  void setCameraTarget(double x, double y, double z) {
-    _datasource.setCameraTarget(x,y,z);
+  void resetCameraOrbit() {
+    // TODO: implement resetCameraOrbit
   }
 
 

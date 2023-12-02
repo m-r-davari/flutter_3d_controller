@@ -8,17 +8,26 @@ abstract class IFlutter3DDatasource{
   /// If animationName passed and not null it will play specific animation
   void playAnimation({String? animationName});
 
-  ///Causes animations to be paused.
+  /// Causes animations to be paused.
   void pauseAnimation();
+
+  /// Causes animation to be played from first frame
+  void resetAnimation();
 
   /// It will return available animations list of 3D model as List<String>
   Future<List<String>> getAvailableAnimations();
 
+  ///It will change camera target
+  void setCameraTarget(double x, double y, double z);
+
+  /// Causes camera orbit reset to default value
+  void resetCameraTarget();
+
   /// It will change camera orbit
   void setCameraOrbit(double theta, double phi, double radius);
 
-  ///It will change camera target
-  void setCameraTarget(double x, double y, double z);
+  /// Causes camera target reset to default value
+  void resetCameraOrbit();
 
   ///It will execute custom JS code
   void executeCustomJsCode(String code);

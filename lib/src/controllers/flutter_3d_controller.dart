@@ -22,19 +22,41 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
     _repository?.pauseAnimation();
   }
 
+
+  @override
+  void resetAnimation() {
+    // TODO: implement resetAnimation
+  }
+
+
   @override
   Future<List<String>> getAvailableAnimations()async{
     return await _repository?.getAvailableAnimations() ?? [];
   }
+
+
+  @override
+  void setCameraTarget(double x, double y, double z){
+    _repository?.setCameraTarget(x,y,z);
+  }
+
+
+  @override
+  void resetCameraTarget() {
+    // TODO: implement resetCameraTarget
+  }
+
 
   @override
   void setCameraOrbit(double theta, double phi, double radius){
     _repository?.setCameraOrbit(theta,phi,radius);
   }
 
+
   @override
-  void setCameraTarget(double x, double y, double z){
-    _repository?.setCameraTarget(x,y,z);
+  void resetCameraOrbit() {
+    // TODO: implement resetCameraOrbit
   }
+
 
 }

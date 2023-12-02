@@ -33,6 +33,11 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
   }
 
 
+  @override
+  void resetAnimation(){
+    throw UnimplementedError();
+  }
+
 
   @override
   Future<List<String>> getAvailableAnimations()async{
@@ -44,6 +49,21 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
 
 
   @override
+  void setCameraTarget(double x, double y, double z) {
+    executeCustomJsCode(
+        "const modelViewer = document.querySelector(\"model-viewer\");"
+            "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"//def target = "auto auto auto"
+    );
+  }
+
+
+  @override
+  void resetCameraTarget(){
+    throw UnimplementedError();
+  }
+
+
+  @override
   void setCameraOrbit(double theta, double phi, double radius) {
     executeCustomJsCode(
         "const modelViewer = document.querySelector(\"model-viewer\");"
@@ -51,12 +71,10 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
     );
   }
 
+
   @override
-  void setCameraTarget(double x, double y, double z) {
-    executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-            "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"//def target = "auto auto auto"
-    );
+  void resetCameraOrbit(){
+    throw UnimplementedError();
   }
 
 
@@ -71,5 +89,6 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
     final js.JsArray<dynamic> result = await js.context.callMethod("customEvaluateWithResult", [code]);
     return result.toList();
   }
+
 
 }
