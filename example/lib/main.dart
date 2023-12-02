@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Flutter3DController controller = Flutter3DController();
   String? chosenAnimation;
+  String? chosenTexture;
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: ()async{
               List<String> availableTextures = await controller.getAvailableTextures();
               print('Textures : $availableTextures -- Length : ${availableTextures.length}' );
-              String? chosenTexture = await showPickerDialog(availableTextures,'') ?? '';
-              controller.setTexture(textureName: chosenTexture);
+              chosenTexture = await showPickerDialog(availableTextures,chosenTexture);
+              controller.setTexture(textureName: chosenTexture ?? '');
             },
             child: const Icon(Icons.list_alt_rounded),
           ),
@@ -108,24 +109,24 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height,
         child: Flutter3DViewer(
           controller: controller,
-          //src: 'assets/business_man.glb',
-          src: 'assets/sheen_chair.glb',
+          src: 'assets/business_man.glb',
+          //src: 'assets/sheen_chair.glb',
         ),
       ),
     );
   }
 
-  Future<String?> showPickerDialog(List<String> animationList,[String? chosenItem])async{
+  Future<String?> showPickerDialog(List<String> inputList,[String? chosenItem])async{
     return await showModalBottomSheet<String>(context: context, builder: (ctx){
       return SizedBox(
         height: 250,
         child: ListView.separated(
-          itemCount: animationList.length,
+          itemCount: inputList.length,
           padding: const EdgeInsets.only(top: 16),
           itemBuilder: (ctx,index){
             return InkWell(
               onTap: (){
-                Navigator.pop(context,animationList[index]);
+                Navigator.pop(context,inputList[index]);
               },
               child: Container(
                 height: 50,
@@ -134,8 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('${index+1}'),
-                    Text(animationList[index]),
-                    Icon(chosenAnimation == animationList[index] ? Icons.check_box : Icons.check_box_outline_blank)
+                    Text(inputList[index]),
+                    Icon(chosenItem == inputList[index] ? Icons.check_box : Icons.check_box_outline_blank)
                   ],
                 ),
               ),

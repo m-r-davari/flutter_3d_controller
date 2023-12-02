@@ -4,23 +4,30 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ## Features
 
-- Play and control (play, pause, switch) 3d models animation in GLB format
-- Get list of available animations from 3d models
-- Switch between available animations
-- Control camera position
-- Control camera orbit
+- Mobile and Web stable version (support glb & gltf format)
+- Play animation
+- Switch between animations
+- Pause animation
+- Reset animation
+- Get available animation list
+- Switch between textures
+- Get available texture list
+- Set camera target
+- Reset camera target
+- Set camera orbit
+- Reset camera orbit
 
 ## Todo (Next Versions)
 
 - Fix changing model source with setState
 - Load models from local storage
 - Load models from web
-- Support glTF, Fbx, Obj, USDZ
+- Support Obj, USDZ
 
 ## Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model1.png" alt="Model1" width="32%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model2.png" alt="Model2" width="32%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model3.png" alt="Model3" width="32%"/>
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model1.gif" alt="Model1" width="32%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model2.gif" alt="Model2" width="32%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/main/example/samples/model3.gif" alt="Model3" width="32%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.png" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.png" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.png" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.png" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.gif" alt="Model3" width="24%"/>
 
 
 ## Compatibility
@@ -40,7 +47,7 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.1.0
+  flutter_3d_controller: ^1.2.0
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
