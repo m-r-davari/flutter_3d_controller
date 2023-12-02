@@ -9,9 +9,9 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 - Switch between animations
 - Pause animation
 - Reset animation
-- Get available animation list
+- Get available animations list
 - Switch between textures
-- Get available texture list
+- Get available textures list
 - Set camera target
 - Reset camera target
 - Set camera orbit
@@ -19,10 +19,10 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ## Todo (Next Versions)
 
-- Fix changing model source with setState
+- Change model source with setState
 - Load models from local storage
 - Load models from web
-- Support Obj, fbx
+- Support obj and fbx format
 
 ## Samples
 
