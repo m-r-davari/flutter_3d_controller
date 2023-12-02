@@ -25,7 +25,7 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
 
   @override
   void resetAnimation() {
-    // TODO: implement resetAnimation
+    _repository?.resetAnimation();
   }
 
 
@@ -43,7 +43,7 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
 
   @override
   void resetCameraTarget() {
-    // TODO: implement resetCameraTarget
+    _repository?.resetCameraTarget();
   }
 
 
@@ -55,7 +55,7 @@ class Flutter3DController extends IFlutter3DController with ChangeNotifier {
 
   @override
   void resetCameraOrbit() {
-    // TODO: implement resetCameraOrbit
+    _repository?.resetCameraOrbit();
   }
 
 

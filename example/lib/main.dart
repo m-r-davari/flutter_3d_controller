@@ -60,6 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           const SizedBox(height: 4,),
           FloatingActionButton.small(
+            onPressed: (){
+              controller.resetAnimation();
+            },
+            child: const Icon(Icons.replay_circle_filled),
+          ),
+          const SizedBox(height: 4,),
+          FloatingActionButton.small(
             onPressed: ()async{
               List<String> availableAnimations = await controller.getAvailableAnimations();
               print('Animations : $availableAnimations -- Length : ${availableAnimations.length}' );
@@ -75,6 +82,12 @@ class _MyHomePageState extends State<MyHomePage> {
               //controller.setCameraTarget(1.6, 1.2, 3.9);
             },
             child: const Icon(Icons.camera_alt),
+          ),const SizedBox(height: 4,),
+          FloatingActionButton.small(
+            onPressed: (){
+              controller.resetCameraOrbit();
+            },
+            child: const Icon(Icons.cameraswitch_outlined),
           )
         ],
       ),

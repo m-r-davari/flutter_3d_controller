@@ -27,5 +27,4 @@ abstract class IFlutter3DController{
   /// Causes camera target reset to default value
   void resetCameraOrbit();
 
-
 }

@@ -35,7 +35,12 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
 
   @override
   void resetAnimation(){
-    throw UnimplementedError();
+    executeCustomJsCode(
+        "const modelViewer = document.querySelector(\"model-viewer\");"
+            "modelViewer.pause();"
+            "modelViewer.currentTime = 0;"
+            "modelViewer.play();"
+    );
   }
 
 
@@ -52,14 +57,17 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
   void setCameraTarget(double x, double y, double z) {
     executeCustomJsCode(
         "const modelViewer = document.querySelector(\"model-viewer\");"
-            "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"//def target = "auto auto auto"
+            "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"
     );
   }
 
 
   @override
   void resetCameraTarget(){
-    throw UnimplementedError();
+    executeCustomJsCode(
+        "const modelViewer = document.querySelector(\"model-viewer\");"
+            "modelViewer.cameraTarget = \"auto auto auto\";"
+    );
   }
 
 
@@ -67,14 +75,17 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
   void setCameraOrbit(double theta, double phi, double radius) {
     executeCustomJsCode(
         "const modelViewer = document.querySelector(\"model-viewer\");"
-            "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";"//def orbit = "0deg 75deg 105%"
+            "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";"
     );
   }
 
 
   @override
   void resetCameraOrbit(){
-    throw UnimplementedError();
+    executeCustomJsCode(
+        "const modelViewer = document.querySelector(\"model-viewer\");"
+            "modelViewer.cameraOrbit = \"0deg 75deg 105%\" ;"
+    );
   }
 
 

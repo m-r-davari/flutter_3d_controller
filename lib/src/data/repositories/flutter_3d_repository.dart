@@ -21,7 +21,7 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
   @override
   void resetAnimation() {
-    // TODO: implement resetAnimation
+    _datasource.resetAnimation();
   }
 
 
@@ -39,7 +39,7 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
   @override
   void resetCameraTarget() {
-    // TODO: implement resetCameraTarget
+    _datasource.resetCameraTarget();
   }
 
 
@@ -51,7 +51,7 @@ class Flutter3DRepository extends IFlutter3DRepository{
 
   @override
   void resetCameraOrbit() {
-    // TODO: implement resetCameraOrbit
+    _datasource.resetCameraOrbit();
   }
 
 
