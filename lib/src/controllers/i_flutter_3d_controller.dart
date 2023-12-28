@@ -3,7 +3,7 @@ abstract class IFlutter3DController{
 
   /// Causes animations to be played, Can be use to switch animations as well.
   /// If animationName is null and model has at list one animation, it will play first model's animation
-  /// If animationName passed and not null it will play specific animation
+  /// If animationName passed and not null it will play specific animation.
   void playAnimation({String? animationName});
 
   ///Causes animations to be paused.
