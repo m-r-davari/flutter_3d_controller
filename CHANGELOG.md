@@ -18,6 +18,7 @@
 * Some improvements
 * Fix readme file
 * Reduce Sample size
+* Fix Dart Analyse warnings
 
 
 ## v1.2.0

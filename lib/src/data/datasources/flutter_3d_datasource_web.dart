@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
+import 'package:flutter/services.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'dart:js' as js;
-
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Flutter3DDatasource implements IFlutter3DDatasource{
@@ -73,6 +73,9 @@ class Flutter3DDatasource implements IFlutter3DDatasource{
 
   @override
   void setCameraTarget(double x, double y, double z) {
+    if(_webViewController!=null){
+      throw PlatformException(code: '130',message: 'Mismatch platform usage');
+    }
     executeCustomJsCode(
         "const modelViewer = document.querySelector(\"model-viewer\");"
             "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";"

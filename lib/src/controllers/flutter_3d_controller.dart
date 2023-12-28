@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_3d_controller/src/controllers/i_flutter_3d_controller.dart';
 import 'package:flutter_3d_controller/src/data/repositories/i_flutter_3d_repository.dart';
 
 
-class Flutter3DController extends IFlutter3DController with ChangeNotifier {
+class Flutter3DController extends IFlutter3DController{
 
   IFlutter3DRepository? _repository;
   Flutter3DController();
