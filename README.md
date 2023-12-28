@@ -17,12 +17,14 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 - Set camera orbit
 - Reset camera orbit
 
+<!--
 ## Todo (Next Versions)
 
 - Change model source with setState
 - Load models from local storage
 - Load models from web
 - Support obj and fbx format
+-->
 
 ## Samples
 
@@ -97,7 +99,7 @@ Flutter3DViewer(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.2.0
+  flutter_3d_controller: ^1.2.1
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)

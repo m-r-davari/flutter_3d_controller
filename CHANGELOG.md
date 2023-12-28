@@ -1,3 +1,25 @@
+## v1.2.1
+
+### Features
+* Mobile and Web stable version (support glb & gltf format)
+* Play animation
+* Switch between animations
+* Pause animation
+* Reset animation
+* Get available animation list
+* Switch between textures
+* Get available texture list
+* Set camera target
+* Reset camera target
+* Set camera orbit
+* Reset camera orbit
+
+### Fixes
+* Some improvements
+* Fix readme file
+* Reduce Sample size
+
+
 ## v1.2.0
 
 ### Features
