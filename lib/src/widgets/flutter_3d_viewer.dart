@@ -10,9 +10,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 class Flutter3DViewer extends StatefulWidget {
 
   final String src;
+  final bool showDefaultProgressBar;
   final Flutter3DController? controller;
 
-  const Flutter3DViewer({Key? key,required this.src,this.controller,}) : super(key: key);
+  const Flutter3DViewer({Key? key,required this.src,this.controller,this.showDefaultProgressBar = true}) : super(key: key);
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
