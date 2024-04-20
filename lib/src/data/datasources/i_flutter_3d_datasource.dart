@@ -1,8 +1,7 @@
-import 'package:flutter_3d_controller/src/data/datasources/flutter_3d_datasource_mobile.dart' if (dart.library.js) "package:flutter_3d_controller/src/data/datasources/flutter_3d_datasource_web.dart";
+import 'package:flutter_3d_controller/src/data/datasources/flutter_3d_datasource_mobile.dart'
+    if (dart.library.js) "package:flutter_3d_controller/src/data/datasources/flutter_3d_datasource_web.dart";
 
-
-abstract class IFlutter3DDatasource{
-
+abstract class IFlutter3DDatasource {
   /// Causes animations to be played, Can be use to switch animations as well.
   /// If animationName is null and model has at list one animation, it will play first model's animation
   /// If animationName passed and not null it will play specific animation
@@ -44,5 +43,4 @@ abstract class IFlutter3DDatasource{
 
   ///It will make specific instance of datasource per platform
   factory IFlutter3DDatasource(value) => Flutter3DDatasource(value);
-
 }

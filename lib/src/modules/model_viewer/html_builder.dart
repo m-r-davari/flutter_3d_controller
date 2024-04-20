@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'model_viewer.dart';
 
-
 abstract class HTMLBuilder {
   HTMLBuilder._();
 
@@ -355,12 +354,10 @@ abstract class HTMLBuilder {
       );
 
     //Default Progress bar color
-    if(progressBarColor != null){
-      modelViewerHtml.write(' --progress-bar-color: rgba(${progressBarColor.red}, ${progressBarColor.green}, ${progressBarColor.blue}, ${progressBarColor.alpha})');
+    if (progressBarColor != null) {
+      modelViewerHtml.write(
+          ' --progress-bar-color: rgba(${progressBarColor.red}, ${progressBarColor.green}, ${progressBarColor.blue}, ${progressBarColor.alpha})');
     }
-
-
-
 
     // Annotations CSS
     // --min-hotspot-opacity

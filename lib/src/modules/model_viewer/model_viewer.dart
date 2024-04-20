@@ -519,7 +519,6 @@ class ModelViewer extends StatefulWidget {
   /// Defaults to [Colors.transparent].
   final Color backgroundColor;
 
-
   /// The progressBarColor of the [ModelViewer]'s default loading progress bar.
   /// Defaults to [Colors.grey].
   final Color? progressBarColor;

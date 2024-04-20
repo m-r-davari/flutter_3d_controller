@@ -109,7 +109,7 @@ class ModelViewerState extends State<ModelViewer> {
       // CSS Styles
       backgroundColor: widget.backgroundColor,
       // Default progress bar color
-      progressBarColor : widget.progressBarColor,
+      progressBarColor: widget.progressBarColor,
       // Annotations CSS
       minHotspotOpacity: widget.minHotspotOpacity,
       maxHotspotOpacity: widget.maxHotspotOpacity,
@@ -237,8 +237,8 @@ class ModelViewerState extends State<ModelViewer> {
       switch (request.uri.path) {
         case '/':
         case '/index.html':
-          final htmlTemplate = await rootBundle
-              .loadString('packages/flutter_3d_controller/assets/template.html');
+          final htmlTemplate = await rootBundle.loadString(
+              'packages/flutter_3d_controller/assets/template.html');
           final html = utf8.encode(_buildHTML(htmlTemplate));
           response
             ..statusCode = HttpStatus.ok

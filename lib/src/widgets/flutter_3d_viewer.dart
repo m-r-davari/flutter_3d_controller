@@ -8,20 +8,19 @@ import 'package:flutter_3d_controller/src/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Flutter3DViewer extends StatefulWidget {
-
   final String src;
   final Color? progressBarColor;
   final Flutter3DController? controller;
 
-  const Flutter3DViewer({Key? key,required this.src,this.controller,this.progressBarColor}) : super(key: key);
+  const Flutter3DViewer(
+      {Key? key, required this.src, this.controller, this.progressBarColor})
+      : super(key: key);
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
-
 }
 
 class _Flutter3DViewerState extends State<Flutter3DViewer> {
-
   Flutter3DController? _controller;
   late String _id;
   final Utils _utils = Utils();
@@ -31,7 +30,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
     _id = _utils.generateId();
     _controller = widget.controller;
     _controller = widget.controller ?? Flutter3DController();
-    if(kIsWeb){
+    if (kIsWeb) {
       _controller?.init(Flutter3DRepository(IFlutter3DDatasource(null)));
     }
     super.initState();
@@ -49,10 +48,12 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
       autoRotate: false,
       debugLogging: false,
       interactionPrompt: InteractionPrompt.none,
-      onWebViewCreated: kIsWeb ? null : (WebViewController value) {
-        _controller?.init(Flutter3DRepository(IFlutter3DDatasource(value)));
-      },
+      onWebViewCreated: kIsWeb
+          ? null
+          : (WebViewController value) {
+              _controller
+                  ?.init(Flutter3DRepository(IFlutter3DDatasource(value)));
+            },
     );
   }
-
 }
