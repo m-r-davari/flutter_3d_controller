@@ -121,6 +121,8 @@ class ModelViewerState extends State<ModelViewer> {
 
       // CSS Styles
       backgroundColor: widget.backgroundColor,
+      // Default progress bar color
+      progressBarColor : widget.progressBarColor,
 
       // Annotations CSS
       minHotspotOpacity: widget.minHotspotOpacity,

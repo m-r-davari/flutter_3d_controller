@@ -63,6 +63,8 @@ abstract class HTMLBuilder {
 
     // CSS Styles
     final Color backgroundColor = Colors.transparent,
+    // default progress bar color
+    final Color? progressBarColor,
 
     // Annotations CSS
     final num? minHotspotOpacity,
@@ -352,8 +354,11 @@ abstract class HTMLBuilder {
         'background-color: rgba(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}, ${backgroundColor.alpha}); ',
       );
 
-    //Default Progress bar style
-    modelViewerHtml.write(' --progress-bar-color: transparent');
+    //Default Progress bar color
+    if(progressBarColor != null){
+      modelViewerHtml.write(' --progress-bar-color: rgba(${progressBarColor.red}, ${progressBarColor.green}, ${progressBarColor.blue}, ${progressBarColor.alpha})');
+    }
+
 
 
 
