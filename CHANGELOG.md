@@ -1,3 +1,8 @@
+## v1.3.0
+
+### Features
+* Set default loading progressbar color
+
 ## v1.2.1
 
 ### Features

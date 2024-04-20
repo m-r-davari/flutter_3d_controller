@@ -16,6 +16,7 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 - Reset camera target
 - Set camera orbit
 - Reset camera orbit
+- Set default loading progressbar color
 
 <!--
 ## Todo (Next Versions)
@@ -88,8 +89,12 @@ controller.resetCameraOrbit();
 ```dart
 //The 3D viewer widget
 Flutter3DViewer(
-  controller: controller,
-  src: 'assets/business_man.glb',
+    //If you don't pass progressBarColor the color of defaultLoadingProgressBar will be grey.
+    //You can set your custom color or use [Colors.transparent] for hiding the loadingProgressBar.
+    progressBarColor: Colors.blue,
+    controller: controller,
+    src: 'assets/business_man.glb',
+    //src: 'assets/sheen_chair.glb',
 )
 ```
 
@@ -99,7 +104,7 @@ Flutter3DViewer(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.2.1
+  flutter_3d_controller: ^1.3.0
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
