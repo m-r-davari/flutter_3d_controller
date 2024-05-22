@@ -4,6 +4,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class Flutter3DDatasource implements IFlutter3DDatasource {
   final WebViewController? _webViewController;
+
   Flutter3DDatasource([this._webViewController]);
 
   @override
@@ -38,9 +39,13 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   Future<List<String>> getAvailableAnimations() async {
     final result = await executeCustomJsCodeWithResult(
         "document.querySelector(\"model-viewer\").availableAnimations;");
-    return jsonDecode(result as String)
-        .map<String>((e) => e.toString())
-        .toList();
+    String checkedResult;
+    if (result is String) {
+      checkedResult = _tupleToList(result);
+    } else {
+      return [];
+    }
+    return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
   }
 
   @override
@@ -54,9 +59,13 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   Future<List<String>> getAvailableTextures() async {
     final result = await executeCustomJsCodeWithResult(
         "document.querySelector(\"model-viewer\").availableVariants;");
-    return jsonDecode(result as String)
-        .map<String>((e) => e.toString())
-        .toList();
+    String checkedResult;
+    if (result is String) {
+      checkedResult = _tupleToList(result);
+    } else {
+      return [];
+    }
+    return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
   }
 
   @override
@@ -99,5 +108,24 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
     final result = await _webViewController?.runJavaScriptReturningResult(code);
     return result;
+  }
+
+  /*
+  * Converts Tuple string to List
+  * */
+  String _tupleToList(String input) {
+    String trimmedString = input.trim();
+    if (trimmedString.isNotEmpty && trimmedString.length > 2) {
+      if (trimmedString[0] == "(") {
+        trimmedString = trimmedString.replaceFirst("(", "[");
+      }
+      if (trimmedString[trimmedString.length - 1] == ")") {
+        trimmedString =
+            trimmedString.substring(0, trimmedString.length - 2) + "]";
+      }
+      return trimmedString;
+    } else {
+      return "[]";
+    }
   }
 }

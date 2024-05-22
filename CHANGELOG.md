@@ -1,3 +1,8 @@
+## v1.3.1
+
+### Fixes
+* Fix the issue in fetching available animations and textures in iOS
+
 ## v1.3.0
 
 ### Features
