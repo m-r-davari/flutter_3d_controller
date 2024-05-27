@@ -104,7 +104,7 @@ Flutter3DViewer(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.3.0
+  flutter_3d_controller: ^1.3.1
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
