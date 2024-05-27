@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         color: Colors.grey,
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height,//
         child: Flutter3DViewer(
           //If you don't pass progressBarColor the color of defaultLoadingProgressBar will be grey.
           //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
