@@ -5,6 +5,8 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 ## Features
 
 - Mobile and Web stable version (support glb & gltf format)
+- Load 3D model from assets
+- Load 3D model from URL
 - Play animation
 - Switch between animations
 - Pause animation
@@ -20,10 +22,7 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 <!--
 ## Todo (Next Versions)
-
 - Change model source with setState
-- Load models from local storage
-- Load models from web
 - Support obj and fbx format
 -->
 
@@ -93,8 +92,9 @@ Flutter3DViewer(
     //You can set your custom color or use [Colors.transparent] for hiding the loadingProgressBar.
     progressBarColor: Colors.blue,
     controller: controller,
-    src: 'assets/business_man.glb',
-    //src: 'assets/sheen_chair.glb',
+    src: 'assets/business_man.glb', //3D model with different animations
+    //src: 'assets/sheen_chair.glb', //3D model with different textures
+    //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', //3D model from URL
 )
 ```
 

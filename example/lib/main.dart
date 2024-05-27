@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -130,8 +131,9 @@ class _MyHomePageState extends State<MyHomePage> {
           //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
           progressBarColor: Colors.blue,
           controller: controller,
-          src: 'assets/business_man.glb',
-          //src: 'assets/sheen_chair.glb',
+          src: 'assets/business_man.glb', //3D model with different animations
+          //src: 'assets/sheen_chair.glb', //3D model with different textures
+          //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
         ),
       ),
     );
