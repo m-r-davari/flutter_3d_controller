@@ -11,9 +11,11 @@ class Flutter3DViewer extends StatefulWidget {
   final String src;
   final Color? progressBarColor;
   final Flutter3DController? controller;
+  //todo : decide if need to pass it to widget or controller
+  final String? initialAnimationName;
 
   const Flutter3DViewer(
-      {Key? key, required this.src, this.controller, this.progressBarColor})
+      {Key? key, required this.src, this.controller, this.progressBarColor, this.initialAnimationName})
       : super(key: key);
 
   @override
@@ -48,6 +50,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
       autoRotate: false,
       debugLogging: false,
       interactionPrompt: InteractionPrompt.none,
+      animationName: widget.initialAnimationName,
       onWebViewCreated: kIsWeb
           ? null
           : (WebViewController value) {
