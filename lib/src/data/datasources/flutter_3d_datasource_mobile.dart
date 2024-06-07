@@ -39,13 +39,34 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   Future<List<String>> getAvailableAnimations() async {
     final result = await executeCustomJsCodeWithResult(
         "document.querySelector(\"model-viewer\").availableAnimations;");
-    String checkedResult;
+    // String checkedResult;
     if (result is String) {
-      checkedResult = _tupleToList(result);
+      return _ensureQuotesAndConvertToList(result);
+      // checkedResult = _tupleToList(result);
     } else {
       return [];
     }
-    return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
+    // return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
+  }
+
+  List<String> _ensureQuotesAndConvertToList(String input) {
+    // Removing parentheses and trimming the input string
+    String cleanedInput = input.replaceAll('(', '').replaceAll(')', '').trim();
+
+    // Splitting the string by commas
+    List<String> elements = cleanedInput.split(',');
+
+    // Trimming each element and removing any quotes
+    List<String> resultList = elements.map((element) {
+      String trimmedElement = element.trim();
+      if (trimmedElement.startsWith('"') && trimmedElement.endsWith('"')) {
+        return trimmedElement.substring(1, trimmedElement.length - 1);
+      } else {
+        return trimmedElement;
+      }
+    }).toList();
+
+    return resultList;
   }
 
   @override
