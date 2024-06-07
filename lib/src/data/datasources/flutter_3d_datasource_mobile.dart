@@ -56,17 +56,17 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     // Splitting the string by commas
     List<String> elements = cleanedInput.split(',');
 
-    // Ensuring all elements are enclosed in double quotes
-    List<String> quotedElements = elements.map((element) {
+    // Trimming each element and removing any quotes
+    List<String> resultList = elements.map((element) {
       String trimmedElement = element.trim();
       if (trimmedElement.startsWith('"') && trimmedElement.endsWith('"')) {
-        return trimmedElement;
+        return trimmedElement.substring(1, trimmedElement.length - 1);
       } else {
-        return '"$trimmedElement"';
+        return trimmedElement;
       }
     }).toList();
 
-    return quotedElements;
+    return resultList;
   }
 
   @override
