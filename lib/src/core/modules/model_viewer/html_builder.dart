@@ -380,7 +380,7 @@ abstract class HTMLBuilder {
       modelViewerHtml.write(' id="${htmlEscape.convert(id)}"');
     }
 
-    modelViewerHtml.writeln('>'); // close the previous tag of omodel-viewer
+    modelViewerHtml.writeln('>'); // close the previous tag of model-viewer
     if (innerModelViewerHtml != null) {
       modelViewerHtml.writeln(innerModelViewerHtml);
     }

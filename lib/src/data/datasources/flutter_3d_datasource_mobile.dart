@@ -12,33 +12,47 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     animationName == null
         ? executeCustomJsCode(
             "const modelViewer = document.querySelector(\"model-viewer\");"
-            "modelViewer.play();")
+            "modelViewer.play();",
+          )
         : executeCustomJsCode(
             "const modelViewer = document.querySelector(\"model-viewer\");"
             "modelViewer.animationName = \"$animationName\";"
-            "modelViewer.play();");
+            "modelViewer.play();",
+          );
   }
 
   @override
   void pauseAnimation() {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.pause();");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.pause();",
+    );
   }
 
   @override
   void resetAnimation() {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.pause();"
-        "modelViewer.currentTime = 0;"
-        "modelViewer.play();");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.pause();"
+      "modelViewer.currentTime = 0;"
+      "modelViewer.play();",
+    );
+  }
+
+  @override
+  void stopAnimation() {
+    executeCustomJsCode(
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.pause();"
+      "modelViewer.currentTime = 0;",
+    );
   }
 
   @override
   Future<List<String>> getAvailableAnimations() async {
     final result = await executeCustomJsCodeWithResult(
-        "document.querySelector(\"model-viewer\").availableAnimations;");
+      "document.querySelector(\"model-viewer\").availableAnimations;",
+    );
     String checkedResult;
     if (result is String) {
       checkedResult = _tupleToList(result);
@@ -51,14 +65,16 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void setTexture({required String textureName}) {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.variantName = \"$textureName\";");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.variantName = \"$textureName\";",
+    );
   }
 
   @override
   Future<List<String>> getAvailableTextures() async {
     final result = await executeCustomJsCodeWithResult(
-        "document.querySelector(\"model-viewer\").availableVariants;");
+      "document.querySelector(\"model-viewer\").availableVariants;",
+    );
     String checkedResult;
     if (result is String) {
       checkedResult = _tupleToList(result);
@@ -71,37 +87,67 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void setCameraTarget(double x, double y, double z) {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";",
+      100,
+      300,
+      true,
+    );
   }
 
   @override
   void resetCameraTarget() {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.cameraTarget = \"auto auto auto\";");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraTarget = \"auto auto auto\";",
+      100,
+      300,
+      true,
+    );
   }
 
   @override
   void setCameraOrbit(double theta, double phi, double radius) {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";",
+      100,
+      400,
+      true,
+    );
   }
 
   @override
   void resetCameraOrbit() {
     executeCustomJsCode(
-        "const modelViewer = document.querySelector(\"model-viewer\");"
-        "modelViewer.cameraOrbit = \"0deg 75deg 105%\" ;");
+      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "modelViewer.cameraOrbit = \"0deg 75deg 105%\" ;",
+      100,
+      400,
+      true,
+    );
   }
 
   @override
-  void executeCustomJsCode(String code) {
-    _webViewController?.runJavaScript('''(() => {
-        customEvaluate('$code'); 
-      })();
+  void executeCustomJsCode(String code,
+      [int codeDelay = 0,
+      int refresherDelay = 0,
+      bool refreshGestureInterceptor = false]) async {
+    await Future.delayed(Duration(milliseconds: codeDelay));
+
+    _webViewController?.runJavaScript('''
+        (() => {
+          customEvaluate('$code');
+        })();
     ''');
+
+    if (refreshGestureInterceptor) {
+      Future.delayed(Duration(milliseconds: refresherDelay), () {
+        _webViewController?.runJavaScript("""
+          cloneGestureData(modelViewer, modelViewerInterceptor);
+        """);
+      });
+    }
   }
 
   @override

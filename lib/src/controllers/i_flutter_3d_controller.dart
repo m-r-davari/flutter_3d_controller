@@ -4,11 +4,14 @@ abstract class IFlutter3DController {
   /// If animationName passed and not null it will play specific animation.
   void playAnimation({String? animationName});
 
-  ///Causes animations to be paused.
+  ///Causes animations to be paused at current frame.
   void pauseAnimation();
 
   /// Causes animation to be played from first frame
   void resetAnimation();
+
+  /// Causes animation to be stopped
+  void stopAnimation();
 
   /// It will return available animations list of 3D model as List<String>
   Future<List<String>> getAvailableAnimations();
@@ -17,7 +20,7 @@ abstract class IFlutter3DController {
   /// Can be used to load desire Texture of 3D model
   void setTexture({required String textureName});
 
-  ///It will return available 3D models texture as List<String>
+  /// It will return available 3D models texture as List<String>
   Future<List<String>> getAvailableTextures();
 
   ///It will change camera target

@@ -21,6 +21,11 @@ class Flutter3DRepository extends IFlutter3DRepository {
   }
 
   @override
+  void stopAnimation() {
+    _datasource.stopAnimation();
+  }
+
+  @override
   Future<List<String>> getAvailableAnimations() async {
     return await _datasource.getAvailableAnimations();
   }

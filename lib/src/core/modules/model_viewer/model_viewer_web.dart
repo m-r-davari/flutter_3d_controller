@@ -1,60 +1,102 @@
+// ignore_for_file: avoid_web_libraries_in_flutter
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
 import 'html_builder.dart';
 import 'model_viewer.dart';
-import 'shim/dart_html_fake.dart' if (dart.library.html) 'dart:html';
-import 'shim/dart_ui_fake.dart' if (dart.library.html) 'dart:ui_web' as ui_web;
+import 'web_fakes/dart_ui_web_fake.dart' if (dart.library.ui_web) 'dart:ui_web'
+    as ui_web;
+import 'dart:html' as html;
 
 class ModelViewerState extends State<ModelViewer> {
   bool _isLoading = true;
   final String _uniqueViewType = UniqueKey().toString();
+  html.DivElement? htmlWebElement;
+  bool firstDomLoad = true;
 
   @override
   void initState() {
     super.initState();
-    unawaited(generateModelViewerHtml());
+    unawaited(_generateModelViewerHtml());
   }
 
   /// To generate the HTML code for using the model viewer.
-  Future<void> generateModelViewerHtml() async {
+  Future<void> _generateModelViewerHtml() async {
     final htmlTemplate = await rootBundle
         .loadString('packages/flutter_3d_controller/assets/template.html');
 
-    // allow to use elements
-    final NodeValidator validator =
-        widget.overwriteNodeValidatorBuilder ?? defaultNodeValidatorBuilder;
-
-    final html = _buildHTML(htmlTemplate);
+    final htmlStr = _buildHTML(htmlTemplate);
 
     ui_web.platformViewRegistry.registerViewFactory(
       'model-viewer-html-$_uniqueViewType',
-      (viewId) => HtmlHtmlElement()
-        // ignore: avoid_dynamic_calls
-        ..style.border = 'none'
-        // ignore: avoid_dynamic_calls
-        ..style.height = '100%'
-        // ignore: avoid_dynamic_calls
-        ..style.width = '100%'
-        ..setInnerHtml(html, validator: validator),
+      (viewId) {
+        // Create a DivElement to hold the content
+        final element = html.DivElement()
+          ..style.border = 'none'
+          ..style.height = '100%'
+          ..style.width = '100%';
+
+        element.setInnerHtml(htmlStr,
+            treeSanitizer: html.NodeTreeSanitizer.trusted);
+
+        // Create a ScriptElement to add custom JavaScript
+        final scriptElement = html.ScriptElement();
+        scriptElement.type = 'text/javascript';
+        scriptElement.text = widget.relatedJs;
+        element.append(scriptElement);
+
+        element.addEventListener('CustomDOMContentLoaded', (event) {
+          final modelViewerElement = element.querySelector('#${widget.id}');
+          modelViewerElement?.addEventListener('progress', (dynamic mvEvent) {
+            final progress =
+                double.tryParse(mvEvent.detail['totalProgress'].toString()) ??
+                    0;
+            if (progress == 0 || progress == 1.0) {
+              return;
+            }
+            widget.onProgress?.call(progress);
+          });
+          modelViewerElement?.addEventListener('load', (dynamic mvEvent) {
+            widget.onProgress?.call(1.0);
+            widget.onLoad?.call(mvEvent.detail['url'].toString());
+          });
+          modelViewerElement?.addEventListener('error', (dynamic mvEvent) {
+            widget.onError?.call(mvEvent.detail['sourceError'].toString());
+          });
+          firstDomLoad = false;
+        });
+
+        htmlWebElement = element;
+
+        return element;
+      },
     );
 
-    setState(() {
-      _isLoading = false;
-    });
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  void dispose() {
+    htmlWebElement?.remove();
+    super.dispose();
   }
 
   @override
   Widget build(final BuildContext context) {
-    return _isLoading
-        ? const Center(
-            child: CircularProgressIndicator(
-              semanticsLabel: 'Loading Model Viewer...',
-            ),
-          )
-        : HtmlElementView(viewType: 'model-viewer-html-$_uniqueViewType');
+    if (_isLoading) {
+      return Container();
+    } else {
+      return HtmlElementView(
+        viewType: 'model-viewer-html-$_uniqueViewType',
+        onPlatformViewCreated: (id) async {
+          if (firstDomLoad) {
+            final event = html.CustomEvent('CustomDOMContentLoaded');
+            await Future.delayed(Duration.zero);
+            htmlWebElement?.dispatchEvent(event);
+          }
+        },
+      );
+    }
   }
 
   String _buildHTML(final String htmlTemplate) {
@@ -131,101 +173,9 @@ class ModelViewerState extends State<ModelViewer> {
       // Others
       innerModelViewerHtml: widget.innerModelViewerHtml,
       relatedCss: widget.relatedCss,
-      relatedJs: widget.relatedJs,
+      //relatedJs: widget.relatedJs,
       id: widget.id,
       debugLogging: widget.debugLogging,
     );
-  }
-}
-
-NodeValidatorBuilder defaultNodeValidatorBuilder = NodeValidatorBuilder.common()
-  ..allowElement(
-    'meta',
-    attributes: ['name', 'content'],
-    uriPolicy: AllowAllUri(),
-  )
-  ..allowElement('style')
-  ..allowElement(
-    'script',
-    attributes: [
-      'src',
-      'type',
-      'defer',
-      'async',
-      'crossorigin',
-      'integrity',
-      'nomodule',
-      'nonce',
-      'referrerpolicy',
-    ],
-    uriPolicy: AllowAllUri(),
-  )
-  ..allowCustomElement(
-    'model-viewer',
-    attributes: [
-      'style',
-
-      // Loading Attributes
-      'src',
-      'alt',
-      'poster',
-      'loading',
-      'reveal',
-      'with-credentials',
-
-      // Augmented Reality Attributes
-      'ar',
-      'ar-modes',
-      'ar-scale',
-      'ar-placement',
-      'ios-src',
-      'xr-environment',
-
-      // Staing & Cameras Attributes
-      'camera-controls',
-      'disable-pan',
-      'disable-tap',
-      'touch-action',
-      'disable-zoom',
-      'orbit-sensitivity',
-      'auto-rotate',
-      'auto-rotate-delay',
-      'rotation-per-second',
-      'interaction-prompt',
-      'interaction-prompt-style',
-      'interaction-prompt-threshold',
-      'camera-orbit',
-      'camera-target',
-      'field-of-view',
-      'max-camera-orbit',
-      'min-camera-orbit',
-      'max-field-of-view',
-      'min-field-of-view',
-      'interpolation-decay',
-
-      // Lighting & Env Attributes
-      'skybox-image',
-      'environment-image',
-      'exposure',
-      'shadow-intensity',
-      'shadow-softness ',
-
-      // Animation Attributes
-      'animation-name',
-      'animation-crossfade-duration',
-      'autoplay',
-
-      // Materials & Scene Attributes
-      'variant-name',
-      'orientation',
-      'scale',
-    ],
-    uriPolicy: AllowAllUri(),
-  );
-
-class AllowAllUri implements UriPolicy {
-  @override
-  bool allowsUri(String uri) {
-    return true;
   }
 }

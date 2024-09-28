@@ -28,3 +28,4 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+/lib/src/core/modules/model_viewer/f3dc_scripts.js
