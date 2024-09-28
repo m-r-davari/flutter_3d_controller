@@ -139,20 +139,21 @@ class _MyHomePageState extends State<MyHomePage> {
           //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
           //to prevent breaking gesture detection in iOS and some of android devices.
           activeGestureInterceptor: true,
-          //If you don't pass progressBarColor the color of defaultLoadingProgressBar will be grey.
+          //If you don't pass progressBarColor, the color of defaultLoadingProgressBar will be grey.
           //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
           progressBarColor: Colors.orange,
-
+          //You can disable viewer touch response by setting 'enableTouch' to 'false'
+          enableTouch: true,
+          //This callBack will return the loading progress value between 0 and 1.0
           onProgress: (double progressValue) {
-            //This callBack will return the loading progress value between 0 and 1.0
             debugPrint('model loading progress : $progressValue');
           },
+          //This callBack will call after model loaded successfully and will return model address
           onLoad: (modelAddress) {
-            //This callBack will call after model loaded successfully and will return model address
             debugPrint('model loaded : $modelAddress');
           },
+          //this callBack will call when model failed to load and will return failure error
           onError: (error) {
-            //this callBack will call when mode failed to load and will return failure error
             debugPrint('model failed to load : $error');
           },
           //You can have full control of 3d model animations, textures and camera

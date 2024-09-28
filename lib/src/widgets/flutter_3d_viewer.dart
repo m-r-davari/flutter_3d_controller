@@ -35,12 +35,17 @@ class Flutter3DViewer extends StatefulWidget {
   /// and will return string error
   final Function(String error)? onError;
 
+  /// If set to false, the model cannot be controlled by touch,
+  /// the default value is true.
+  final bool enableTouch;
+
   const Flutter3DViewer({
     Key? key,
     required this.src,
     this.controller,
     this.progressBarColor,
     this.activeGestureInterceptor = true,
+    this.enableTouch = true,
     this.onProgress,
     this.onLoad,
     this.onError,
@@ -74,6 +79,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
       relatedJs: _utils.injectedJS(_id,'flutter-3d-controller'),
       interactionPrompt: InteractionPrompt.none,
       activeGestureInterceptor: widget.activeGestureInterceptor,
+      cameraControls: widget.enableTouch,
       ar: false,
       autoPlay: false,
       autoRotate: false,
@@ -84,7 +90,6 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
         _controller.onModelLoaded.value = true;
         widget.onLoad?.call(modelAddress);
       },
-
       onError: (error){
         _controller.onModelLoaded.value = false;
         widget.onError?.call(error);
