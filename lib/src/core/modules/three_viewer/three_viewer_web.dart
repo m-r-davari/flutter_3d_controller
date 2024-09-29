@@ -111,7 +111,7 @@ class ThreeViewerState extends State<ThreeViewer> {
       htmlTemplate: htmlTemplate.replaceFirst(
         '<script type="module" src="three-viewer.min.js" defer></script>',
         '',
-      ),
+      ).replaceFirst('<script type="module" src="obj_loader.js" defer></script>', ''),
       // Attributes
       src: widget.src,
     );
