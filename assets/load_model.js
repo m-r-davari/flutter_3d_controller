@@ -1,30 +1,50 @@
-    let scene, camera, renderer;
 
-    function init() {
+import * as THREE from './three_viewer.js';
+import { OBJLoader } from './obj_loader.js';
 
-    var el3 = document.querySelector('three-viewer');
 
-    console.log('-----initing-----' + el3.Scene());
-    return;
-      scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+let scene, camera, renderer;
 
-      camera.position.z = 5;
-      animate();
-      console.log('-----initing end-----');
-    }
+function init() {
+console.log('-----------------initing---------------');///
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('flutter_container').appendChild(renderer.domElement);
 
-    function loadModel(modelPath) {
-      const objLoader = new THREE.OBJLoader();
-      objLoader.load(modelPath, (object) => {
-        scene.add(object);
-      });
-    }
+    // Add lights
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    scene.add(directionalLight);
 
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    }
+    camera.position.z = 5;
+    console.log('-----------------initing end---------------');
+}
+
+export function loadModel(modelUrl) {
+    const loader = new OBJLoader();
+    loader.load(
+        modelUrl,
+        (object) => {
+            scene.add(object);
+            object.position.set(0, 0, 0); // Adjust as needed
+            animate(); // Start the animation loop once the model is loaded
+        },
+        (xhr) => {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        (error) => {
+            console.error('An error occurred loading the model:', error);
+        }
+    );
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    renderer.render(scene, camera);
+}
+
+// Initialize the scene
+init();
