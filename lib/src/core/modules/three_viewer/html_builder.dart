@@ -12,7 +12,7 @@ abstract class HTMLBuilder {
 
 
     final modelViewerHtml = StringBuffer()
-      ..write('<model-viewer')
+      ..write('<three-viewer')
       // Attributes
       // Loading Attributes
       // src
@@ -34,13 +34,13 @@ abstract class HTMLBuilder {
     // }
 
 
-    modelViewerHtml.write('"'); // close style
+   // modelViewerHtml.write('"'); // close style
 
 
 
-    modelViewerHtml.writeln('>'); // close the previous tag of model-viewer
+    modelViewerHtml.writeln('>'); // close the previous tag of three-viewer
 
-    modelViewerHtml.writeln('</model-viewer>');
+    modelViewerHtml.writeln('</three-viewer>');
 
     final html =
         htmlTemplate.replaceFirst('<!-- body -->', modelViewerHtml.toString());

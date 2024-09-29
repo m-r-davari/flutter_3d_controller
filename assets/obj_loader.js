@@ -12,8 +12,9 @@ import {
 	Points,
 	PointsMaterial,
 	Vector3,
-	Color
-} from 'three';
+	Color,
+	SRGBColorSpace
+} from './three_viewer.js';
 
 // o object_name | g group_name
 const _object_pattern = /^[og]\s*(.+)?/;
@@ -534,8 +535,9 @@ class OBJLoader extends Loader {
 							_color.setRGB(
 								parseFloat( data[ 4 ] ),
 								parseFloat( data[ 5 ] ),
-								parseFloat( data[ 6 ] )
-							).convertSRGBToLinear();
+								parseFloat( data[ 6 ] ),
+								SRGBColorSpace
+							);
 
 							state.colors.push( _color.r, _color.g, _color.b );
 

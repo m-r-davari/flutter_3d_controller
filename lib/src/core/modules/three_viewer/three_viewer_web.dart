@@ -8,6 +8,7 @@ import 'html_builder.dart';
 import 'web_fakes/dart_ui_web_fake.dart' if (dart.library.ui_web) 'dart:ui_web'
     as ui_web;
 import 'dart:html' as html;
+import 'dart:js' as js;
 
 class ThreeViewerState extends State<ThreeViewer> {
   bool _isLoading = true;
@@ -26,6 +27,9 @@ class ThreeViewerState extends State<ThreeViewer> {
     final htmlTemplate = await rootBundle
         .loadString('packages/flutter_3d_controller/assets/three_viewer_template.html');
 
+    final jsLoad = await rootBundle
+        .loadString('packages/flutter_3d_controller/assets/load_model.js');
+
     final htmlStr = _buildHTML(htmlTemplate);
 
     ui_web.platformViewRegistry.registerViewFactory(
@@ -43,7 +47,7 @@ class ThreeViewerState extends State<ThreeViewer> {
         // Create a ScriptElement to add custom JavaScript
         final scriptElement = html.ScriptElement();
         scriptElement.type = 'text/javascript';
-        //scriptElement.text = widget.relatedJs;
+        scriptElement.text = jsLoad;
         element.append(scriptElement);
 
         // element.addEventListener('CustomDOMContentLoaded', (event) {
@@ -95,6 +99,12 @@ class ThreeViewerState extends State<ThreeViewer> {
           //   await Future.delayed(Duration.zero);
           //   htmlWebElement?.dispatchEvent(event);
           // }
+          Future.delayed(Duration(seconds: 2),(){
+            js.context.callMethod(
+              "init",
+              //[code],
+            );
+          });
         },
       );
     }
