@@ -135,7 +135,8 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.grey,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: Flutter3DViewer(
+        child: const Flutter3DViewer.obj(src: 'src'),
+        /*child: Flutter3DViewer(
           //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
           //to prevent breaking gesture detection in iOS and some of android devices.
           activeGestureInterceptor: true,
@@ -161,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
           src: 'assets/business_man.glb', //3D model with different animations
           //src: 'assets/sheen_chair.glb', //3D model with different textures
           //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
-        ),
+        ),*/
       ),
     );
   }

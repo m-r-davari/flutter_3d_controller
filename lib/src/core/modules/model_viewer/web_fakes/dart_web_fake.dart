@@ -1,4 +1,5 @@
 // ignore_for_file: avoid_setters_without_getters
+/*
 class HTMLHtmlElement {
   CSSStyleDeclarationX get style => CSSStyleDeclarationX._(Object);
 
@@ -16,3 +17,4 @@ extension type CSSStyleDeclarationX._(Object _) implements Object {
 extension ToJSX on String {
   String get toJS => '';
 }
+*/

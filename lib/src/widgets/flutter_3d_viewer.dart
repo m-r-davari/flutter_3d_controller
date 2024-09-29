@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/src/controllers/flutter_3d_controller.dart';
+import 'package:flutter_3d_controller/src/core/modules/obj_viewer/obj_viewer.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repository.dart';
 import 'package:flutter_3d_controller/src/core/modules/model_viewer/model_viewer.dart';
@@ -39,8 +40,11 @@ class Flutter3DViewer extends StatefulWidget {
   /// the default value is true.
   final bool enableTouch;
 
+  /// Flag to indicate if the .obj constructor was used.
+  final bool isObj;
+
   const Flutter3DViewer({
-    Key? key,
+    super.key,
     required this.src,
     this.controller,
     this.progressBarColor,
@@ -49,7 +53,21 @@ class Flutter3DViewer extends StatefulWidget {
     this.onProgress,
     this.onLoad,
     this.onError,
-  }) : super(key: key);
+  }) : isObj = false;
+
+
+  const Flutter3DViewer.obj({
+    super.key,
+    required this.src,
+  })  : progressBarColor = null,
+        controller = null,
+        activeGestureInterceptor = true,
+        enableTouch = true,
+        onProgress = null,
+        onLoad = null,
+        onError = null,
+        isObj = true;
+
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
@@ -72,7 +90,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return ModelViewer(
+    return widget.isObj ? const ObjViewer() : ModelViewer(
       id: _id,
       src: widget.src,
       progressBarColor: widget.progressBarColor,
