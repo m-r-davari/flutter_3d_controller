@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_3d_controller/src/core/modules/three_viewer/three_viewer.dart';
 import 'package:path/path.dart' as p;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,9 +15,9 @@ import 'package:webview_flutter_android/webview_flutter_android.dart'
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart'
     as ios;
 import 'html_builder.dart';
-import 'model_viewer.dart';
 
-class ModelViewerState extends State<ModelViewer> {
+
+class ThreeViewerState extends State<ThreeViewer> {
   HttpServer? _proxy;
   WebViewController? _webViewController;
   late String _proxyURL;
@@ -89,11 +90,7 @@ class ModelViewerState extends State<ModelViewer> {
 
     return TapRegion(
       onTapInside: (_) {},
-      onTapOutside: (_) {
-        if (widget.activeGestureInterceptor) {
-          resetGestureInterceptor('flutter-3d-controller');
-        }
-      },
+      onTapOutside: (_) {},
       child: WebViewWidget(
         controller: _webViewController!,
         gestureRecognizers: const <Factory<OneSequenceGestureRecognizer>>{
@@ -122,7 +119,7 @@ class ModelViewerState extends State<ModelViewer> {
       NavigationDelegate(
         onNavigationRequest: (request) async {
           debugPrint('ModelViewer wants to load: ${request.url}');
-          if (Platform.isIOS && request.url == widget.iosSrc) {
+          if (Platform.isIOS && request.url == 'widget.iosSrc') {
             await launchUrl(
               Uri.parse(request.url.trimLeft()),
               mode: LaunchMode.inAppWebView,
@@ -201,7 +198,7 @@ class ModelViewerState extends State<ModelViewer> {
     registerJsChannels(webViewController);
 
     debugPrint('ModelViewer initializing... <$_proxyURL>');
-    widget.onWebViewCreated?.call(webViewController);
+    //widget.onWebViewCreated?.call(webViewController);
     await webViewController.loadRequest(Uri.parse(_proxyURL));
     setState(() {
       _webViewController = webViewController;
@@ -213,7 +210,7 @@ class ModelViewerState extends State<ModelViewer> {
     webViewController.addJavaScriptChannel(
       'jsDOMChannel',
       onMessageReceived: (message) {
-        registerModelViewerEventListener('m-r-davari',widget.id.toString());
+        //registerModelViewerEventListener('m-r-davari',widget.id.toString());
       },
     );
     //js debugger channel
@@ -231,28 +228,28 @@ class ModelViewerState extends State<ModelViewer> {
         if(progress == 0 || progress == 1){
           return;
         }
-        widget.onProgress?.call(progress);
+       // widget.onProgress?.call(progress);
       },
     );
     // onLoad Channel
     webViewController.addJavaScriptChannel(
       'onLoadChannel',
       onMessageReceived: (message) {
-        widget.onProgress?.call(1.0);
-        widget.onLoad?.call(message.message == '/model' ? widget.src : message.message);
-        if (widget.activeGestureInterceptor && !isLoaded) {
-          initGestureInterceptorJs('flutter-3d-controller');
-          setGestureInterceptorLayer('flutter-3d-controller');
-          registerGestureInterceptorListener('flutter-3d-controller');
-        }
-        isLoaded = true;
+        // widget.onProgress?.call(1.0);
+        // widget.onLoad?.call(message.message == '/model' ? widget.src : message.message);
+        // if (widget.activeGestureInterceptor && !isLoaded) {
+        //   initGestureInterceptorJs('flutter-3d-controller');
+        //   setGestureInterceptorLayer('flutter-3d-controller');
+        //   registerGestureInterceptorListener('flutter-3d-controller');
+        // }
+        // isLoaded = true;
       },
     );
     // onError Channel
     webViewController.addJavaScriptChannel(
       'onErrorChannel',
       onMessageReceived: (message) {
-        widget.onError?.call(message.message == '{}' ? 'Failed to load' : message.message);
+      //  widget.onError?.call(message.message == '{}' ? 'Failed to load' : message.message);
       },
     );
   }
@@ -274,7 +271,7 @@ class ModelViewerState extends State<ModelViewer> {
         case '/':
         case '/index.html':
           final htmlTemplate = await rootBundle.loadString(
-              'packages/flutter_3d_controller/assets/model_viewer_template.html');
+              'packages/flutter_3d_controller/assets/template.html');
           final html = utf8.encode(_buildHTML(htmlTemplate));
           response
             ..statusCode = HttpStatus.ok
@@ -282,9 +279,9 @@ class ModelViewerState extends State<ModelViewer> {
             ..headers.add('Content-Length', html.length.toString())
             ..add(html);
           await response.close();
-        case '/model_viewer.min.js':
+        case '/model-viewer.min.js':
           final code = await _readAsset(
-            'packages/flutter_3d_controller/assets/model_viewer.min.js',
+            'packages/flutter_3d_controller/assets/model-viewer.min.js',
           );
           response
             ..statusCode = HttpStatus.ok
@@ -358,66 +355,6 @@ class ModelViewerState extends State<ModelViewer> {
     return HTMLBuilder.build(
       htmlTemplate: htmlTemplate,
       src: '/model',
-      alt: widget.alt,
-      poster: widget.poster,
-      loading: widget.loading,
-      reveal: widget.reveal,
-      withCredentials: widget.withCredentials,
-      // AR Attributes
-      ar: widget.ar,
-      arModes: widget.arModes,
-      arScale: widget.arScale,
-      arPlacement: widget.arPlacement,
-      iosSrc: widget.iosSrc,
-      xrEnvironment: widget.xrEnvironment,
-      // Cameras Attributes
-      cameraControls: widget.cameraControls,
-      disablePan: widget.disablePan,
-      disableTap: widget.disableTap,
-      touchAction: widget.touchAction,
-      disableZoom: widget.disableZoom,
-      orbitSensitivity: widget.orbitSensitivity,
-      autoRotate: widget.autoRotate,
-      autoRotateDelay: widget.autoRotateDelay,
-      rotationPerSecond: widget.rotationPerSecond,
-      interactionPrompt: widget.interactionPrompt,
-      interactionPromptStyle: widget.interactionPromptStyle,
-      interactionPromptThreshold: widget.interactionPromptThreshold,
-      cameraOrbit: widget.cameraOrbit,
-      cameraTarget: widget.cameraTarget,
-      fieldOfView: widget.fieldOfView,
-      maxCameraOrbit: widget.maxCameraOrbit,
-      minCameraOrbit: widget.minCameraOrbit,
-      maxFieldOfView: widget.maxFieldOfView,
-      minFieldOfView: widget.minFieldOfView,
-      interpolationDecay: widget.interpolationDecay,
-      // Lighting & Env Attributes
-      skyboxImage: widget.skyboxImage,
-      environmentImage: widget.environmentImage,
-      exposure: widget.exposure,
-      shadowIntensity: widget.shadowIntensity,
-      shadowSoftness: widget.shadowSoftness,
-      // Animation Attributes
-      animationName: widget.animationName,
-      animationCrossfadeDuration: widget.animationCrossfadeDuration,
-      autoPlay: widget.autoPlay,
-      // Materials & Scene Attributes
-      variantName: widget.variantName,
-      orientation: widget.orientation,
-      scale: widget.scale,
-      // CSS Styles
-      backgroundColor: widget.backgroundColor,
-      // Default progress bar color
-      progressBarColor: widget.progressBarColor,
-      // Annotations CSS
-      minHotspotOpacity: widget.minHotspotOpacity,
-      maxHotspotOpacity: widget.maxHotspotOpacity,
-      // Others
-      innerModelViewerHtml: widget.innerModelViewerHtml,
-      relatedCss: widget.relatedCss,
-      relatedJs: widget.relatedJs,
-      id: widget.id,
-      debugLogging: widget.debugLogging,
     );
   }
 

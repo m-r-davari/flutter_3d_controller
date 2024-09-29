@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/src/controllers/flutter_3d_controller.dart';
-import 'package:flutter_3d_controller/src/core/modules/obj_viewer/obj_viewer.dart';
+import 'package:flutter_3d_controller/src/core/modules/three_viewer/three_viewer.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repository.dart';
 import 'package:flutter_3d_controller/src/core/modules/model_viewer/model_viewer.dart';
@@ -90,7 +90,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isObj ? const ObjViewer() : ModelViewer(
+    return widget.isObj ? const ThreeViewer(src: 'src') : ModelViewer(
       id: _id,
       src: widget.src,
       progressBarColor: widget.progressBarColor,

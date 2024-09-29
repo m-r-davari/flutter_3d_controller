@@ -23,7 +23,7 @@ class ModelViewerState extends State<ModelViewer> {
   /// To generate the HTML code for using the model viewer.
   Future<void> _generateModelViewerHtml() async {
     final htmlTemplate = await rootBundle
-        .loadString('packages/flutter_3d_controller/assets/template.html');
+        .loadString('packages/flutter_3d_controller/assets/model_viewer_template.html');
 
     final htmlStr = _buildHTML(htmlTemplate);
 
@@ -108,7 +108,7 @@ class ModelViewerState extends State<ModelViewer> {
 
     return HTMLBuilder.build(
       htmlTemplate: htmlTemplate.replaceFirst(
-        '<script type="module" src="model-viewer.min.js" defer></script>',
+        '<script type="module" src="model_viewer.min.js" defer></script>',
         '',
       ),
       // Attributes
