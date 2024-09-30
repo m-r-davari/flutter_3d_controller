@@ -7,7 +7,8 @@ import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repositor
 import 'package:flutter_3d_controller/src/core/modules/model_viewer/model_viewer.dart';
 import 'package:flutter_3d_controller/src/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:flutter_3d_controller/src/core/modules/obj_viewer/object.dart' as obj;
+import 'package:flutter_3d_controller/src/core/modules/obj_viewer/object.dart'
+    as obj;
 import 'package:vector_math/vector_math_64.dart' hide Colors;
 
 class Flutter3DViewer extends StatefulWidget {
@@ -45,6 +46,9 @@ class Flutter3DViewer extends StatefulWidget {
   /// Flag to indicate if the .obj constructor was used.
   final bool isObj;
 
+  /// obj model initial camera values
+  final double? scale, cameraX, cameraY, cameraZ;
+
   const Flutter3DViewer({
     super.key,
     required this.src,
@@ -55,18 +59,26 @@ class Flutter3DViewer extends StatefulWidget {
     this.onProgress,
     this.onLoad,
     this.onError,
-  }) : isObj = false;
+  })  : isObj = false,
+        scale = null,
+        cameraX = null,
+        cameraY = null,
+        cameraZ = null;
 
-  const Flutter3DViewer.obj({
-    super.key,
-    required this.src,
-  })  : progressBarColor = null,
+  const Flutter3DViewer.obj(
+      {super.key,
+      required this.src,
+      this.scale,
+      this.cameraX,
+      this.cameraY,
+      this.cameraZ,
+      this.onProgress,
+      this.onLoad,
+      this.onError})
+      : progressBarColor = null,
         controller = null,
         activeGestureInterceptor = true,
         enableTouch = true,
-        onProgress = null,
-        onLoad = null,
-        onError = null,
         isObj = true;
 
   @override
@@ -92,11 +104,26 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
   Widget build(BuildContext context) {
     return widget.isObj
         ? ObjViewer(
+            src: widget.src,
             interactive: widget.enableTouch,
-            onSceneCreated: (scene) {
-              scene.camera.position.z = 10;
-              scene.camera.target.y = 0;//https://raw.githubusercontent.com/zesage/flutter_cube/refs/heads/master/example/ruby/assets/ruby_rose/ruby_rose.obj
-              scene.world.add(obj.Object(scale: Vector3(9.0, 9.0, 9.0), fileName: 'ruby_rose.obj',url: 'https://raw.githubusercontent.com/zesage/flutter_cube/refs/heads/master/example/ruby/assets/ruby_rose/',));
+            onSceneCreated: (scene, modelName, modelUrl) {
+              scene.camera.position.z = widget.cameraZ ?? 10;
+              scene.camera.target.y = widget.cameraY ?? 0;
+              scene.camera.target.x = widget.cameraX ?? 0;
+              scene.world.add(
+                obj.Object(
+                    scale: Vector3(widget.scale ?? 5.0, widget.scale ?? 5.0,
+                        widget.scale ?? 5.0),
+                    fileName: modelName,
+                    url: modelUrl,
+                    onProgress: widget.onProgress,
+                    onLoad: (modelAddress) {
+                      widget.onLoad?.call(modelAddress);
+                    },
+                    onError: (error) {
+                      widget.onError?.call(error);
+                    }),
+              );
             },
           )
         : ModelViewer(

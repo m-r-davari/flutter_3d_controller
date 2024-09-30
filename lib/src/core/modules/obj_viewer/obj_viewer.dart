@@ -1,12 +1,15 @@
 import 'package:flutter/widgets.dart' hide Image;
+import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'scene.dart';
 
-typedef SceneCreatedCallback = void Function(Scene scene);
+typedef SceneCreatedCallback = void Function(
+    Scene scene, String modelName, String? modelUrl);
 
 class ObjViewer extends StatefulWidget {
   const ObjViewer({
     Key? key,
+    required this.src,
     this.interactive = true,
     this.onSceneCreated,
     this.onObjectCreated,
@@ -15,6 +18,11 @@ class ObjViewer extends StatefulWidget {
   final bool interactive;
   final SceneCreatedCallback? onSceneCreated;
   final ObjectCreatedCallback? onObjectCreated;
+
+
+  /// The URL or path to the 3D model. This parameter is required.
+  /// Only .OBJ models are supported.
+  final String src;
 
   @override
   _ObjViewerState createState() => _ObjViewerState();
@@ -31,7 +39,8 @@ class _ObjViewerState extends State<ObjViewer> {
   }
 
   void _handleScaleUpdate(ScaleUpdateDetails details) {
-    scene.camera.trackBall(toVector2(_lastFocalPoint), toVector2(details.localFocalPoint), 1.5);
+    scene.camera.trackBall(
+        toVector2(_lastFocalPoint), toVector2(details.localFocalPoint), 1.5);
     _lastFocalPoint = details.localFocalPoint;
     if (_lastZoom == null) {
       _lastZoom = scene.camera.zoom;
@@ -50,13 +59,16 @@ class _ObjViewerState extends State<ObjViewer> {
     );
     // prevent setState() or markNeedsBuild called during build
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      widget.onSceneCreated?.call(scene);
+      final modelSrcData = _parseModelSrc(widget.src);
+      widget.onSceneCreated
+          ?.call(scene, modelSrcData[0] ?? widget.src, modelSrcData[1]);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
       scene.camera.viewportWidth = constraints.maxWidth;
       scene.camera.viewportHeight = constraints.maxHeight;
       final customPaint = CustomPaint(
@@ -93,4 +105,25 @@ class _ObjPainter extends CustomPainter {
 /// Convert Offset to Vector2
 Vector2 toVector2(Offset value) {
   return Vector2(value.dx, value.dy);
+}
+
+List<String?> _parseModelSrc(String src) {
+  List<String?> result = List.filled(2, null, growable: false);
+  if (!src.toLowerCase().endsWith('.obj')) {
+    throw Flutter3dControllerFormatException();
+  } else if (src.startsWith('http://') || src.startsWith('https://')) {
+    //model is loading from url
+    String modelName = src.substring(src.lastIndexOf('/')+1);
+    String modelPath = src.substring(0,src.lastIndexOf('/')+1);
+    result[0] = modelName;
+    result[1] = modelPath;
+  } else if (src.contains('assets')) {
+    //model is loading from local asset
+    result[0] = src;
+    result[1] = null;
+  } else {
+    throw Flutter3dControllerFormatException(
+        message: 'Cannot Parse the model source.');
+  }
+  return result;
 }

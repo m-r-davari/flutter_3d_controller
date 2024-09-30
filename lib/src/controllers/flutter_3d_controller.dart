@@ -20,8 +20,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.playAnimation(animationName: animationName);
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -31,8 +30,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.pauseAnimation();
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -42,8 +40,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.resetAnimation();
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -53,8 +50,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.stopAnimation();
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -64,8 +60,7 @@ class Flutter3DController extends IFlutter3DController {
       return await _repository?.getAvailableAnimations() ?? [];
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -75,8 +70,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.setTexture(textureName: textureName);
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -86,8 +80,7 @@ class Flutter3DController extends IFlutter3DController {
       return await _repository?.getAvailableTextures() ?? [];
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -97,8 +90,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.setCameraTarget(x, y, z);
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -108,8 +100,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.resetCameraTarget();
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -119,8 +110,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.setCameraOrbit(theta, phi, radius);
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 
@@ -130,8 +120,7 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.resetCameraOrbit();
     }
     else{
-      throw Flutter3dControllerException(
-          Flutter3dControllerException.f3dcLoadingModelError);
+      throw Flutter3dControllerLoadingException();
     }
   }
 }

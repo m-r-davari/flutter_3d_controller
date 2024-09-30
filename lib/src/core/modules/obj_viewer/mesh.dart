@@ -27,10 +27,11 @@ class Polygon {
 
 // wolcy97: 2020-01-31
 int _getVertexIndex(String vIndex) {
-  if (int.parse(vIndex) < 0)
+  if (int.parse(vIndex) < 0) {
     return int.parse(vIndex) + 1;
-  else
+  } else {
     return int.parse(vIndex) - 1;
+  }
 }
 
 class Mesh {
@@ -68,7 +69,7 @@ class Mesh {
 /// Reference：http://paulbourke.net/dataformats/obj/
 ///
 Future<List<Mesh>> loadObj(String fileName, bool normalized,
-    {bool isAsset = true, String? url}) async {
+    {bool isAsset = true, String? url ,Function(double)? onProgress}) async {
   Map<String, Material>? materials;
   List<Vector3> vertices = <Vector3>[];
   List<Vector3> colors = <Vector3>[];
@@ -83,15 +84,22 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
   String? groupName;
   String basePath = path.dirname(fileName);
 
-  var data;
+  String data;
+  onProgress?.call(0.1);
+
   if (url != null) {
     if (url.endsWith("/") == false) {
       url = url + "/";
     }
     http.Client client = new http.Client();
     var req = await client.get(Uri.parse(url + fileName));
-    data = req.body;
-    print('-----data dl obj-----$data');
+    onProgress?.call(0.25);
+    if(req.statusCode==200){
+      data = req.body;
+    }
+    else{
+      throw Exception('Failed to download model');
+    }
   } else if (isAsset) {
     // load obj data from asset.
     data = await rootBundle.loadString(fileName);
@@ -99,7 +107,7 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
     // load obj data from file.
     data = await File(fileName).readAsString();
   }
-
+  onProgress?.call(0.5);
   final lines = data.split('\n');
   for (var line in lines) {
     List<String> parts = line.trim().split(RegExp(r"\s+"));
@@ -126,11 +134,11 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
         elementOffsets.add(vertexIndices.length);
         break;
       case 'g':
-      // the name for the group. eg: g front cube
+      // the name for the group. eg: g front obj
         if (parts.length >= 2) groupName = parts[1];
         break;
       case 'o':
-      // the user-defined object name. eg: o cube
+      // the user-defined object name. eg: o obj
         if (parts.length >= 2) objectlName = parts[1];
         break;
       case 'v':
@@ -202,6 +210,7 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
     isAsset,
     url,
   );
+  onProgress?.call(0.75);
   return normalized ? normalizeMesh(meshes) : meshes;
 }
 
@@ -220,7 +229,7 @@ Future<List<Mesh>> _buildMesh(
     bool isAsset,
     String? url,
     ) async {
-  if (elementOffsets.length == 0) {
+  if (elementOffsets.isEmpty) {
     elementNames.add('');
     elementMaterials.add('');
     elementOffsets.add(0);
@@ -406,23 +415,24 @@ List<Mesh> normalizeMesh(List<Mesh> meshes) {
 Future<Image?> packingTexture(List<Mesh> meshes) async {
   // generate a key for a mesh.
   String getMeshKey(Mesh mesh) {
-    if (mesh.texture != null)
+    if (mesh.texture != null) {
       return mesh.texturePath ?? '' + mesh.textureRect.toString();
+    }
     return toColor(mesh.material.diffuse.bgr).toString();
   }
 
   // only pack the different textures.
   final allMeshes = meshes;
-  final textures = Map<String, Mesh>();
+  final textures = <String, Mesh>{};
   for (Mesh mesh in allMeshes) {
-    if (mesh.vertices.length == 0) continue;
+    if (mesh.vertices.isEmpty) continue;
     final String key = getMeshKey(mesh);
     textures.putIfAbsent(key, () => mesh);
   }
   // if there is only one texture then return the texture directly.
   meshes = textures.values.toList();
   if (meshes.length == 1) return meshes[0].texture;
-  if (meshes.length == 0) return null;
+  if (meshes.isEmpty) return null;
 
   // packing
   double area = 0;
@@ -488,7 +498,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
       final int length = imageWidth * imageHeight;
       pixels = Uint32List(length);
       // color mode then set texture to transparent.
-      final int color =
+      const int color =
       0; //mesh.material == null ? 0 : toColor(mesh.material.kd.bgr, mesh.material.d).value;
       for (int i = 0; i < length; i++) {
         pixels[i] = color;

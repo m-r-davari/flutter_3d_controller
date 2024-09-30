@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:vector_math/vector_math_64.dart';
 import 'scene.dart';
 import 'mesh.dart';
@@ -20,6 +19,9 @@ class Object {
     String? fileName,
     bool isAsset = true,
     String? url,
+    this.onProgress,
+    this.onLoad,
+    this.onError,
   }) {
     if (position != null) position.copyInto(this.position);
     if (rotation != null) rotation.copyInto(this.rotation);
@@ -32,23 +34,47 @@ class Object {
     }
     this.scene = scene;
 
+    //todo : improve download progress logic
     // load mesh from obj file
     if (fileName != null) {
-      loadObj(fileName, normalized, isAsset: isAsset, url: url).then((List<Mesh> meshes) {
+      loadObj(fileName, normalized, isAsset: isAsset, url: url,onProgress: (progress){
+        onProgress?.call(progress);
+      }).then((List<Mesh> meshes) {
         if (meshes.length == 1) {
           this.mesh = meshes[0];
         } else if (meshes.length > 1) {
           // multiple objects
           for (Mesh mesh in meshes) {
-            add(Object(name: mesh.name, mesh: mesh, backfaceCulling: backfaceCulling, lighting: lighting));
+            add(Object(
+                name: mesh.name,
+                mesh: mesh,
+                backfaceCulling: backfaceCulling,
+                lighting: lighting));
           }
         }
         this.scene?.objectCreated(this);
+        onProgress?.call(1.0);
+        onLoad?.call(url == null ? fileName : url+fileName);
+      },onError: (e){
+        onError?.call(e.message);
       });
     } else {
       this.scene?.objectCreated(this);
+      onError?.call('Failed to Load');
     }
   }
+
+  /// This callBack will call at every step of loading progress
+  /// and will return double progress value between 0 and 1.0
+  final Function(double progressValue)? onProgress;
+
+  /// This callBack will call when model loaded successfully
+  /// and will return string model address
+  final Function(String modelAddress)? onLoad;
+
+  /// This callBack will call when model failed to load
+  /// and will return string error
+  final Function(String error)? onError;
 
   /// The local position of this object relative to the parent. Default is Vector3(0.0, 0.0, 0.0). updateTransform after you change the value.
   final Vector3 position = Vector3(0.0, 0.0, 0.0);
@@ -64,7 +90,9 @@ class Object {
 
   /// The scene of this object.
   Scene? _scene;
+
   Scene? get scene => _scene;
+
   set scene(Scene? value) {
     _scene = value;
     for (Object child in children) {
@@ -94,7 +122,11 @@ class Object {
   final Matrix4 transform = Matrix4.identity();
 
   void updateTransform() {
-    final Matrix4 m = Matrix4.compose(position, Quaternion.euler(radians(rotation.y), radians(rotation.x), radians(rotation.z)), scale);
+    final Matrix4 m = Matrix4.compose(
+        position,
+        Quaternion.euler(
+            radians(rotation.y), radians(rotation.x), radians(rotation.z)),
+        scale);
     transform.setFrom(m);
   }
 
@@ -114,7 +146,8 @@ class Object {
   /// Find a child matching the name
   Object? find(Pattern name) {
     for (Object child in children) {
-      if (child.name != null && (name as RegExp).hasMatch(child.name!)) return child;
+      if (child.name != null && (name as RegExp).hasMatch(child.name!))
+        return child;
       final Object? result = child.find(name);
       if (result != null) return result;
     }
