@@ -28,6 +28,7 @@ dependencies:
   webview_flutter: ^4.7.0
   webview_flutter_android: ^3.16.0
   webview_flutter_wkwebview: ^3.13.0
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:

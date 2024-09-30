@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
         color: Colors.grey,
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: const Flutter3DViewer.obj(src: 'src'),
+        child: const Flutter3DViewer.obj(src: 'assets/flutter_dash.obj'),
 
 /*        child: Flutter3DViewer(
           //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer

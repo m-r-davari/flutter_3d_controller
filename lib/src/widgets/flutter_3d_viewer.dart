@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_3d_controller/src/controllers/flutter_3d_controller.dart';
-import 'package:flutter_3d_controller/src/core/modules/three_viewer/three_viewer.dart';
+import 'package:flutter_3d_controller/src/core/modules/obj_viewer/obj_viewer.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repository.dart';
 import 'package:flutter_3d_controller/src/core/modules/model_viewer/model_viewer.dart';
 import 'package:flutter_3d_controller/src/utils/utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_3d_controller/src/core/modules/obj_viewer/object.dart' as obj;
+import 'package:vector_math/vector_math_64.dart' hide Colors;
 
 class Flutter3DViewer extends StatefulWidget {
   /// Src address of 3d model, could be asset address, url or file address.
@@ -55,7 +57,6 @@ class Flutter3DViewer extends StatefulWidget {
     this.onError,
   }) : isObj = false;
 
-
   const Flutter3DViewer.obj({
     super.key,
     required this.src,
@@ -67,7 +68,6 @@ class Flutter3DViewer extends StatefulWidget {
         onLoad = null,
         onError = null,
         isObj = true;
-
 
   @override
   State<Flutter3DViewer> createState() => _Flutter3DViewerState();
@@ -90,34 +90,43 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isObj ? const ThreeViewer(src: 'src') : ModelViewer(
-      id: _id,
-      src: widget.src,
-      progressBarColor: widget.progressBarColor,
-      relatedJs: _utils.injectedJS(_id,'flutter-3d-controller'),
-      interactionPrompt: InteractionPrompt.none,
-      activeGestureInterceptor: widget.activeGestureInterceptor,
-      cameraControls: widget.enableTouch,
-      ar: false,
-      autoPlay: false,
-      autoRotate: false,
-      debugLogging: false,
-      disableTap: true,
-      onProgress: widget.onProgress,
-      onLoad: (modelAddress){
-        _controller.onModelLoaded.value = true;
-        widget.onLoad?.call(modelAddress);
-      },
-      onError: (error){
-        _controller.onModelLoaded.value = false;
-        widget.onError?.call(error);
-      },
-      onWebViewCreated: kIsWeb
-          ? null
-          : (WebViewController value) {
-              _controller
-                  .init(Flutter3DRepository(IFlutter3DDatasource(value)));
+    return widget.isObj
+        ? ObjViewer(
+            interactive: widget.enableTouch,
+            onSceneCreated: (scene) {
+              scene.camera.position.z = 10;
+              scene.camera.target.y = 0;//https://raw.githubusercontent.com/zesage/flutter_cube/refs/heads/master/example/ruby/assets/ruby_rose/ruby_rose.obj
+              scene.world.add(obj.Object(scale: Vector3(9.0, 9.0, 9.0), fileName: 'ruby_rose.obj',url: 'https://raw.githubusercontent.com/zesage/flutter_cube/refs/heads/master/example/ruby/assets/ruby_rose/',));
             },
-    );
+          )
+        : ModelViewer(
+            id: _id,
+            src: widget.src,
+            progressBarColor: widget.progressBarColor,
+            relatedJs: _utils.injectedJS(_id, 'flutter-3d-controller'),
+            interactionPrompt: InteractionPrompt.none,
+            activeGestureInterceptor: widget.activeGestureInterceptor,
+            cameraControls: widget.enableTouch,
+            ar: false,
+            autoPlay: false,
+            autoRotate: false,
+            debugLogging: false,
+            disableTap: true,
+            onProgress: widget.onProgress,
+            onLoad: (modelAddress) {
+              _controller.onModelLoaded.value = true;
+              widget.onLoad?.call(modelAddress);
+            },
+            onError: (error) {
+              _controller.onModelLoaded.value = false;
+              widget.onError?.call(error);
+            },
+            onWebViewCreated: kIsWeb
+                ? null
+                : (WebViewController value) {
+                    _controller
+                        .init(Flutter3DRepository(IFlutter3DDatasource(value)));
+                  },
+          );
   }
 }
