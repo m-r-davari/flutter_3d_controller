@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
               List<String> availableAnimations =
                   await controller.getAvailableAnimations();
               debugPrint(
-                  'Animations : $availableAnimations -- Length : ${availableAnimations.length}');
+                  'Animations : $availableAnimations --- Length : ${availableAnimations.length}');
               chosenAnimation = await showPickerDialog(
                   'Animations', availableAnimations, chosenAnimation);
               controller.playAnimation(animationName: chosenAnimation);
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               List<String> availableTextures =
                   await controller.getAvailableTextures();
               debugPrint(
-                  'Textures : $availableTextures -- Length : ${availableTextures.length}');
+                  'Textures : $availableTextures --- Length : ${availableTextures.length}');
               chosenTexture = await showPickerDialog(
                   'Textures', availableTextures, chosenTexture);
               controller.setTexture(textureName: chosenTexture ?? '');
