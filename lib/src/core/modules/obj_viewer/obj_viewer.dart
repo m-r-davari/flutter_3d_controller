@@ -19,7 +19,6 @@ class ObjViewer extends StatefulWidget {
   final SceneCreatedCallback? onSceneCreated;
   final ObjectCreatedCallback? onObjectCreated;
 
-
   /// The URL or path to the 3D model. This parameter is required.
   /// Only .OBJ models are supported.
   final String src;
@@ -113,8 +112,8 @@ List<String?> _parseModelSrc(String src) {
     throw Flutter3dControllerFormatException();
   } else if (src.startsWith('http://') || src.startsWith('https://')) {
     //model is loading from url
-    String modelName = src.substring(src.lastIndexOf('/')+1);
-    String modelPath = src.substring(0,src.lastIndexOf('/')+1);
+    String modelName = src.substring(src.lastIndexOf('/') + 1);
+    String modelPath = src.substring(0, src.lastIndexOf('/') + 1);
     result[0] = modelName;
     result[1] = modelPath;
   } else if (src.contains('assets')) {

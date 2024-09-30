@@ -16,110 +16,99 @@ class Flutter3DController extends IFlutter3DController {
 
   @override
   void playAnimation({String? animationName}) {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.playAnimation(animationName: animationName);
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void pauseAnimation() {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.pauseAnimation();
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void resetAnimation() {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.resetAnimation();
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void stopAnimation() {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.stopAnimation();
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   Future<List<String>> getAvailableAnimations() async {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       return await _repository?.getAvailableAnimations() ?? [];
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void setTexture({required String textureName}) {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.setTexture(textureName: textureName);
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   Future<List<String>> getAvailableTextures() async {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       return await _repository?.getAvailableTextures() ?? [];
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void setCameraTarget(double x, double y, double z) {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.setCameraTarget(x, y, z);
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void resetCameraTarget() {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.resetCameraTarget();
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void setCameraOrbit(double theta, double phi, double radius) {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.setCameraOrbit(theta, phi, radius);
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }
 
   @override
   void resetCameraOrbit() {
-    if(onModelLoaded.value){
+    if (onModelLoaded.value) {
       _repository?.resetCameraOrbit();
-    }
-    else{
+    } else {
       throw Flutter3dControllerLoadingException();
     }
   }

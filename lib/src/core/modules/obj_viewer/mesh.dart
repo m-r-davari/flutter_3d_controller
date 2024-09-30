@@ -37,14 +37,14 @@ int _getVertexIndex(String vIndex) {
 class Mesh {
   Mesh(
       {List<Vector3>? vertices,
-        List<Offset>? texcoords,
-        List<Polygon>? indices,
-        List<Color>? colors,
-        this.texture,
-        Rect? textureRect,
-        this.texturePath,
-        Material? material,
-        this.name}) {
+      List<Offset>? texcoords,
+      List<Polygon>? indices,
+      List<Color>? colors,
+      this.texture,
+      Rect? textureRect,
+      this.texturePath,
+      Material? material,
+      this.name}) {
     this.vertices = vertices ?? <Vector3>[];
     this.texcoords = texcoords ?? <Offset>[];
     this.colors = colors ?? <Color>[];
@@ -69,7 +69,7 @@ class Mesh {
 /// Reference：http://paulbourke.net/dataformats/obj/
 ///
 Future<List<Mesh>> loadObj(String fileName, bool normalized,
-    {bool isAsset = true, String? url ,Function(double)? onProgress}) async {
+    {bool isAsset = true, String? url, Function(double)? onProgress}) async {
   Map<String, Material>? materials;
   List<Vector3> vertices = <Vector3>[];
   List<Vector3> colors = <Vector3>[];
@@ -91,13 +91,12 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
     if (url.endsWith("/") == false) {
       url = url + "/";
     }
-    http.Client client = new http.Client();
+    http.Client client = http.Client();
     var req = await client.get(Uri.parse(url + fileName));
     onProgress?.call(0.25);
-    if(req.statusCode==200){
+    if (req.statusCode == 200) {
       data = req.body;
-    }
-    else{
+    } else {
       throw Exception('Failed to download model');
     }
   } else if (isAsset) {
@@ -114,8 +113,8 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
 
     switch (parts[0]) {
       case 'mtllib':
-      // load material library file. eg: mtllib master.mtl
-        final mtlFileName;
+        // load material library file. eg: mtllib master.mtl
+        final String mtlFileName;
         if (url != null) {
           mtlFileName = parts[1];
         } else {
@@ -124,7 +123,7 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
         materials = await loadMtl(mtlFileName, isAsset: isAsset, url: url);
         break;
       case 'usemtl':
-      // material name from material library. eg: usemtl red
+        // material name from material library. eg: usemtl red
         if (parts.length >= 2) materialName = parts[1];
         // create a new mesh element
         final String elementName =
@@ -134,27 +133,28 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
         elementOffsets.add(vertexIndices.length);
         break;
       case 'g':
-      // the name for the group. eg: g front obj
+        // the name for the group. eg: g front obj
         if (parts.length >= 2) groupName = parts[1];
         break;
       case 'o':
-      // the user-defined object name. eg: o obj
+        // the user-defined object name. eg: o obj
         if (parts.length >= 2) objectlName = parts[1];
         break;
       case 'v':
-      // a geometric vertex and its x y z coordinates. eg: v 0.000000 2.000000 0.000000
+        // a geometric vertex and its x y z coordinates. eg: v 0.000000 2.000000 0.000000
         if (parts.length >= 4) {
           final v = Vector3(double.parse(parts[1]), double.parse(parts[2]),
               double.parse(parts[3]));
           vertices.add(v);
         }
         if (parts.length == 7) {
-          final c = Vector3(double.parse(parts[4]), double.parse(parts[5]), double.parse(parts[6]));
+          final c = Vector3(double.parse(parts[4]), double.parse(parts[5]),
+              double.parse(parts[6]));
           colors.add(c);
         }
         break;
       case 'vt':
-      // eg: vt 0.000000 0.000000
+        // eg: vt 0.000000 0.000000
         if (parts.length >= 3) {
           double x = double.parse(parts[1]);
           double y = double.parse(parts[2]);
@@ -216,19 +216,19 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
 
 /// Load the texture image file and rebuild vertices and texcoords to keep the same length.
 Future<List<Mesh>> _buildMesh(
-    List<Vector3> vertices,
-    List<Vector3> colors,
-    List<Offset> texcoords,
-    List<Polygon> vertexIndices,
-    List<Polygon> textureIndices,
-    Map<String, Material>? materials,
-    List<String> elementNames,
-    List<String> elementMaterials,
-    List<int> elementOffsets,
-    String basePath,
-    bool isAsset,
-    String? url,
-    ) async {
+  List<Vector3> vertices,
+  List<Vector3> colors,
+  List<Offset> texcoords,
+  List<Polygon> vertexIndices,
+  List<Polygon> textureIndices,
+  Map<String, Material>? materials,
+  List<String> elementNames,
+  List<String> elementMaterials,
+  List<int> elementOffsets,
+  String basePath,
+  bool isAsset,
+  String? url,
+) async {
   if (elementOffsets.isEmpty) {
     elementNames.add('');
     elementMaterials.add('');
@@ -261,9 +261,9 @@ Future<List<Mesh>> _buildMesh(
 
     // load texture image from assets.
     final Material? material =
-    (materials != null) ? materials[elementMaterials[index]] : null;
+        (materials != null) ? materials[elementMaterials[index]] : null;
     final MapEntry<String, Image>? imageEntry =
-    await loadTexture(material, basePath, url: url, isAsset: isAsset);
+        await loadTexture(material, basePath, url: url, isAsset: isAsset);
 
     // fix zero texture area
     if (imageEntry != null) {
@@ -442,7 +442,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
     maxWidth = math.max(maxWidth, mesh.textureRect.width);
   }
   meshes.sort(
-          (Mesh a, Mesh b) => b.textureRect.height.compareTo(a.textureRect.height));
+      (Mesh a, Mesh b) => b.textureRect.height.compareTo(a.textureRect.height));
 
   final double startWidth = math.max(math.sqrt(area / 0.95), maxWidth);
   final List<Rect> spaces = <Rect>[];
@@ -479,10 +479,12 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
   int textureHeight = 0;
   for (Mesh mesh in meshes) {
     final Rect box = mesh.textureRect;
-    if (textureWidth < box.left + box.width)
+    if (textureWidth < box.left + box.width) {
       textureWidth = (box.left + box.width).ceil();
-    if (textureHeight < box.top + box.height)
+    }
+    if (textureHeight < box.top + box.height) {
       textureHeight = (box.top + box.height).ceil();
+    }
   }
 
   // get the pixels from mesh.texture
@@ -499,7 +501,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
       pixels = Uint32List(length);
       // color mode then set texture to transparent.
       const int color =
-      0; //mesh.material == null ? 0 : toColor(mesh.material.kd.bgr, mesh.material.d).value;
+          0; //mesh.material == null ? 0 : toColor(mesh.material.kd.bgr, mesh.material.d).value;
       for (int i = 0; i < length; i++) {
         pixels[i] = color;
       }
@@ -534,7 +536,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
   final c = Completer<Image>();
   decodeImageFromPixels(texture.buffer.asUint8List(), textureWidth,
       textureHeight, PixelFormat.rgba8888, (image) {
-        c.complete(image);
-      });
+    c.complete(image);
+  });
   return c.future;
 }

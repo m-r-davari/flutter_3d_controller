@@ -37,7 +37,8 @@ class Object {
     //todo : improve download progress logic
     // load mesh from obj file
     if (fileName != null) {
-      loadObj(fileName, normalized, isAsset: isAsset, url: url,onProgress: (progress){
+      loadObj(fileName, normalized, isAsset: isAsset, url: url,
+          onProgress: (progress) {
         onProgress?.call(progress);
       }).then((List<Mesh> meshes) {
         if (meshes.length == 1) {
@@ -54,8 +55,8 @@ class Object {
         }
         this.scene?.objectCreated(this);
         onProgress?.call(1.0);
-        onLoad?.call(url == null ? fileName : url+fileName);
-      },onError: (e){
+        onLoad?.call(url == null ? fileName : url + fileName);
+      }, onError: (e) {
         onError?.call(e.message);
       });
     } else {
@@ -146,8 +147,9 @@ class Object {
   /// Find a child matching the name
   Object? find(Pattern name) {
     for (Object child in children) {
-      if (child.name != null && (name as RegExp).hasMatch(child.name!))
+      if (child.name != null && (name as RegExp).hasMatch(child.name!)) {
         return child;
+      }
       final Object? result = child.find(name);
       if (result != null) return result;
     }

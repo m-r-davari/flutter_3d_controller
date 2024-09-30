@@ -163,8 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   debugPrint('model failed to load : $error');
                 },
               ),
-            )
-            ,
+            ),
             Flexible(
               flex: 1,
               child: Flutter3DViewer(
@@ -190,7 +189,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
-                src: 'assets/business_man.glb', //3D model with different animations
+                src:
+                    'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),

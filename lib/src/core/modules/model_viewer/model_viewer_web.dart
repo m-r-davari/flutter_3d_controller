@@ -22,8 +22,8 @@ class ModelViewerState extends State<ModelViewer> {
 
   /// To generate the HTML code for using the model viewer.
   Future<void> _generateModelViewerHtml() async {
-    final htmlTemplate = await rootBundle
-        .loadString('packages/flutter_3d_controller/assets/model_viewer_template.html');
+    final htmlTemplate = await rootBundle.loadString(
+        'packages/flutter_3d_controller/assets/model_viewer_template.html');
 
     final htmlStr = _buildHTML(htmlTemplate);
 

@@ -42,14 +42,14 @@ class Material {
 ///
 Future<Map<String, Material>> loadMtl(String fileName,
     {bool isAsset = true, String? url}) async {
-  final materials = Map<String, Material>();
+  final materials = <String, Material>{};
   String data;
   try {
     if (url != null) {
       if (url.endsWith("/") == false) {
         url = url + "/";
       }
-      http.Client client = new http.Client();
+      http.Client client = http.Client();
       var req = await client.get(Uri.parse(url + fileName));
       data = req.body;
     } else if (isAsset) {
@@ -140,8 +140,8 @@ Future<Map<String, Material>> loadMtl(String fileName,
 /// load an image from url
 Future<Image> loadImageFromUrl(String fileName) async {
   final c = Completer<Image>();
-  var dataFuture;
-  http.Client client = new http.Client();
+  Uint8List dataFuture;
+  http.Client client = http.Client();
   var req = await client.get(Uri.parse(fileName));
   dataFuture = req.bodyBytes.buffer.asUint8List();
   try {
@@ -160,7 +160,7 @@ Future<Image> loadImageFromUrl(String fileName) async {
 /// load an image from asset
 Future<Image> loadImageFromAsset(String fileName, {bool isAsset = true}) {
   final c = Completer<Image>();
-  var dataFuture;
+  Future<Uint8List> dataFuture;
   if (isAsset) {
     dataFuture =
         rootBundle.load(fileName).then((data) => data.buffer.asUint8List());
@@ -201,7 +201,7 @@ Future<MapEntry<String, Image>?> loadTexture(
   } else {
     // try to load image from asset in subdirectories
     final List<String> dirList = fileName.split(RegExp(r'[/\\]+'));
-    while (dirList.length > 0) {
+    while (dirList.isNotEmpty) {
       fileName = path.join(basePath, path.joinAll(dirList));
       try {
         image = await loadImageFromAsset(fileName, isAsset: isAsset);

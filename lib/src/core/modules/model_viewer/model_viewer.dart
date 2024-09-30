@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'model_viewer_stub.dart'
-if (dart.library.io) 'model_viewer_mobile.dart'
-if (dart.library.js_interop) 'model_viewer_web.dart';
+    if (dart.library.io) 'model_viewer_mobile.dart'
+    if (dart.library.js_interop) 'model_viewer_web.dart';
 
 enum Loading { auto, lazy, eager }
 
