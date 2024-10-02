@@ -3,11 +3,11 @@
 The most complete Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control animations, textures and camera.
 
 # Why Flutter 3D Controller?
-The Flutter 3D Controller package is the most comprehensive solution for rendering various 3D model formats, offering extensive functionality to give users optimal control over 3D models.
+The ***Flutter 3D Controller*** package is the most comprehensive solution for rendering various 3D model formats, offering extensive functionality to give users optimal control over 3D models.
 
-It leads in implementing new features, while some other packages have just copied Flutter 3D Controller's features and code without proper credit or adherence to licensing.
+It leads in implementing new features, while **some other packages have just copied Flutter 3D Controller's features and code** without proper credit or adherence to licensing.
 
-Notably, when testing other available packages, users may experience gesture malfunctions on iOS and certain Android devices. However, Flutter 3D Controller is the first and only package to resolve this issue with its gesture interceptor feature, introduced in version 2.0.0, released on October 2, 2024.
+Notably, when testing **other available packages**, users may experience **gesture malfunctions** on iOS and certain Android devices. However, **Flutter 3D Controller** is the first and only package to **resolve this issue** with its **gesture interceptor feature**, introduced in **version 2.0.0**, released on **October 2, 2024**.
 
 ## Features
 
@@ -221,7 +221,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
   <!-- Other stuff -->
 
-  <script type="module" src="./assets/packages/flutter_3d_controller/assets/model-viewer.min.js" defer></script>
+    <script type="module" src="./assets/packages/flutter_3d_controller/assets/model_viewer.min.js" defer></script>
 </head>
 ```
 
@@ -230,10 +230,9 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 - **The 3D model does not display** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
 
-## Not working with a url on a real device?:
+## Not working with a url on a real device?
 
-## Problem Description
-If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
+**Problem Description** : If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
 
 ## How to Disable Lockdown Mode
 Follow these steps to disable Lockdown Mode on your device:
@@ -280,7 +279,6 @@ void _showLockdownDialog() {
 ## Screenshots
 
 <img src="https://imgur.com/a/ASegTgb" alt="Model1" width="24%"/> <img src="https://imgur.com/a/KTDr5J3" alt="Model1" width="24%"/> <img src="https://imgur.com/a/fUSLIqj" alt="Model1" width="24%"/>
-
 
 
 ## More Info
