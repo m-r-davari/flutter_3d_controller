@@ -25,8 +25,8 @@ class ModelViewerState extends State<ModelViewer> {
   /// I decided to encrypt the critical JavaScript code of my
   /// [Flutter 3D Controller] package. Although it’s an open-source project,
   /// But I have invested significant time and effort into adding new features,
-  /// such as the 'Gesture Interceptor' feature for version 2.0.0,
-  /// which was released on 2024/x/x.
+  /// such as the 'Gesture Interceptor' feature on version 2.0.0,
+  /// which was released on October 2, 2024.
   /// Therefore, I cannot allow others to easily copy and use my code and ideas
   /// without properly crediting my package and adhering to the appropriate
   /// licensing terms.

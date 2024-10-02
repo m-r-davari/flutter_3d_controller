@@ -1,16 +1,26 @@
 # Flutter 3D Controller
 
-A Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control animations, textures and camera.
+The most complete Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control animations, textures and camera.
+
+# Why Flutter 3D Controller?
+The Flutter 3D Controller package is the most comprehensive solution for rendering various 3D model formats, offering extensive functionality to give users optimal control over 3D models.
+
+It leads in implementing new features, while some other packages have just copied Flutter 3D Controller's features and code without proper credit or adherence to licensing.
+
+Notably, when testing other available packages, users may experience gesture malfunctions on iOS and certain Android devices. However, Flutter 3D Controller is the first and only package to resolve this issue with its gesture interceptor feature, introduced in version 2.0.0, released on October 2, 2024.
 
 ## Features
 
-- Mobile and Web stable version (support glb & gltf format)
+- Mobile and Web stable version (support glb, gltf and obj format)
 - Load 3D model from assets
 - Load 3D model from URL
+- Gesture interceptor (Prevents gesture recognizers from malfunctioning)
+- Model loading states callbacks, onProgress, onLoad and onError
 - Play animation
 - Switch between animations
 - Pause animation
 - Reset animation
+- Stop animation
 - Get available animations list
 - Switch between textures
 - Get available textures list
@@ -18,12 +28,14 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 - Reset camera target
 - Set camera orbit
 - Reset camera orbit
+- Set scale and camera properties for obj 3d model
 - Set default loading progressbar color
+- Enable/disable touch control
 
 <!--
 ## Todo (Next Versions)
 - Change model source with setState
-- Support obj and fbx format
+- Support fbx format
 -->
 
 ## Samples
@@ -40,7 +52,7 @@ A Flutter package for rendering interactive 3D models in different formats(glb, 
 
 ## Notes
 
-- For now this package only support GLB & glTF format, other 3d formats coming soon.
+- For now this package supports GLB, glTF and obj format, other 3d formats coming soon.
 - Visit the full example to see how to use this package
 
 ## Brief Example
@@ -62,6 +74,9 @@ controller.pauseAnimation();
 //It will reset and play animation from first frame (from beginning).
 controller.resetAnimation();
 
+//It will stop the animation.
+controller.stopAnimation();
+
 //It will return available animation list of 3D model.
 await controller.getAvailableAnimations();
 
@@ -82,19 +97,66 @@ controller.setCameraOrbit(20, 20, 5);
 
 //It will reset the camera orbit to default.
 controller.resetCameraOrbit();
-
 ```
 
 ```dart
-//The 3D viewer widget
+//The 3D viewer widget for glb and gltf format
 Flutter3DViewer(
-    //If you don't pass progressBarColor the color of defaultLoadingProgressBar will be grey.
-    //You can set your custom color or use [Colors.transparent] for hiding the loadingProgressBar.
-    progressBarColor: Colors.blue,
+    //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
+    //to prevent gesture recognizers from malfunctioning on iOS and some Android devices.
+    // the default value is true
+    activeGestureInterceptor: true,
+    //If you don't pass progressBarColor, the color of defaultLoadingProgressBar will be grey.
+    //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
+    progressBarColor: Colors.orange,
+    //You can disable viewer touch response by setting 'enableTouch' to 'false'
+    enableTouch: true,
+    //This callBack will return the loading progress value between 0 and 1.0
+    onProgress: (double progressValue) {
+    debugPrint('model loading progress : $progressValue');
+    },
+    //This callBack will call after model loaded successfully and will return model address
+    onLoad: (modelAddress) {
+    debugPrint('model loaded : $modelAddress');
+    },
+    //this callBack will call when model failed to load and will return failure error
+    onError: (error) {
+    debugPrint('model failed to load : $error');
+    },
+    //You can have full control of 3d model animations, textures and camera
     controller: controller,
-    src: 'assets/business_man.glb', //3D model with different animations
+    src:
+    'assets/business_man.glb', //3D model with different animations
     //src: 'assets/sheen_chair.glb', //3D model with different textures
-    //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', //3D model from URL
+    //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
+)
+```
+
+```dart
+//The 3D viewer widget for obj format
+Flutter3DViewer.obj(
+    src: 'assets/flutter_dash.obj',
+    //src: 'https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/flutter_dash_model/flutter_dash.obj',
+    scale: 5,
+    // Initial scale of obj model
+    cameraX: 0,
+    // Initial cameraX position of obj model
+    cameraY: 0,
+    //Initial cameraY position of obj model
+    cameraZ: 10,
+    //Initial cameraZ position of obj model
+    //This callBack will return the loading progress value between 0 and 1.0
+    onProgress: (double progressValue) {
+    debugPrint('model loading progress : $progressValue');
+    },
+    //This callBack will call after model loaded successfully and will return model address
+    onLoad: (String modelAddress) {
+    debugPrint('model loaded : $modelAddress');
+    },
+    //this callBack will call when model failed to load and will return failure erro
+    onError: (String error) {
+    debugPrint('model failed to load : $error');
+    },
 )
 ```
 
@@ -147,7 +209,7 @@ the key `io.flutter.embedded_views_preview` and the value `YES`:
   <true/>
 ```
 
-## Not working with a url or on a real device?:
+## Not working with a url on a real device?:
 
 ## Problem Description
 If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.

@@ -21,6 +21,12 @@ class Flutter3DViewer extends StatefulWidget {
   /// If true the flutter_3d_controller will add gesture interceptor layer
   /// to prevent breaking gesture recognizer functionality in iOS and some of
   /// android devices. default = true.
+  ///
+  ///  Notably, when testing other available packages, users may experience
+  ///  gesture malfunctions on iOS and certain Android devices. However,
+  ///  Flutter 3D Controller is the first and only package to resolve
+  ///  this issue with its gesture interceptor feature, introduced
+  ///  in version 2.0.0, released on October 2, 2024.
   final bool activeGestureInterceptor;
 
   /// This controller will provide full control of 3d model animations, camera,
