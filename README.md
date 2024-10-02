@@ -147,6 +147,61 @@ the key `io.flutter.embedded_views_preview` and the value `YES`:
   <true/>
 ```
 
+## Not working with a url or on a real device?:
+
+## Problem Description
+If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
+
+## Common Issues
+- The 3D object does not display.
+- No output is available to help debug the problem.
+
+## How to Disable Lockdown Mode
+Follow these steps to disable Lockdown Mode on your device:
+
+1. Open the **Settings** app on your iPhone.
+2. Scroll down and select **Privacy and Security**.
+3. Tap on **Lockdown Mode**.
+4. Select **Turn Off Lockdown Mode**. You may need to enter your password to confirm.
+5. After disabling Lockdown Mode, return to the app and try loading the 3D model again.
+
+---
+
+## Adding a Lockdown Mode Check to Your App
+
+To help users easily disable Lockdown Mode when it's affecting the app, you can add a verification dialog:
+
+```dart
+void _showLockdownDialog() {
+  Future.delayed(Duration.zero, () {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Lockdown Mode Activated'),
+        content: const Text(
+          'Lockdown Mode is activated on this device. '
+          'This may affect some features of the app. '
+          'Please go to Settings > Privacy & Security > Lockdown Mode to disable it.'
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text('Understood'),
+          ),
+          TextButton(
+            onPressed: _openSettings,
+            child: const Text('Go to Settings'),
+          ),
+        ],
+      ),
+    );
+  });
+}
+```
+## Screenshots
+
+<img src="https://imgur.com/a/ASegTgb" alt="Model1" width="24%"/> <img src="https://imgur.com/a/KTDr5J3" alt="Model1" width="24%"/> <img src="https://imgur.com/a/fUSLIqj" alt="Model1" width="24%"/>
+
 ### `web/index.html` (Web only)
 
 Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so:
