@@ -118,17 +118,16 @@ Flutter3DViewer(
       debugPrint('model loading progress : $progressValue');
     },
     //This callBack will call after model loaded successfully and will return model address
-    onLoad: (modelAddress) {
+    onLoad: (String modelAddress) {
       debugPrint('model loaded : $modelAddress');
     },
     //this callBack will call when model failed to load and will return failure error
-    onError: (error) {
+    onError: (String error) {
       debugPrint('model failed to load : $error');
     },
     //You can have full control of 3d model animations, textures and camera
     controller: controller,
-    src:
-    'assets/business_man.glb', //3D model with different animations
+    src: 'assets/business_man.glb', //3D model with different animations
     //src: 'assets/sheen_chair.glb', //3D model with different textures
     //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
 )
@@ -244,42 +243,6 @@ Follow these steps to disable Lockdown Mode on your device:
 5. After disabling Lockdown Mode, return to the app and try loading the 3D model again.
 
 ---
-
-## Adding a Lockdown Mode Check to Your App
-
-To help users easily disable Lockdown Mode when it's affecting the app, you can add a verification dialog:
-
-```dart
-void _showLockdownDialog() {
-  Future.delayed(Duration.zero, () {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Lockdown Mode Activated'),
-        content: const Text(
-          'Lockdown Mode is activated on this device. '
-          'This may affect some features of the app. '
-          'Please go to Settings > Privacy & Security > Lockdown Mode to disable it.'
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Understood'),
-          ),
-          TextButton(
-            onPressed: _openSettings,
-            child: const Text('Go to Settings'),
-          ),
-        ],
-      ),
-    );
-  });
-}
-```
-## Screenshots
-
-<img src="https://imgur.com/a/ASegTgb" alt="Model1" width="24%"/> <img src="https://imgur.com/a/KTDr5J3" alt="Model1" width="24%"/> <img src="https://imgur.com/a/fUSLIqj" alt="Model1" width="24%"/>
-
 
 ## More Info
 

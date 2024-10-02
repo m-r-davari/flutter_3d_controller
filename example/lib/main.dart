@@ -181,17 +181,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   debugPrint('model loading progress : $progressValue');
                 },
                 //This callBack will call after model loaded successfully and will return model address
-                onLoad: (modelAddress) {
+                onLoad: (String modelAddress) {
                   debugPrint('model loaded : $modelAddress');
                 },
                 //this callBack will call when model failed to load and will return failure error
-                onError: (error) {
+                onError: (String error) {
                   debugPrint('model failed to load : $error');
                 },
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
-                src:
-                    'assets/business_man.glb', //3D model with different animations
+                src: 'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),
