@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -52,16 +53,23 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableAnimations() async {
-    final result = await executeCustomJsCodeWithResult(
-      "document.querySelector(\"model-viewer\").availableAnimations;",
-    );
-    String checkedResult;
-    if (result is String) {
-      checkedResult = _tupleToList(result);
-    } else {
-      return [];
+    try {
+      final result = await executeCustomJsCodeWithResult(
+        "document.querySelector(\"model-viewer\").availableAnimations;",
+      );
+      String checkedResult;
+      if (result is String) {
+        checkedResult = _tupleToList(result);
+      } else {
+        return [];
+      }
+      return jsonDecode(checkedResult)
+          .map<String>((e) => e.toString())
+          .toList();
+    } catch (e) {
+      throw Flutter3dControllerFormatException(
+          message: 'Failed to retrieve animation list, ${e.toString()}');
     }
-    return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
   }
 
   @override

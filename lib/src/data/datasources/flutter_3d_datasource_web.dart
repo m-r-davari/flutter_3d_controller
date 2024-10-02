@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 import 'package:flutter/services.dart';
+import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'dart:js' as js;
 import 'package:webview_flutter/webview_flutter.dart';
@@ -7,7 +8,8 @@ import 'package:webview_flutter/webview_flutter.dart';
 class Flutter3DDatasource implements IFlutter3DDatasource {
   final WebViewController? _webViewController;
 
-  Flutter3DDatasource([this._webViewController]);
+  Flutter3DDatasource(
+      [this._webViewController, activeGestureInterceptor = false]);
 
   @override
   void playAnimation({String? animationName}) {
@@ -52,10 +54,15 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableAnimations() async {
-    final result = await executeCustomJsCodeWithResult(
-      "document.querySelector(\"model-viewer\").availableAnimations;",
-    );
-    return result.map<String>((e) => e.toString()).toList();
+    try {
+      final result = await executeCustomJsCodeWithResult(
+        "document.querySelector(\"model-viewer\").availableAnimations;",
+      );
+      return result.map<String>((e) => e.toString()).toList();
+    } catch (e) {
+      throw Flutter3dControllerFormatException(
+          message: 'Failed to retrieve animation list, ${e.toString()}');
+    }
   }
 
   @override

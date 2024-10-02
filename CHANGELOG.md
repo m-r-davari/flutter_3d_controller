@@ -7,11 +7,13 @@
 * Model loading states callbacks, onProgress, onLoad and onError
 * Stop animation method
 * Enable/disable touch control properties
+* Update core modules
 
 ### Fixes
 * Fix some small bugs
 * Fix example
 * Update dependencies
+* Improve exception handling
 
 
 ## v1.3.1
