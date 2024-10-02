@@ -45,5 +45,6 @@ abstract class IFlutter3DDatasource {
   Future<dynamic> executeCustomJsCodeWithResult(String code);
 
   ///It will make specific instance of datasource per platform
-  factory IFlutter3DDatasource(value) => Flutter3DDatasource(value);
+  factory IFlutter3DDatasource(value, activeGestureInterceptor) =>
+      Flutter3DDatasource(value, activeGestureInterceptor);
 }

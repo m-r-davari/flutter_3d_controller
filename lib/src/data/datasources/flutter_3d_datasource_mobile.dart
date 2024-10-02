@@ -4,8 +4,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class Flutter3DDatasource implements IFlutter3DDatasource {
   final WebViewController? _webViewController;
+  final bool _activeGestureInterceptor;
 
-  Flutter3DDatasource([this._webViewController]);
+  Flutter3DDatasource(
+      [this._webViewController, this._activeGestureInterceptor = false]);
 
   @override
   void playAnimation({String? animationName}) {
@@ -91,7 +93,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";",
       100,
       300,
-      true,
+      _activeGestureInterceptor,
     );
   }
 
@@ -102,7 +104,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       "modelViewer.cameraTarget = \"auto auto auto\";",
       100,
       300,
-      true,
+      _activeGestureInterceptor,
     );
   }
 
@@ -113,7 +115,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";",
       100,
       400,
-      true,
+      _activeGestureInterceptor,
     );
   }
 
@@ -124,7 +126,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       "modelViewer.cameraOrbit = \"0deg 75deg 105%\" ;",
       100,
       400,
-      true,
+      _activeGestureInterceptor,
     );
   }
 

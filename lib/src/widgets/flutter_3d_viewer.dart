@@ -19,8 +19,8 @@ class Flutter3DViewer extends StatefulWidget {
   final Color? progressBarColor;
 
   /// If true the flutter_3d_controller will add gesture interceptor layer
-  /// to prevent breaking gesture detection in iOS and some of android devices.
-  /// default = true.
+  /// to prevent breaking gesture recognizer functionality in iOS and some of
+  /// android devices. default = true.
   final bool activeGestureInterceptor;
 
   /// This controller will provide full control of 3d model animations, camera,
@@ -95,7 +95,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
     _id = _utils.generateId();
     _controller = widget.controller ?? Flutter3DController();
     if (kIsWeb) {
-      _controller.init(Flutter3DRepository(IFlutter3DDatasource(null)));
+      _controller.init(Flutter3DRepository(IFlutter3DDatasource(null,false)));
     }
     super.initState();
   }
@@ -151,8 +151,14 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
             onWebViewCreated: kIsWeb
                 ? null
                 : (WebViewController value) {
-                    _controller
-                        .init(Flutter3DRepository(IFlutter3DDatasource(value)));
+                    _controller.init(
+                      Flutter3DRepository(
+                        IFlutter3DDatasource(
+                          value,
+                          widget.activeGestureInterceptor,
+                        ),
+                      ),
+                    );
                   },
           );
   }
