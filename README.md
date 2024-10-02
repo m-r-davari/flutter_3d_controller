@@ -52,11 +52,12 @@ Notably, when testing other available packages, users may experience gesture mal
 
 ## Notes
 
-- For now this package supports GLB, glTF and obj format, other 3d formats coming soon.
+- For now this package supports GLB, glTF and OBJ format, other 3d formats coming soon.
 - Visit the full example to see how to use this package
 
-## Brief Example
+## Brief Examples
 
+## How to use controller
 ```dart
 //Create controller object to control 3D model.
 Flutter3DController controller = Flutter3DController();
@@ -99,12 +100,13 @@ controller.setCameraOrbit(20, 20, 5);
 controller.resetCameraOrbit();
 ```
 
+## How to load glb and gltf models
 ```dart
 //The 3D viewer widget for glb and gltf format
 Flutter3DViewer(
     //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
     //to prevent gesture recognizers from malfunctioning on iOS and some Android devices.
-    // the default value is true
+    //the default value is true
     activeGestureInterceptor: true,
     //If you don't pass progressBarColor, the color of defaultLoadingProgressBar will be grey.
     //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
@@ -113,15 +115,15 @@ Flutter3DViewer(
     enableTouch: true,
     //This callBack will return the loading progress value between 0 and 1.0
     onProgress: (double progressValue) {
-    debugPrint('model loading progress : $progressValue');
+      debugPrint('model loading progress : $progressValue');
     },
     //This callBack will call after model loaded successfully and will return model address
     onLoad: (modelAddress) {
-    debugPrint('model loaded : $modelAddress');
+      debugPrint('model loaded : $modelAddress');
     },
     //this callBack will call when model failed to load and will return failure error
     onError: (error) {
-    debugPrint('model failed to load : $error');
+      debugPrint('model failed to load : $error');
     },
     //You can have full control of 3d model animations, textures and camera
     controller: controller,
@@ -132,6 +134,7 @@ Flutter3DViewer(
 )
 ```
 
+## How to load obj models
 ```dart
 //The 3D viewer widget for obj format
 Flutter3DViewer.obj(
@@ -147,15 +150,15 @@ Flutter3DViewer.obj(
     //Initial cameraZ position of obj model
     //This callBack will return the loading progress value between 0 and 1.0
     onProgress: (double progressValue) {
-    debugPrint('model loading progress : $progressValue');
+      debugPrint('model loading progress : $progressValue');
     },
     //This callBack will call after model loaded successfully and will return model address
     onLoad: (String modelAddress) {
-    debugPrint('model loaded : $modelAddress');
+      debugPrint('model loaded : $modelAddress');
     },
     //this callBack will call when model failed to load and will return failure erro
     onError: (String error) {
-    debugPrint('model failed to load : $error');
+      debugPrint('model failed to load : $error');
     },
 )
 ```
