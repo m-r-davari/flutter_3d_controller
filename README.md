@@ -1,8 +1,9 @@
 # Flutter 3D Controller
 
-The most complete Flutter package for rendering interactive 3D models in different formats(glb, gltf, fbx, obj), with ability to control animations, textures and camera.
+The most complete Flutter package for rendering interactive 3D models in various formats (GLB, GLTF, OBJ, FBX), with the ability to control animations, textures, camera, and more.
 
 # Why Flutter 3D Controller?
+
 The ***Flutter 3D Controller*** package is the most comprehensive solution for rendering various 3D model formats, offering extensive functionality to give users optimal control over 3D models.
 
 It leads in implementing new features, while **some other packages have just copied Flutter 3D Controller's features and code** without proper credit or adherence to licensing.
