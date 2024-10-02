@@ -1,6 +1,6 @@
 # Flutter 3D Controller
 
-The most complete Flutter package for rendering interactive 3D models in various formats (GLB, GLTF, OBJ, FBX), with the ability to control animations, textures, camera, and more.
+The most complete Flutter package for rendering interactive 3D models in various formats (**GLB**, **GLTF**, **OBJ**, FBX), with the ability to control animations, textures, camera, and more.
 
 # Why Flutter 3D Controller?
 
@@ -12,7 +12,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 ## Features
 
-- Mobile and Web stable version (support glb, gltf and obj format)
+- Mobile and Web stable version (support **glb**, **gltf** and **obj** format)
 - Load 3D model from assets
 - Load 3D model from URL
 - Gesture interceptor (Prevents gesture recognizers from malfunctioning)
@@ -53,8 +53,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 ## Notes
 
-- For now this package supports GLB, glTF and OBJ format, other 3d formats coming soon.
-- Visit the full example to see how to use this package
+- For now this package supports **GLB**, **glTF** and **OBJ** format, other 3D formats coming soon.
+- Visit the full example to see how to use this package.
 
 ## Brief Examples
 
@@ -218,9 +218,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
 ```html
 <head>
-
   <!-- Other stuff -->
-
     <script type="module" src="./assets/packages/flutter_3d_controller/assets/model_viewer.min.js" defer></script>
 </head>
 ```
@@ -247,4 +245,4 @@ Follow these steps to disable Lockdown Mode on your device:
 
 ## More Info
 
-This package use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models
+This package use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
