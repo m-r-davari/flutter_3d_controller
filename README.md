@@ -8,7 +8,7 @@ The ***Flutter 3D Controller*** package is the most comprehensive solution for r
 
 It leads in implementing new features, while **some other packages have just copied Flutter 3D Controller's features and code** without proper credit or adherence to licensing.
 
-Notably, when testing **other available packages**, users may experience **gesture malfunctions** on iOS and certain Android devices. However, **Flutter 3D Controller** is the first and only package to **resolve this issue** with its **gesture interceptor feature**, introduced in **version 2.0.0**, released on **October 3, 2024**.
+Notably, when testing **other available packages**, users may experience **gesture malfunctions** on iOS and certain Android devices. However, **Flutter 3D Controller** is the first and only package to **resolve this issue** with its **gesture interceptor feature**, introduced in **version 2.0.0**, released on **October 6, 2024**.
 
 ## Features
 
@@ -17,6 +17,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Load 3D model from URL
 - Gesture interceptor (Prevents gesture recognizers from malfunctioning)
 - Model loading states callbacks, onProgress, onLoad and onError
+- Load OBJ models with textures and mtl files
+- OBJ 3D models scale and camera properties
 - Play animation
 - Switch between animations
 - Pause animation
@@ -29,8 +31,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Reset camera target
 - Set camera orbit
 - Reset camera orbit
-- Set scale and camera properties for obj 3d model
-- Set default loading progressbar color
+- Default loading progressbar color
 - Enable/disable touch control
 
 <!--

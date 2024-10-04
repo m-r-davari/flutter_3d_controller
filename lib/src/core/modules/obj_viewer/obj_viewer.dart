@@ -39,7 +39,7 @@ class _ObjViewerState extends State<ObjViewer> {
 
   void _handleScaleUpdate(ScaleUpdateDetails details) {
     scene.camera.trackBall(
-        toVector2(_lastFocalPoint), toVector2(details.localFocalPoint), 1.5);
+        toVector2(_lastFocalPoint), toVector2(details.localFocalPoint), 1.25);
     _lastFocalPoint = details.localFocalPoint;
     if (_lastZoom == null) {
       _lastZoom = scene.camera.zoom;

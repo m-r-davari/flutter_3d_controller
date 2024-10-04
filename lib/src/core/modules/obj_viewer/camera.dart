@@ -20,7 +20,7 @@ class Camera {
 
   final Vector3 position = Vector3(0.0, 0.0, -10.0);
   final Vector3 target = Vector3(0.0, 0.0, 0.0);
-  final Vector3 up = Vector3(0.0, 1.0, 0.0);
+  Vector3 up = Vector3(0.0, 1.0, 0.0);
   double fov;
   double near;
   double far;
@@ -42,24 +42,54 @@ class Camera {
     return makeFrustumMatrix(left, right, bottom, top, near, far);
   }
 
+
+  /*
+  * The bug related to unwanted rotation was fixed by M.R.Davari on October 5, 2024.
+  * */
   void trackBall(Vector2 from, Vector2 to, [double sensitivity = 1.0]) {
+    // Calculate drag deltas (differences) between 'from' and 'to' points
     final double x = -(to.x - from.x) * sensitivity / (viewportWidth * 0.5);
     final double y = (to.y - from.y) * sensitivity / (viewportHeight * 0.5);
     Vector2 delta = Vector2(x, y);
-    Vector3 moveDirection = Vector3(delta.x, delta.y, 0);
+
+    // Calculate the movement direction and angle based on the drag input
+    Vector3 _eye = position - target;  // Camera view direction
+    Vector3 eyeDirection = _eye.normalized();
+    Vector3 upDirection = up.normalized();
+
+    // Check the vertical rotation and limit it
+    // Project the camera's position onto the Y-axis (up vector)
+    double verticalDot = eyeDirection.dot(upDirection);
+
+    // Define a limit to prevent vertical flipping (limit how close we can get to directly above or below)
+    const double verticalLimit = 0.99;  // Close to 1.0 means close to top or bottom
+
+    // If the camera is near the top or bottom, and trying to rotate further vertically, stop execution
+    if ((verticalDot > verticalLimit && delta.y > 0) || (verticalDot < -verticalLimit && delta.y < 0)) {
+      return;  // Prevent further vertical rotation when near the top or bottom edge
+    }
+
+    // Continue normal trackball logic for rotation
+    Vector3 sidewaysDirection = upDirection.cross(eyeDirection).normalized();
+    upDirection.scale(delta.y);
+    sidewaysDirection.scale(delta.x);
+    Vector3 moveDirection = upDirection + sidewaysDirection;
     final double angle = moveDirection.length;
+
     if (angle > 0) {
-      Vector3 _eye = position - target;
-      Vector3 eyeDirection = _eye.normalized();
-      Vector3 upDirection = up.normalized();
-      Vector3 sidewaysDirection = upDirection.cross(eyeDirection).normalized();
-      upDirection.scale(delta.y);
-      sidewaysDirection.scale(delta.x);
-      moveDirection = upDirection + sidewaysDirection;
       Vector3 axis = moveDirection.cross(_eye).normalized();
       Quaternion q = Quaternion.axisAngle(axis, angle);
       q.rotate(position);
       q.rotate(up);
     }
+
+    // Stabilize the up vector to prevent unnatural tilting
+    stabilizeUpVector();
   }
+
+// Helper function to stabilize the up vector and prevent unnatural tilting
+  void stabilizeUpVector() {
+    up = Vector3(0, 1, 0);  // Keep the up vector pointing upwards along the Y-axis
+  }
+
 }
