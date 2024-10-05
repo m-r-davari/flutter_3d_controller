@@ -26,7 +26,7 @@ class ModelViewerState extends State<ModelViewer> {
   /// [Flutter 3D Controller] package. Although it’s an open-source project,
   /// But I have invested significant time and effort into adding new features,
   /// such as the 'Gesture Interceptor' feature on version 2.0.0,
-  /// which was released on October 6, 2024.
+  /// which was released on October 5, 2024.
   /// Therefore, I cannot allow others to easily copy and use my code and ideas
   /// without properly crediting my package and adhering to the appropriate
   /// licensing terms.

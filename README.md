@@ -8,7 +8,7 @@ The ***Flutter 3D Controller*** package is the most comprehensive solution for r
 
 It leads in implementing new features, while **some other packages have just copied Flutter 3D Controller's features and code** without proper credit or adherence to licensing.
 
-Notably, when testing **other available packages**, users may experience **gesture malfunctions** on iOS and certain Android devices. However, **Flutter 3D Controller** is the first and only package to **resolve this issue** with its **gesture interceptor feature**, introduced in **version 2.0.0**, released on **October 6, 2024**.
+Notably, when testing **other available packages**, users may experience **gesture malfunctions** on iOS and certain Android devices. However, **Flutter 3D Controller** is the first and only package to **resolve this issue** with its **gesture interceptor feature**, introduced in **version 2.0.0**, released on **October 5, 2024**.
 
 ## Features
 
@@ -16,6 +16,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Load 3D model from assets
 - Load 3D model from URL
 - Gesture interceptor (Prevents gesture recognizers from malfunctioning)
+- Controller model loading value listener
 - Model loading states callbacks, onProgress, onLoad and onError
 - Load OBJ models with textures and mtl files
 - OBJ 3D models scale and camera properties
@@ -42,8 +43,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 ## Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.png" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.png" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.png" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.png" alt="Model3" width="24%"/>
-<img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model1.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model2.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model3.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/flutter_3d_controller/master/example/samples/model4.gif" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male_scr.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/lambo_scr.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dog_scr.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/chair_scr.gif.png" alt="Model3" width="24%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/femael_scr.gif" alt="Model1" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/bird_scr.gif" alt="Model2" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male2_scr.gif" alt="Model3" width="24%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dash_scr.gif" alt="Model3" width="24%"/>
 
 
 ## Compatibility
@@ -63,6 +64,11 @@ Notably, when testing **other available packages**, users may experience **gestu
 ```dart
 //Create controller object to control 3D model.
 Flutter3DController controller = Flutter3DController();
+
+//Listen to model loading state via controller
+controller.onModelLoaded.addListener(() {
+  debugPrint('model is loaded : ${controller.onModelLoaded.value}');
+});
 
 //It will play 3D model animation, you can use it to play or switch between animations.
 controller.playAnimation();

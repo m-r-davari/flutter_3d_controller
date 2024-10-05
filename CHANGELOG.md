@@ -3,6 +3,7 @@
 ### Features
 * Gesture interceptor feature for android and iOS
 * Load .obj 3d models with mtl and textures from asset and url
+* Controller model loading value listener
 * Initial scale and camera properties for .obj models
 * Model loading states callbacks, onProgress, onLoad and onError
 * Stop animation method
