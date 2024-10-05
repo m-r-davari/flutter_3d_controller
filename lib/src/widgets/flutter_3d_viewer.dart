@@ -101,7 +101,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
     _id = _utils.generateId();
     _controller = widget.controller ?? Flutter3DController();
     if (kIsWeb) {
-      _controller.init(Flutter3DRepository(IFlutter3DDatasource(null,false)));
+      _controller.init(Flutter3DRepository(IFlutter3DDatasource(null, false)));
     }
     super.initState();
   }
@@ -118,17 +118,17 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
               scene.camera.target.x = widget.cameraX ?? 0;
               scene.world.add(
                 obj.Object(
-                    scale: Vector3(widget.scale ?? 5.0, widget.scale ?? 5.0,
-                        widget.scale ?? 5.0),
-                    fileName: modelName,
-                    url: modelUrl,
-                    onProgress: widget.onProgress,
-                    onLoad: (modelAddress) {
-                      widget.onLoad?.call(modelAddress);
-                    },
-                    onError: (error) {
-                      widget.onError?.call(error);
-                    },
+                  scale: Vector3(widget.scale ?? 5.0, widget.scale ?? 5.0,
+                      widget.scale ?? 5.0),
+                  fileName: modelName,
+                  url: modelUrl,
+                  onProgress: widget.onProgress,
+                  onLoad: (modelAddress) {
+                    widget.onLoad?.call(modelAddress);
+                  },
+                  onError: (error) {
+                    widget.onError?.call(error);
+                  },
                 ),
               );
             },

@@ -48,7 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xff0d2039),
-        title: Text(widget.title,style: const TextStyle(color: Colors.white),),
+        title: Text(
+          widget.title,
+          style: const TextStyle(color: Colors.white),
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -201,7 +204,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
-                src: 'assets/business_man.glb', //3D model with different animations
+                src:
+                    'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),

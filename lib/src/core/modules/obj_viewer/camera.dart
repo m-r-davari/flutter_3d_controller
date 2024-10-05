@@ -42,7 +42,6 @@ class Camera {
     return makeFrustumMatrix(left, right, bottom, top, near, far);
   }
 
-
   /*
   * The bug related to unwanted rotation was fixed by M.R.Davari on October 5, 2024.
   * */
@@ -53,7 +52,7 @@ class Camera {
     Vector2 delta = Vector2(x, y);
 
     // Calculate the movement direction and angle based on the drag input
-    Vector3 _eye = position - target;  // Camera view direction
+    Vector3 _eye = position - target; // Camera view direction
     Vector3 eyeDirection = _eye.normalized();
     Vector3 upDirection = up.normalized();
 
@@ -62,11 +61,13 @@ class Camera {
     double verticalDot = eyeDirection.dot(upDirection);
 
     // Define a limit to prevent vertical flipping (limit how close we can get to directly above or below)
-    const double verticalLimit = 0.99;  // Close to 1.0 means close to top or bottom
+    const double verticalLimit =
+        0.99; // Close to 1.0 means close to top or bottom
 
     // If the camera is near the top or bottom, and trying to rotate further vertically, stop execution
-    if ((verticalDot > verticalLimit && delta.y > 0) || (verticalDot < -verticalLimit && delta.y < 0)) {
-      return;  // Prevent further vertical rotation when near the top or bottom edge
+    if ((verticalDot > verticalLimit && delta.y > 0) ||
+        (verticalDot < -verticalLimit && delta.y < 0)) {
+      return; // Prevent further vertical rotation when near the top or bottom edge
     }
 
     // Continue normal trackball logic for rotation
@@ -89,7 +90,7 @@ class Camera {
 
 // Helper function to stabilize the up vector and prevent unnatural tilting
   void stabilizeUpVector() {
-    up = Vector3(0, 1, 0);  // Keep the up vector pointing upwards along the Y-axis
+    up = Vector3(
+        0, 1, 0); // Keep the up vector pointing upwards along the Y-axis
   }
-
 }

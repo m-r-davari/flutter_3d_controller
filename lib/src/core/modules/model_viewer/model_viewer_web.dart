@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'html_builder.dart';
 import 'model_viewer.dart';
-import 'dart_ui_web_fake.dart' if (dart.library.ui_web) 'dart:ui_web'
-    as ui_web;
+import 'dart_ui_web_fake.dart' if (dart.library.ui_web) 'dart:ui_web' as ui_web;
 import 'dart:html' as html;
 
 class ModelViewerState extends State<ModelViewer> {
