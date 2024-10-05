@@ -219,16 +219,16 @@ the key `io.flutter.embedded_views_preview` and the value `YES`:
   <true/>
 ```
 
-## Are you having any issues loading the model from URL or on a real device in debug mode? 
+### Are you having any issues loading the model from URL or on a real device in debug mode? 
 
-# Problem Description
+### Problem Description
 If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
 
-# Common Issues
+### Common Issues
 - The 3D object does not display.
 - No output is available to help debug the problem.
 
-# How to Disable Lockdown Mode
+### How to Disable Lockdown Mode
 Follow these steps to disable Lockdown Mode on your device:
 
 1. Open the **Settings** app on your iPhone.
