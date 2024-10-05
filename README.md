@@ -43,8 +43,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 ## Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/lambo_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dog_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/chair_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/donut_scr.gif" alt="Model3" width="19%"/>
-<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/female_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/bird_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male2_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dash_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/multi_scr.gif" alt="Model3" width="19%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/lambo_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dog_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/chair_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dash_scr.gif" alt="Model3" width="19%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/female_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/bird_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male2_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dunot_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/multi_scr.gif" alt="Model3" width="19%"/>
 
 
 ## Compatibility
@@ -176,7 +176,7 @@ Flutter3DViewer.obj(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^1.3.1
+  flutter_3d_controller: ^2.0.0
 ```
 
 ### `AndroidManifest.xml` (Android 9+ only)
