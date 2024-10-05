@@ -47,8 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+        backgroundColor: const Color(0xff0d2039),
+        title: Text(widget.title,style: const TextStyle(color: Colors.white),),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -132,7 +132,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Container(
-        color: Colors.grey,
+        decoration: const BoxDecoration(
+          color: Colors.grey,
+          gradient: RadialGradient(
+            colors: [
+              Color(0xffffffff),
+              Colors.grey,
+            ],
+            stops: [0.1, 1.0],
+            radius: 0.7,
+            center: Alignment.center,
+          ),
+        ),
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Column(
