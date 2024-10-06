@@ -230,15 +230,16 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 ```
 
 
-## Common Issues
-- **The 3D model does not display** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
+## Frequently Asked Questions
+- **The 3D model could not load** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
+- **The 3D model could not load from url** : It might be due to [CORS] security restrictions. The server hosting the model file *must* send appropriate CORS response headers for viewer to be able to load the file. See [google/model-viewer#1015]
 
 ## Not working with a url on a real iOS device?
 
 **Problem Description** : If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
 
-## How to Disable Lockdown Mode
+### How to Disable Lockdown Mode
 Follow these steps to disable Lockdown Mode on your device:
 
 1. Open the **Settings** app on your iPhone.
@@ -251,4 +252,4 @@ Follow these steps to disable Lockdown Mode on your device:
 
 ## More Info
 
-This package use 'Model Viewer' to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
+This package uses Google's [model-viewer](https://modelviewer.dev) to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
