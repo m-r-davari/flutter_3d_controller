@@ -230,9 +230,10 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 ```
 
 
-## Common Issues
-- **The 3D model does not display** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
+## Frequently Asked Questions
+- **The 3D model could not load** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
+- **The 3D model could not load from url** : It might be due to [CORS] security restrictions. The server hosting the model file *must* send appropriate CORS response headers for viewer to be able to load the file. See [google/model-viewer#1015]
 
 ## Not working with a url on a real iOS device?
 
