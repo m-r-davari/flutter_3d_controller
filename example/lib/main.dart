@@ -154,8 +154,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Flexible(
               flex: 1,
               child: Flutter3DViewer.obj(
-                //src: 'assets/flutter_dash.obj',
-                src: 'https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/flutter_dash_model/flutter_dash.obj',
+                src: 'assets/flutter_dash.obj',
+                //src: 'https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/flutter_dash_model/flutter_dash.obj',
                 scale: 5,
                 // Initial scale of obj model
                 cameraX: 0,
@@ -204,9 +204,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
-                //src: 'assets/business_man.glb', //3D model with different animations
+                src:
+                    'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
-                src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
+                //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),
             )
           ],

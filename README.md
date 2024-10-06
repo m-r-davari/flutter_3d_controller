@@ -176,16 +176,17 @@ Flutter3DViewer.obj(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^2.0.0
+  flutter_3d_controller: ^2.0.1
 ```
 
-### `AndroidManifest.xml` (Android 9+ only)
+### `AndroidManifest.xml` (Android only)
 
-To use this widget on Android 9+ devices, your app must be permitted to make an HTTP connection to `http://localhost:XXXXX`.
-Android 9 (API level 28) changed the default for [`android:usesCleartextTraffic`] from `true` to `false`,
-so you will need to configure your app's `android/app/src/main/AndroidManifest.xml` as follows:
+Configure your app's `android/app/src/main/AndroidManifest.xml` as follows:
 
 ```diff
+
++   <uses-permission android:name="android.permission.INTERNET"/>
+
      <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
@@ -195,8 +196,6 @@ so you will need to configure your app's `android/app/src/main/AndroidManifest.x
         <activity
             android:name=".MainActivity"
 ```
-
-This does not affect Android 8 and earlier. See [#7] for more information.
 
 ### `app/build.gradle` (Android only)
 
@@ -210,7 +209,7 @@ Change minSdkVersion to 21.
 
 ### `Info.plist` (iOS only)
 
-To use this widget on iOS, you need to opt-in to the embedded views preview
+To use this package on iOS, you need to opt-in to the embedded views preview
 by adding a boolean property to your app's `ios/Runner/Info.plist` file, with
 the key `io.flutter.embedded_views_preview` and the value `YES`:
 
@@ -235,7 +234,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 - **The 3D model does not display** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
 
-## Not working with a url on a real device?
+## Not working with a url on a real iOS device?
 
 **Problem Description** : If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
 

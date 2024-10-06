@@ -1,3 +1,10 @@
+## v2.0.1
+
+### Fixes
+* Fix internet permission in example's android manifest
+* Add internet permission guide for android in readme
+* Fix flutter.embedded permission in example's iOS info.plist
+
 ## v2.0.0
 
 ### Features
