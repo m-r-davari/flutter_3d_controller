@@ -252,4 +252,4 @@ Follow these steps to disable Lockdown Mode on your device:
 
 ## More Info
 
-This package use [model-viewer](https://modelviewer.dev) to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
+This package use [Google's model-viewer](https://modelviewer.dev) to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
