@@ -18,8 +18,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Gesture interceptor (Prevents gesture recognizers from malfunctioning)
 - Controller model loading value listener
 - Model loading states callbacks, **onProgress**, **onLoad** and **onError**
-- Load OBJ models with textures and mtl files
-- OBJ 3D models scale and camera properties
+- Load **obj** 3D models with textures and **mtl** files
+- Scale and camera properties for obj 3D models
 - Play animation
 - Switch between animations
 - Pause animation
