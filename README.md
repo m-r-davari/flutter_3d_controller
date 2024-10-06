@@ -239,7 +239,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
 **Problem Description** : If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
 
-## How to Disable Lockdown Mode
+### How to Disable Lockdown Mode
 Follow these steps to disable Lockdown Mode on your device:
 
 1. Open the **Settings** app on your iPhone.
