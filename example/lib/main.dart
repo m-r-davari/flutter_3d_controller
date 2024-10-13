@@ -32,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Flutter3DController controller = Flutter3DController();
+  Flutter3DController controller2 = Flutter3DController();
+
   String? chosenAnimation;
   String? chosenTexture;
 
@@ -56,12 +58,24 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          IconButton(
-            onPressed: () {
-              controller.playAnimation();
-            },
-            icon: const Icon(Icons.play_arrow),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  controller.playAnimation();
+                },
+                icon: const Icon(Icons.play_arrow),
+              ),
+              IconButton(
+                onPressed: () {
+                  controller2.playAnimation();
+                },
+                icon: const Icon(Icons.play_arrow_outlined),
+              ),
+            ],
           ),
           const SizedBox(
             height: 4,
@@ -153,18 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Flexible(
               flex: 1,
-              child: Flutter3DViewer.obj(
-                src: 'assets/flutter_dash.obj',
-                //src: 'https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/flutter_dash_model/flutter_dash.obj',
-                scale: 5,
-                // Initial scale of obj model
-                cameraX: 0,
-                // Initial cameraX position of obj model
-                cameraY: 0,
-                //Initial cameraY position of obj model
-                cameraZ: 10,
-                //Initial cameraZ position of obj model
-                //This callBack will return the loading progress value between 0 and 1.0
+              child: Flutter3DViewer(
+                src: 'assets/sheen_chair.glb',
                 onProgress: (double progressValue) {
                   debugPrint('model loading progress : $progressValue');
                 },
@@ -205,7 +209,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
                 src:
-                    'assets/business_man.glb', //3D model with different animations
+                'assets/business_man.glb', //3D model with different animations
+                //src: 'assets/sheen_chair.glb', //3D model with different textures
+                //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
+              ),
+            )
+            ,
+            Flexible(
+              flex: 1,
+              child: Flutter3DViewer(
+                //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
+                //to prevent gesture recognizers from malfunctioning on iOS and some Android devices.
+                // the default value is true
+                activeGestureInterceptor: true,
+                //If you don't pass progressBarColor, the color of defaultLoadingProgressBar will be grey.
+                //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
+                progressBarColor: Colors.orange,
+                //You can disable viewer touch response by setting 'enableTouch' to 'false'
+                enableTouch: true,
+                //This callBack will return the loading progress value between 0 and 1.0
+                onProgress: (double progressValue) {
+                  debugPrint('model loading progress : $progressValue');
+                },
+                //This callBack will call after model loaded successfully and will return model address
+                onLoad: (String modelAddress) {
+                  debugPrint('model loaded : $modelAddress');
+                },
+                //this callBack will call when model failed to load and will return failure error
+                onError: (String error) {
+                  debugPrint('model failed to load : $error');
+                },
+                //You can have full control of 3d model animations, textures and camera
+                controller: controller2,
+                src:
+                'assets/business_woman.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),
