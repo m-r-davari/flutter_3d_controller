@@ -1,25 +1,26 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
-import 'package:flutter/services.dart';
 import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'dart:js' as js;
-import 'package:webview_flutter/webview_flutter.dart';
 
 class Flutter3DDatasource implements IFlutter3DDatasource {
-  final WebViewController? _webViewController;
+  final String _viewerId;
 
   Flutter3DDatasource(
-      [this._webViewController, activeGestureInterceptor = false]);
+    this._viewerId, [
+    webViewController,
+    activeGestureInterceptor = false,
+  ]);
 
   @override
   void playAnimation({String? animationName}) {
     animationName == null
         ? executeCustomJsCode(
-            "const modelViewer = document.querySelector(\"model-viewer\");"
+            "const modelViewer = document.getElementById(\"$_viewerId\");"
             "modelViewer.play();",
           )
         : executeCustomJsCode(
-            "const modelViewer = document.querySelector(\"model-viewer\");"
+            "const modelViewer = document.getElementById(\"$_viewerId\");"
             "modelViewer.animationName = \"$animationName\";"
             "modelViewer.play();",
           );
@@ -28,7 +29,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void pauseAnimation() {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();",
     );
   }
@@ -36,7 +37,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void resetAnimation() {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();"
       "modelViewer.currentTime = 0;"
       "modelViewer.play();",
@@ -46,7 +47,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void stopAnimation() {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();"
       "modelViewer.currentTime = 0;",
     );
@@ -56,7 +57,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   Future<List<String>> getAvailableAnimations() async {
     try {
       final result = await executeCustomJsCodeWithResult(
-        "document.querySelector(\"model-viewer\").availableAnimations;",
+        "document.getElementById(\"$_viewerId\").availableAnimations;",
       );
       return result.map<String>((e) => e.toString()).toList();
     } catch (e) {
@@ -68,7 +69,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void setTexture({required String textureName}) {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.variantName = \"$textureName\";",
     );
   }
@@ -76,18 +77,15 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   Future<List<String>> getAvailableTextures() async {
     final result = await executeCustomJsCodeWithResult(
-      "document.querySelector(\"model-viewer\").availableVariants;",
+      "document.getElementById(\"$_viewerId\").availableVariants;",
     );
     return result.map<String>((e) => e.toString()).toList();
   }
 
   @override
   void setCameraTarget(double x, double y, double z) {
-    if (_webViewController != null) {
-      throw PlatformException(code: '130', message: 'Mismatch platform usage');
-    }
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.cameraTarget = \"${x}m ${y}m ${z}m\";",
     );
   }
@@ -95,7 +93,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void resetCameraTarget() {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.cameraTarget = \"auto auto auto\";",
     );
   }
@@ -103,7 +101,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void setCameraOrbit(double theta, double phi, double radius) {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";",
     );
   }
@@ -111,7 +109,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   void resetCameraOrbit() {
     executeCustomJsCode(
-      "const modelViewer = document.querySelector(\"model-viewer\");"
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.cameraOrbit = \"0deg 75deg 105%\" ;",
     );
   }
