@@ -1,3 +1,10 @@
+## v2.0.2
+
+### Fixes
+* Fix multiple model controllers issue
+* Updated minimum SDK version.
+
+
 ## v2.0.1
 
 ### Fixes

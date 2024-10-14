@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: () async {
               List<String> availableAnimations =
-              await controller.getAvailableAnimations();
+                  await controller.getAvailableAnimations();
               debugPrint(
                   'Animations : $availableAnimations --- Length : ${availableAnimations.length}');
               chosenAnimation = await showPickerDialog(
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: () async {
               List<String> availableTextures =
-              await controller.getAvailableTextures();
+                  await controller.getAvailableTextures();
               debugPrint(
                   'Textures : $availableTextures --- Length : ${availableTextures.length}');
               chosenTexture = await showPickerDialog(
@@ -205,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
                 src:
-                'assets/business_man.glb', //3D model with different animations
+                    'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),
@@ -225,43 +225,43 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 250,
           child: inputList.isEmpty
               ? Center(
-            child: Text('$title list is empty'),
-          )
+                  child: Text('$title list is empty'),
+                )
               : ListView.separated(
-            itemCount: inputList.length,
-            padding: const EdgeInsets.only(top: 16),
-            itemBuilder: (ctx, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.pop(context, inputList[index]);
-                },
-                child: Container(
-                  height: 50,
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('${index + 1}'),
-                      Text(inputList[index]),
-                      Icon(
-                        chosenItem == inputList[index]
-                            ? Icons.check_box
-                            : Icons.check_box_outline_blank,
-                      )
-                    ],
-                  ),
+                  itemCount: inputList.length,
+                  padding: const EdgeInsets.only(top: 16),
+                  itemBuilder: (ctx, index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.pop(context, inputList[index]);
+                      },
+                      child: Container(
+                        height: 50,
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('${index + 1}'),
+                            Text(inputList[index]),
+                            Icon(
+                              chosenItem == inputList[index]
+                                  ? Icons.check_box
+                                  : Icons.check_box_outline_blank,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (ctx, index) {
+                    return const Divider(
+                      color: Colors.grey,
+                      thickness: 0.6,
+                      indent: 10,
+                      endIndent: 10,
+                    );
+                  },
                 ),
-              );
-            },
-            separatorBuilder: (ctx, index) {
-              return const Divider(
-                color: Colors.grey,
-                thickness: 0.6,
-                indent: 10,
-                endIndent: 10,
-              );
-            },
-          ),
         );
       },
     );
