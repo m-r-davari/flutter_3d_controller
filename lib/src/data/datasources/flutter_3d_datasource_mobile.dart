@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -61,6 +62,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       final result = await executeCustomJsCodeWithResult(
         "document.getElementById(\"$_viewerId\").availableAnimations;",
       );
+      debugPrint('Animation list : $result');
       String checkedResult;
       if (result is String) {
         checkedResult = _tupleToList(result);

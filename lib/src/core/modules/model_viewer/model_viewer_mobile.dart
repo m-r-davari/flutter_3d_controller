@@ -109,11 +109,9 @@ class ModelViewerState extends State<ModelViewer> {
         initialUrl: 'https://www.google.com',
         backgroundColor: Colors.transparent,
         onWebResourceError: (e) {
-          print('----errjaw------ $e');
         },
         javascriptChannels: registerJsChannels(),
         onWebViewCreated: (controller) async {
-          print('----injaw------');
           _initProxy().then((value) async {
             widget.onWebViewCreated?.call(controller);
             await controller.loadRequest(WebViewRequest(
