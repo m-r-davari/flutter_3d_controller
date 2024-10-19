@@ -23,11 +23,11 @@ enum InteractionPromptStyle { wiggle, basic }
 
 // enum ArTracking { tracking, notTracking }
 
-class JavascriptChannel {
-  const JavascriptChannel(this.name, {required this.onMessageReceived});
+class JavascriptChannelZZZ {
+  const JavascriptChannelZZZ(this.name, {required this.onMessageReceived});
 
   final String name;
-  final ValueChanged<JavaScriptMessage> onMessageReceived;
+  final ValueChanged<JavascriptMessage> onMessageReceived;
 }
 
 /// Flutter widget for rendering interactive 3D models.
@@ -580,7 +580,7 @@ class ModelViewer extends StatefulWidget {
   final bool debugLogging;
 
   /// Passthrough to `javascriptChannels` in the underlying `WebView`.
-  final Set<JavascriptChannel>? javascriptChannels;
+  final Set<JavascriptChannelZZZ>? javascriptChannels;
 
   /// Passthrough to `onWebViewCreated` in the underlying `WebView`.
   ///

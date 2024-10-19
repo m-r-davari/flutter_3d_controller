@@ -25,9 +25,9 @@ dependencies:
   path: ^1.9.0
   vector_math: ^2.1.4
   http: ^1.2.2
-  webview_flutter: ^4.7.0
-  webview_flutter_android: ^3.16.0
-  webview_flutter_wkwebview: ^3.13.0
+  webview_flutter: ^3.0.4
+  webview_flutter_android: ^2.7.0
+  webview_flutter_wkwebview: ^2.7.0
 
 dev_dependencies:
   flutter_test:

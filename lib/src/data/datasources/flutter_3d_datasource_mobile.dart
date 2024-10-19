@@ -149,7 +149,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       bool refreshGestureInterceptor = false]) async {
     await Future.delayed(Duration(milliseconds: codeDelay));
 
-    _webViewController?.runJavaScript('''
+    _webViewController?.runJavascript('''
         (() => {
           customEvaluate('$code');
         })();
@@ -157,7 +157,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
     if (refreshGestureInterceptor) {
       Future.delayed(Duration(milliseconds: refresherDelay), () {
-        _webViewController?.runJavaScript("""
+        _webViewController?.runJavascript("""
           cloneGestureData(modelViewer, modelViewerInterceptor);
         """);
       });
@@ -166,7 +166,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
-    final result = await _webViewController?.runJavaScriptReturningResult(code);
+    final result = await _webViewController?.runJavascriptReturningResult(code);
     return result;
   }
 
