@@ -187,15 +187,16 @@ class ModelViewerState extends State<ModelViewer> {
     // onLoad Channel
     webViewController.addJavaScriptChannel(
       'onLoadChannel',
-      onMessageReceived: (message) {
-        widget.onProgress?.call(1.0);
-        widget.onLoad
-            ?.call(message.message == '/model' ? widget.src : message.message);
+      onMessageReceived: (message)async{
         if (widget.activeGestureInterceptor && !isLoaded) {
           initGestureInterceptorJs('flutter-3d-controller');
           setGestureInterceptorLayer('flutter-3d-controller');
           registerGestureInterceptorListener('flutter-3d-controller');
         }
+       await Future.delayed(const Duration(milliseconds: 100));
+        widget.onProgress?.call(1.0);
+        widget.onLoad
+            ?.call(message.message == '/model' ? widget.src : message.message);
         isLoaded = true;
       },
     );
