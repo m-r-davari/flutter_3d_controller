@@ -197,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //This callBack will call after model loaded successfully and will return model address
                 onLoad: (String modelAddress) {
                   debugPrint('model loaded : $modelAddress');
+                  controller.playAnimation();
                 },
                 //this callBack will call when model failed to load and will return failure error
                 onError: (String error) {
