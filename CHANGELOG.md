@@ -1,3 +1,10 @@
+## v2.0.3
+
+### Fixes
+* Fix onLoad callback delay
+* Fix iOS text select on 3d model
+
+
 ## v2.0.2
 
 ### Fixes
