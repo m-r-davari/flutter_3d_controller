@@ -67,7 +67,7 @@ class _ObjViewerState extends State<ObjViewer> {
   @override
   void didUpdateWidget(covariant ObjViewer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.src != widget.src){
+    if (oldWidget.src != widget.src) {
       scene = Scene(
         onUpdate: () => setState(() {}),
         onObjectCreated: widget.onObjectCreated,

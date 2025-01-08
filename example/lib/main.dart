@@ -143,17 +143,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 changeModel = !changeModel;
                 chosenAnimation = null;
                 chosenTexture = null;
-                if(changeModel){
+                if (changeModel) {
                   srcObj = 'assets/Football.obj';
                   srcGlb = 'assets/sheen_chair.glb';
-                }
-                else{
+                } else {
                   srcObj = 'assets/flutter_dash.obj';
                   srcGlb = 'assets/business_man.glb';
                 }
               });
             },
-            icon: const Icon(Icons.restore_page_outlined,size: 30,),
+            icon: const Icon(
+              Icons.restore_page_outlined,
+              size: 30,
+            ),
           )
         ],
       ),

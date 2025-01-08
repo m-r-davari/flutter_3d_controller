@@ -61,8 +61,8 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
         "document.getElementById(\"$_viewerId\").availableAnimations;",
       );
       List<String> animations = [];
-      for(final animItem in rawAnimations){
-        if(animItem!=null){
+      for (final animItem in rawAnimations) {
+        if (animItem != null) {
           animations.add(animItem.toString());
         }
       }
@@ -83,13 +83,13 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableTextures() async {
-    try{
+    try {
       final List<Object?> rawVariants = await executeCustomJsCodeWithResult(
         "document.getElementById(\"$_viewerId\").availableVariants;",
       );
-      List<String> variants  = [];
-      for(final variantItem in rawVariants){
-        if(variantItem!=null){
+      List<String> variants = [];
+      for (final variantItem in rawVariants) {
+        if (variantItem != null) {
           variants.add(variantItem.toString());
         }
       }
@@ -171,5 +171,4 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     final result = await _webViewController?.evaluateJavascript(source: code);
     return result;
   }
-
 }

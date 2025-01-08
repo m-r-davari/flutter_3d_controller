@@ -25,11 +25,10 @@ class ModelViewerState extends State<ModelViewer> {
     super.dispose();
   }
 
-
   @override
   void didUpdateWidget(covariant ModelViewer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.src != widget.src){
+    if (oldWidget.src != widget.src) {
       setState(() {
         _isLoading = true;
       });
@@ -38,7 +37,6 @@ class ModelViewerState extends State<ModelViewer> {
       unawaited(_generateModelViewerHtml());
     }
   }
-
 
   @override
   Widget build(final BuildContext context) {
@@ -67,7 +65,7 @@ class ModelViewerState extends State<ModelViewer> {
 
     ui_web.platformViewRegistry.registerViewFactory(
       'model-viewer-html-$_uniqueViewType',
-          (viewId) {
+      (viewId) {
         // Create a DivElement to hold the content
         final element = html.DivElement()
           ..style.border = 'none'

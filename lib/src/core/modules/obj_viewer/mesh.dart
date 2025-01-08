@@ -531,7 +531,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
     final String key = getMeshKey(mesh);
     final Rect? rect = textures[key]?.textureRect;
     if (rect != null) mesh.textureRect = rect;
-    }
+  }
 
   final c = Completer<Image>();
   decodeImageFromPixels(texture.buffer.asUint8List(), textureWidth,

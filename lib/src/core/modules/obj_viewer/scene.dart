@@ -191,7 +191,8 @@ class Scene {
       if (colorCount != o.mesh.colors.length) {
         final int colorValue = (o.mesh.texture != null)
             ? const Color.fromARGB(0, 0, 0, 0).colorValue
-            : toColor(o.mesh.material.diffuse, o.mesh.material.opacity).colorValue;
+            : toColor(o.mesh.material.diffuse, o.mesh.material.opacity)
+                .colorValue;
         for (int i = 0; i < colorCount; i++) {
           renderColors[vertexOffset + i] = colorValue;
         }
