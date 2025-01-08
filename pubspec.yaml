@@ -1,6 +1,6 @@
 name: flutter_3d_controller
 description: The most complete Flutter package for rendering interactive 3D models in various formats (GLB, GLTF, OBJ, FBX), with the ability to control animations, textures, camera, and more.
-version: 2.0.3
+version: 2.1.0
 homepage: https://github.com/m-r-davari/flutter_3d_controller
 
 topics:
@@ -25,14 +25,13 @@ dependencies:
   path: ^1.9.0
   vector_math: ^2.1.4
   http: ^1.2.2
-  webview_flutter: ^4.7.0
-  webview_flutter_android: ^3.16.0
-  webview_flutter_wkwebview: ^3.13.0
+  flutter_inappwebview: ^6.1.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^5.0.0
+  lints: ^5.1.1
 
 
 

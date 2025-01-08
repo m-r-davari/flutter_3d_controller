@@ -47,7 +47,7 @@ Future<Map<String, Material>> loadMtl(String fileName,
   try {
     if (url != null) {
       if (url.endsWith("/") == false) {
-        url = url + "/";
+        url = "$url/";
       }
       http.Client client = http.Client();
       var req = await client.get(Uri.parse(url + fileName));
@@ -194,7 +194,7 @@ Future<MapEntry<String, Image>?> loadTexture(
   // load image from url
   if (url != null) {
     if (url.endsWith("/") == false) {
-      url = url + "/";
+      url = "$url/";
     }
     image = await loadImageFromUrl(url + fileName);
     return MapEntry(fileName, image);
@@ -233,5 +233,5 @@ Color toColor(Vector3 v, [double opacity = 1.0]) {
 
 /// Convert Color to Vector3
 Vector3 fromColor(Color color) {
-  return Vector3(color.red / 255, color.green / 255, color.blue / 255);
+  return Vector3(color.r / 255, color.g / 255, color.b / 255);
 }

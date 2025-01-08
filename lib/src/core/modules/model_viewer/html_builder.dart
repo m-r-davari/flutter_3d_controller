@@ -350,13 +350,13 @@ abstract class HTMLBuilder {
       ..write(' style="')
       // CSS Styles
       ..write(
-        'background-color: rgba(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}, ${backgroundColor.alpha}); ',
+        'background-color: rgba(${backgroundColor.r * 255}, ${backgroundColor.g * 255}, ${backgroundColor.b * 255}, ${backgroundColor.a * 255}); ',
       );
 
     //Default Progress bar color
     if (progressBarColor != null) {
       modelViewerHtml.write(
-          ' --progress-bar-color: rgba(${progressBarColor.red}, ${progressBarColor.green}, ${progressBarColor.blue}, ${progressBarColor.alpha})');
+          ' --progress-bar-color: rgba(${progressBarColor.r * 255}, ${progressBarColor.g * 255}, ${progressBarColor.b * 255}, ${progressBarColor.a * 255})');
     }
 
     // Annotations CSS

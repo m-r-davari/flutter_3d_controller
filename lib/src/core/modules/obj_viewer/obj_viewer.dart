@@ -8,12 +8,12 @@ typedef SceneCreatedCallback = void Function(
 
 class ObjViewer extends StatefulWidget {
   const ObjViewer({
-    Key? key,
+    super.key,
     required this.src,
     this.interactive = true,
     this.onSceneCreated,
     this.onObjectCreated,
-  }) : super(key: key);
+  });
 
   final bool interactive;
   final SceneCreatedCallback? onSceneCreated;
@@ -24,7 +24,7 @@ class ObjViewer extends StatefulWidget {
   final String src;
 
   @override
-  _ObjViewerState createState() => _ObjViewerState();
+  State<ObjViewer> createState() => _ObjViewerState();
 }
 
 class _ObjViewerState extends State<ObjViewer> {
@@ -62,6 +62,22 @@ class _ObjViewerState extends State<ObjViewer> {
       widget.onSceneCreated
           ?.call(scene, modelSrcData[0] ?? widget.src, modelSrcData[1]);
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant ObjViewer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if(oldWidget.src != widget.src){
+      scene = Scene(
+        onUpdate: () => setState(() {}),
+        onObjectCreated: widget.onObjectCreated,
+      );
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final modelSrcData = _parseModelSrc(widget.src);
+        widget.onSceneCreated
+            ?.call(scene, modelSrcData[0] ?? widget.src, modelSrcData[1]);
+      });
+    }
   }
 
   @override

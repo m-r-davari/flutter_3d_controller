@@ -52,8 +52,8 @@ class Camera {
     Vector2 delta = Vector2(x, y);
 
     // Calculate the movement direction and angle based on the drag input
-    Vector3 _eye = position - target; // Camera view direction
-    Vector3 eyeDirection = _eye.normalized();
+    Vector3 eye = position - target; // Camera view direction
+    Vector3 eyeDirection = eye.normalized();
     Vector3 upDirection = up.normalized();
 
     // Check the vertical rotation and limit it
@@ -78,7 +78,7 @@ class Camera {
     final double angle = moveDirection.length;
 
     if (angle > 0) {
-      Vector3 axis = moveDirection.cross(_eye).normalized();
+      Vector3 axis = moveDirection.cross(eye).normalized();
       Quaternion q = Quaternion.axisAngle(axis, angle);
       q.rotate(position);
       q.rotate(up);

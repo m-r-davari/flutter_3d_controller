@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'dart:typed_data';
+import 'package:flutter_3d_controller/src/utils/extensions.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'object.dart';
 import 'camera.dart';
@@ -175,11 +176,11 @@ class Scene {
           c.applyMatrix4(vertexTransform);
 
           renderColors[vertexOffset + p.vertex0] =
-              light.shading(viewPosition, a, normal, material).value;
+              light.shading(viewPosition, a, normal, material).colorValue;
           renderColors[vertexOffset + p.vertex1] =
-              light.shading(viewPosition, b, normal, material).value;
+              light.shading(viewPosition, b, normal, material).colorValue;
           renderColors[vertexOffset + p.vertex2] =
-              light.shading(viewPosition, c, normal, material).value;
+              light.shading(viewPosition, c, normal, material).colorValue;
         }
       }
     } else {
@@ -189,14 +190,14 @@ class Scene {
       final int colorCount = o.mesh.vertices.length;
       if (colorCount != o.mesh.colors.length) {
         final int colorValue = (o.mesh.texture != null)
-            ? const Color.fromARGB(0, 0, 0, 0).value
-            : toColor(o.mesh.material.diffuse, o.mesh.material.opacity).value;
+            ? const Color.fromARGB(0, 0, 0, 0).colorValue
+            : toColor(o.mesh.material.diffuse, o.mesh.material.opacity).colorValue;
         for (int i = 0; i < colorCount; i++) {
           renderColors[vertexOffset + i] = colorValue;
         }
       } else {
         for (int i = 0; i < colorCount; i++) {
-          renderColors[vertexOffset + i] = colors[i].value;
+          renderColors[vertexOffset + i] = colors[i].colorValue;
         }
       }
     }

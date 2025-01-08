@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'model_viewer_stub.dart'
     if (dart.library.io) 'model_viewer_mobile.dart'
@@ -27,7 +27,7 @@ class JavascriptChannel {
   const JavascriptChannel(this.name, {required this.onMessageReceived});
 
   final String name;
-  final ValueChanged<JavaScriptMessage> onMessageReceived;
+  final ValueChanged<dynamic> onMessageReceived;
 }
 
 /// Flutter widget for rendering interactive 3D models.
@@ -585,7 +585,7 @@ class ModelViewer extends StatefulWidget {
   /// Passthrough to `onWebViewCreated` in the underlying `WebView`.
   ///
   /// Called *after* the logic that initializes the model-viewer.
-  final ValueChanged<WebViewController>? onWebViewCreated;
+  final ValueChanged<InAppWebViewController>? onWebViewCreated;
 
   /// If true the flutter_3d_controller will add gesture interceptor layer
   /// to prevent breaking gesture detection in iOS and some of android devices.

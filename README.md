@@ -15,6 +15,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Mobile and Web stable version (support **glb**, **gltf** and **obj** format)
 - Load 3D model from assets
 - Load 3D model from URL
+- Change 3D models by setState
 - Gesture interceptor (Prevents gesture recognizers from malfunctioning)
 - Controller model loading value listener
 - Model loading states callbacks, **onProgress**, **onLoad** and **onError**
@@ -176,7 +177,7 @@ Flutter3DViewer.obj(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^2.0.3
+  flutter_3d_controller: ^2.1.0
 ```
 
 ### `AndroidManifest.xml` (Android only)
