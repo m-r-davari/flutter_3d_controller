@@ -6,7 +6,7 @@ import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasour
 import 'package:flutter_3d_controller/src/data/repositories/flutter_3d_repository.dart';
 import 'package:flutter_3d_controller/src/core/modules/model_viewer/model_viewer.dart';
 import 'package:flutter_3d_controller/src/utils/utils.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_3d_controller/src/core/modules/obj_viewer/object.dart'
     as obj;
 import 'package:vector_math/vector_math_64.dart' hide Colors;
@@ -158,7 +158,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
             },
             onWebViewCreated: kIsWeb
                 ? null
-                : (WebViewController value) {
+                : (InAppWebViewController value) {
                     _controller.init(
                       Flutter3DRepository(
                         IFlutter3DDatasource(

@@ -9,7 +9,7 @@ import 'dart:html' as html;
 
 class ModelViewerState extends State<ModelViewer> {
   bool _isLoading = true;
-  final String _uniqueViewType = UniqueKey().toString();
+  String _uniqueViewType = UniqueKey().toString();
   html.DivElement? htmlWebElement;
   bool firstDomLoad = true;
 
@@ -17,6 +17,43 @@ class ModelViewerState extends State<ModelViewer> {
   void initState() {
     super.initState();
     unawaited(_generateModelViewerHtml());
+  }
+
+  @override
+  void dispose() {
+    htmlWebElement?.remove();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant ModelViewer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.src != widget.src) {
+      setState(() {
+        _isLoading = true;
+      });
+      firstDomLoad = true;
+      _uniqueViewType = UniqueKey().toString();
+      unawaited(_generateModelViewerHtml());
+    }
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    if (_isLoading) {
+      return Container();
+    } else {
+      return HtmlElementView(
+        viewType: 'model-viewer-html-$_uniqueViewType',
+        onPlatformViewCreated: (id) async {
+          if (firstDomLoad) {
+            final event = html.CustomEvent('CustomDOMContentLoaded');
+            await Future.delayed(Duration.zero);
+            htmlWebElement?.dispatchEvent(event);
+          }
+        },
+      );
+    }
   }
 
   /// To generate the HTML code for using the model viewer.
@@ -72,30 +109,6 @@ class ModelViewerState extends State<ModelViewer> {
     );
 
     setState(() => _isLoading = false);
-  }
-
-  @override
-  void dispose() {
-    htmlWebElement?.remove();
-    super.dispose();
-  }
-
-  @override
-  Widget build(final BuildContext context) {
-    if (_isLoading) {
-      return Container();
-    } else {
-      return HtmlElementView(
-        viewType: 'model-viewer-html-$_uniqueViewType',
-        onPlatformViewCreated: (id) async {
-          if (firstDomLoad) {
-            final event = html.CustomEvent('CustomDOMContentLoaded');
-            await Future.delayed(Duration.zero);
-            htmlWebElement?.dispatchEvent(event);
-          }
-        },
-      );
-    }
   }
 
   String _buildHTML(final String htmlTemplate) {

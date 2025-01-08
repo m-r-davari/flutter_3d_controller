@@ -1,10 +1,9 @@
-import 'dart:convert';
 import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
 import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasource.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class Flutter3DDatasource implements IFlutter3DDatasource {
-  final WebViewController? _webViewController;
+  final InAppWebViewController? _webViewController;
   final bool _activeGestureInterceptor;
   final String _viewerId;
 
@@ -58,18 +57,16 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   @override
   Future<List<String>> getAvailableAnimations() async {
     try {
-      final result = await executeCustomJsCodeWithResult(
+      final List<Object?> rawAnimations = await executeCustomJsCodeWithResult(
         "document.getElementById(\"$_viewerId\").availableAnimations;",
       );
-      String checkedResult;
-      if (result is String) {
-        checkedResult = _tupleToList(result);
-      } else {
-        return [];
+      List<String> animations = [];
+      for (final animItem in rawAnimations) {
+        if (animItem != null) {
+          animations.add(animItem.toString());
+        }
       }
-      return jsonDecode(checkedResult)
-          .map<String>((e) => e.toString())
-          .toList();
+      return animations;
     } catch (e) {
       throw Flutter3dControllerFormatException(
           message: 'Failed to retrieve animation list, ${e.toString()}');
@@ -86,16 +83,21 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<List<String>> getAvailableTextures() async {
-    final result = await executeCustomJsCodeWithResult(
-      "document.getElementById(\"$_viewerId\").availableVariants;",
-    );
-    String checkedResult;
-    if (result is String) {
-      checkedResult = _tupleToList(result);
-    } else {
-      return [];
+    try {
+      final List<Object?> rawVariants = await executeCustomJsCodeWithResult(
+        "document.getElementById(\"$_viewerId\").availableVariants;",
+      );
+      List<String> variants = [];
+      for (final variantItem in rawVariants) {
+        if (variantItem != null) {
+          variants.add(variantItem.toString());
+        }
+      }
+      return variants;
+    } catch (e) {
+      throw Flutter3dControllerFormatException(
+          message: 'Failed to retrieve texture list, ${e.toString()}');
     }
-    return jsonDecode(checkedResult).map<String>((e) => e.toString()).toList();
   }
 
   @override
@@ -149,7 +151,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       bool refreshGestureInterceptor = false]) async {
     await Future.delayed(Duration(milliseconds: codeDelay));
 
-    _webViewController?.runJavaScript('''
+    _webViewController?.evaluateJavascript(source: '''
         (() => {
           customEvaluate('$code');
         })();
@@ -157,7 +159,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
     if (refreshGestureInterceptor) {
       Future.delayed(Duration(milliseconds: refresherDelay), () {
-        _webViewController?.runJavaScript("""
+        _webViewController?.evaluateJavascript(source: """
           cloneGestureData(modelViewer, modelViewerInterceptor);
         """);
       });
@@ -166,26 +168,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   Future<dynamic> executeCustomJsCodeWithResult(String code) async {
-    final result = await _webViewController?.runJavaScriptReturningResult(code);
+    final result = await _webViewController?.evaluateJavascript(source: code);
     return result;
-  }
-
-  /*
-  * Converts Tuple string to List
-  * */
-  String _tupleToList(String input) {
-    String trimmedString = input.trim();
-    if (trimmedString.isNotEmpty && trimmedString.length > 2) {
-      if (trimmedString[0] == "(") {
-        trimmedString = trimmedString.replaceFirst("(", "[");
-      }
-      if (trimmedString[trimmedString.length - 1] == ")") {
-        trimmedString =
-            trimmedString.substring(0, trimmedString.length - 2) + "]";
-      }
-      return trimmedString;
-    } else {
-      return "[]";
-    }
   }
 }

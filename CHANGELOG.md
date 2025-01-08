@@ -1,3 +1,17 @@
+## v2.1.0
+
+### Features
+* Change 3D models by setState
+
+### Improvements
+* Improve gesture interceptor
+* Improve performance
+* Update dependencies
+
+### Fixes
+* Fix camera shake rare bug
+
+
 ## v2.0.3
 
 ### Fixes

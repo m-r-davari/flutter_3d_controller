@@ -89,7 +89,7 @@ Future<List<Mesh>> loadObj(String fileName, bool normalized,
 
   if (url != null) {
     if (url.endsWith("/") == false) {
-      url = url + "/";
+      url = "$url/";
     }
     http.Client client = http.Client();
     var req = await client.get(Uri.parse(url + fileName));
@@ -416,7 +416,7 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
   // generate a key for a mesh.
   String getMeshKey(Mesh mesh) {
     if (mesh.texture != null) {
-      return mesh.texturePath ?? '' + mesh.textureRect.toString();
+      return mesh.texturePath ?? '${mesh.textureRect}';
     }
     return toColor(mesh.material.diffuse.bgr).toString();
   }
@@ -509,7 +509,9 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
 
     // break if the mesh.texture has changed
     if (mesh.textureRect.right > textureWidth ||
-        mesh.textureRect.bottom > textureHeight) break;
+        mesh.textureRect.bottom > textureHeight) {
+      break;
+    }
 
     // copy pixels from mesh.texture to texture
     int fromIndex = 0;
@@ -526,11 +528,9 @@ Future<Image?> packingTexture(List<Mesh> meshes) async {
 
   // apply the packed textureRect to all meshes.
   for (Mesh mesh in allMeshes) {
-    final String? key = getMeshKey(mesh);
-    if (key != null) {
-      final Rect? rect = textures[key]?.textureRect;
-      if (rect != null) mesh.textureRect = rect;
-    }
+    final String key = getMeshKey(mesh);
+    final Rect? rect = textures[key]?.textureRect;
+    if (rect != null) mesh.textureRect = rect;
   }
 
   final c = Completer<Image>();

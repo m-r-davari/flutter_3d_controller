@@ -34,6 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Flutter3DController controller = Flutter3DController();
   String? chosenAnimation;
   String? chosenTexture;
+  bool changeModel = false;
+  String srcObj = 'assets/flutter_dash.obj';
+  String srcGlb = 'assets/business_man.glb';
 
   @override
   void initState() {
@@ -80,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               controller.resetAnimation();
             },
-            icon: const Icon(Icons.replay_circle_filled),
+            icon: const Icon(Icons.replay),
           ),
           const SizedBox(
             height: 4,
@@ -120,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
               controller.setCameraOrbit(20, 20, 5);
               //controller.setCameraTarget(0.3, 0.2, 0.4);
             },
-            icon: const Icon(Icons.camera_alt),
+            icon: const Icon(Icons.camera_alt_outlined),
           ),
           const SizedBox(
             height: 4,
@@ -131,6 +134,29 @@ class _MyHomePageState extends State<MyHomePage> {
               //controller.resetCameraTarget();
             },
             icon: const Icon(Icons.cameraswitch_outlined),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          IconButton(
+            onPressed: () {
+              setState(() {
+                changeModel = !changeModel;
+                chosenAnimation = null;
+                chosenTexture = null;
+                if (changeModel) {
+                  srcObj = 'assets/Football.obj';
+                  srcGlb = 'assets/sheen_chair.glb';
+                } else {
+                  srcObj = 'assets/flutter_dash.obj';
+                  srcGlb = 'assets/business_man.glb';
+                }
+              });
+            },
+            icon: const Icon(
+              Icons.restore_page_outlined,
+              size: 30,
+            ),
           )
         ],
       ),
@@ -154,7 +180,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Flexible(
               flex: 1,
               child: Flutter3DViewer.obj(
-                src: 'assets/flutter_dash.obj',
+                src: srcObj,
+                //src : 'assets/flutter_dash.obj',
                 //src: 'https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/flutter_dash_model/flutter_dash.obj',
                 scale: 5,
                 // Initial scale of obj model
@@ -205,8 +232,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 //You can have full control of 3d model animations, textures and camera
                 controller: controller,
-                src:
-                    'assets/business_man.glb', //3D model with different animations
+                src: srcGlb,
+                //src: 'assets/business_man.glb', //3D model with different animations
                 //src: 'assets/sheen_chair.glb', //3D model with different textures
                 //src: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb', // 3D model from URL
               ),
