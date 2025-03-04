@@ -1,8 +1,15 @@
 abstract class IFlutter3DRepository {
   /// Causes animations to be played, Can be use to switch animations as well.
   /// If animationName is null and model has at list one animation, it will play first model's animation
-  /// If animationName passed and not null it will play specific animation
-  void playAnimation({String? animationName});
+  /// If animationName passed and not null it will play specific animation.
+  ///
+  /// If loopCount > 0, the animation will loop for the specified count.
+  /// If loopCount == 0, the animation will loop infinitely.
+  /// (Default is 0)
+  void playAnimation({
+    String? animationName,
+    int loopCount = 0,
+  });
 
   ///Causes animations to be paused at current frame.
   void pauseAnimation();

@@ -13,6 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - Mobile and Web stable version (support **glb**, **gltf** and **obj** format)
+- macOS and Windows **Beta** version 📣(transparent background not supported)
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
@@ -22,6 +23,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Load **obj** 3D models with textures and **mtl** files
 - Scale and camera properties for obj 3D models
 - Play animation
+- Play animation with loop count 🔥
 - Switch between animations
 - Pause animation
 - Reset animation
@@ -38,7 +40,6 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 <!--
 ## Todo (Next Versions)
-- Change model source with setState
 - Support fbx format
 -->
 
@@ -53,6 +54,8 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Android
 - iOS
 - Web
+- macOS (Beta)
+- Windows (Beta)
 
 ## Notes
 
@@ -77,6 +80,13 @@ controller.playAnimation();
 //If you pass specific animation name it will play that specific animation.
 //If you pass null and your model has at least 1 animation it will play first animation.
 controller.playAnimation(animationName: chosenAnimation);
+
+//If you pass loopCount > 0, the animation will repeat for the specified number of times.
+//To play the animation only once, set loopCount to 1.
+controller.playAnimation(loopCount: 1);
+
+//The loopCount variable can also be used with a specific animation.
+controller.playAnimation(loopCount: 2, animationName: chosenAnimation);
 
 //It will pause the animation at current frame.
 controller.pauseAnimation();
@@ -177,7 +187,7 @@ Flutter3DViewer.obj(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^2.1.0
+  flutter_3d_controller: ^2.2.0
 ```
 
 ### `AndroidManifest.xml` (Android only)
@@ -232,25 +242,11 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
 
 ## Frequently Asked Questions
+- **macOS and Windows backgrounds are not transparent** : This is a known issue and one of the main reasons the desktop version is still in beta.
 - **The 3D model could not load** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
 - **The 3D model could not load from url** : It might be due to [CORS] security restrictions. The server hosting the model file *must* send appropriate CORS response headers for viewer to be able to load the file. See [google/model-viewer#1015](https://github.com/google/model-viewer/issues/1015)
 
-## Not working with a url on a real iOS device?
-
-**Problem Description** : If you're having trouble loading 3D models from a URL on a real iOS device, **Lockdown Mode** might be the cause. Lockdown Mode is a security feature in iOS that restricts certain functionalities like network requests or loading embedded content to protect user data.
-
-### How to Disable Lockdown Mode
-Follow these steps to disable Lockdown Mode on your device:
-
-1. Open the **Settings** app on your iPhone.
-2. Scroll down and select **Privacy and Security**.
-3. Tap on **Lockdown Mode**.
-4. Select **Turn Off Lockdown Mode**. You may need to enter your password to confirm.
-5. After disabling Lockdown Mode, return to the app and try loading the 3D model again.
-
----
 
 ## More Info
-
 This package uses Google's [model-viewer](https://modelviewer.dev) to render 3D models and it may have some issue in rendering some models/textures, the core of package (Model Viewer) will change in future to support all type of 3D models.
