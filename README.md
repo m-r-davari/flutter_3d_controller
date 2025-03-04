@@ -85,7 +85,7 @@ controller.playAnimation(animationName: chosenAnimation);
 //To play the animation only once, set loopCount to 1.
 controller.playAnimation(loopCount: 1);
 
-//The loopCount variable can also be used with a specific animation.
+//The loopCount argument can also be used with a specific animation.
 controller.playAnimation(loopCount: 2, animationName: chosenAnimation);
 
 //It will pause the animation at current frame.
