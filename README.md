@@ -13,7 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - 'Mobile' and 'Web' **stable** version (support **glb**, **gltf** and **obj** format)
-- **Windows** and **macOS** **beta** version (transparent background not supported)
+- **Windows** and **macOS** 'beta' version (transparent background not supported)
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
