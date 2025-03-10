@@ -43,6 +43,14 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Support fbx format
 -->
 
+## Compatibility
+
+- Android
+- iOS
+- Web
+- macOS (Beta)
+- Windows (Beta)
+
 ## Mobile & Web Samples
 
 <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/lambo_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dog_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/chair_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dash_scr.gif" alt="Model3" width="19%"/>
@@ -52,13 +60,6 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model1" width="48.25%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model2" width="48.25%"/> 
 
-## Compatibility
-
-- Android
-- iOS
-- Web
-- macOS (Beta)
-- Windows (Beta)
 
 ## Notes
 
