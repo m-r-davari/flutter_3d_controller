@@ -19,19 +19,17 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   }) {
     String loopValue = loopCount <= 0 ? 'Infinity' : loopCount.toString();
     animationName == null
-        ? executeCustomJsCode("""
-            const modelViewer = document.getElementById("$_viewerId");
-            modelViewer.updateComplete.then(() => {
-              modelViewer.play({repetitions: "$loopValue"});
-            });
-           """)
-        : executeCustomJsCode("""
-            const modelViewer = document.getElementById("$_viewerId");
-            modelViewer.animationName = "$animationName";
-            modelViewer.updateComplete.then(() => {
-              modelViewer.play({repetitions: "$loopValue"});
-            });
-           """);
+        ? executeCustomJsCode(
+            "const modelViewer = document.getElementById(\"$_viewerId\");"
+            "modelViewer.updateComplete.then(() => {"
+              "modelViewer.play({repetitions: \"$loopValue\"});"
+            "});")
+        : executeCustomJsCode(
+            "const modelViewer = document.getElementById(\"$_viewerId\");"
+            "modelViewer.animationName = \"$animationName\";"
+            "modelViewer.updateComplete.then(() => {"
+              "modelViewer.play({repetitions: \"$loopValue\"});"
+            "});");
   }
 
   @override
