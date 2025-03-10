@@ -50,7 +50,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 
 ## Desktop(Windows & macOS) Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model1" width="48%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model2" width="48%"/> 
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model1" width="48.5%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model2" width="48.5%"/> 
 
 ## Compatibility
 
