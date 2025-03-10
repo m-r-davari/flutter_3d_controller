@@ -26,6 +26,8 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
             "});")
         : executeCustomJsCode(
             "const modelViewer = document.getElementById(\"$_viewerId\");"
+            "modelViewer.pause();"
+            "modelViewer.animationName = \"\";"
             "modelViewer.animationName = \"$animationName\";"
             "modelViewer.updateComplete.then(() => {"
               "modelViewer.play({repetitions: \"$loopValue\"});"
