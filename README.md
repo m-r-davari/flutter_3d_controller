@@ -272,7 +272,7 @@ extension InAppWebView {
 ```
 
 ## Frequently Asked Questions
-- **Desktop(macOS) issues** : You may experience unexpected issues in desktop(macOS) beta version.
+- **Desktop(macOS) rare issues** : You may experience unexpected issues in desktop(macOS) beta version.
 - **The 3D model could not load** : First check the example, if models in examples loads, may be there is problem with your model or your model path.
 - **The animation list could not be retrieved** : Check if there are any special characters in the animation names that might cause a JSON encoding error.
 - **The 3D model could not load from url** : It might be due to [CORS] security restrictions. The server hosting the model file *must* send appropriate CORS response headers for viewer to be able to load the file. See [google/model-viewer#1015](https://github.com/google/model-viewer/issues/1015)
