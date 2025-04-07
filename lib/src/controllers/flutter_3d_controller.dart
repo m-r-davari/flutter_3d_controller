@@ -15,9 +15,12 @@ class Flutter3DController extends IFlutter3DController {
   }
 
   @override
-  void playAnimation({String? animationName}) {
+  void playAnimation({String? animationName, int loopCount = 0}) {
     if (onModelLoaded.value) {
-      _repository?.playAnimation(animationName: animationName);
+      _repository?.playAnimation(
+        animationName: animationName,
+        loopCount: loopCount,
+      );
     } else {
       throw Flutter3dControllerLoadingException();
     }

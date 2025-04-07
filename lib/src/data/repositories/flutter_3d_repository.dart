@@ -3,11 +3,15 @@ import 'package:flutter_3d_controller/src/data/datasources/i_flutter_3d_datasour
 
 class Flutter3DRepository extends IFlutter3DRepository {
   final IFlutter3DDatasource _datasource;
+
   Flutter3DRepository(this._datasource);
 
   @override
-  void playAnimation({String? animationName}) {
-    _datasource.playAnimation(animationName: animationName);
+  void playAnimation({String? animationName, int loopCount = 0}) {
+    _datasource.playAnimation(
+      animationName: animationName,
+      loopCount: loopCount,
+    );
   }
 
   @override

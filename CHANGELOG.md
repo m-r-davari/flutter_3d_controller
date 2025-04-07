@@ -1,3 +1,14 @@
+## v2.2.0
+
+### Features
+* macOS support (Beta)
+* Play animation with loop count
+
+### Fixes
+* Fix minimum version of Flutter SDK
+
+
+
 ## v2.1.0
 
 ### Features
