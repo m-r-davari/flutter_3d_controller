@@ -244,7 +244,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 </head>
 ```
 
-### `Outgoing Connections (Client)` (macOS only)
+### `Outgoing Connections(Client)` (macOS only)
 
 For loading 3D models in *macOS* you need to configure the macOS App Sandbox by *enabling* the `Outgoing Connections (Client)` option in your `MacOS` XCode Project, `under Runner > Signing & Capabilities`.
 
