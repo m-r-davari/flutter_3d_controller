@@ -214,7 +214,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Flutter3DViewer(
                 //If you pass 'true' the flutter_3d_controller will add gesture interceptor layer
                 //to prevent gesture recognizers from malfunctioning on iOS and some Android devices.
-                // the default value is true
+                // the default value is true.
                 activeGestureInterceptor: true,
                 //If you don't pass progressBarColor, the color of defaultLoadingProgressBar will be grey.
                 //You can set your custom color or use [Colors.transparent] for hiding loadingProgressBar.
