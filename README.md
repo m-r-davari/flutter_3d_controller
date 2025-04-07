@@ -13,7 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - Mobile and Web **stable** version (fully support **glb**, **gltf** and **obj** format)
-- macOS **beta** version
+- macOS **beta** version 🆕
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
