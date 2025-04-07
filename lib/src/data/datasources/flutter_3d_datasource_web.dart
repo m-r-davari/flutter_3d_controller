@@ -22,7 +22,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
         ? executeCustomJsCode(
             "const modelViewer = document.getElementById(\"$_viewerId\");"
             "modelViewer.updateComplete.then(() => {"
-              "modelViewer.play({repetitions: \"$loopValue\"});"
+            "modelViewer.play({repetitions: \"$loopValue\"});"
             "});")
         : executeCustomJsCode(
             "const modelViewer = document.getElementById(\"$_viewerId\");"
@@ -30,7 +30,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
             "modelViewer.animationName = \"\";"
             "modelViewer.animationName = \"$animationName\";"
             "modelViewer.updateComplete.then(() => {"
-              "modelViewer.play({repetitions: \"$loopValue\"});"
+            "modelViewer.play({repetitions: \"$loopValue\"});"
             "});");
   }
 
