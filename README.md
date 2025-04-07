@@ -248,7 +248,7 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 
 For loading 3D models in *macOS* you need to configure the macOS App Sandbox by *enabling* the `Outgoing Connections (Client)` option in your `MacOS` XCode Project, `under Runner > Signing & Capabilities`.
 
-<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_runner_config_sc.png" alt="macOS_runner_sc" width="48%"/>
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_runner_config_sc.png" alt="macOS_runner_sc" width="60%"/>
 
 ### `AppDelegate.html` (macOS only)
 
