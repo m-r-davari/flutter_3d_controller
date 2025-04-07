@@ -13,7 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - Mobile and Web **stable** version (fully support **glb**, **gltf** and **obj** format)
-- macOS **beta** version 🆕🅱️
+- macOS **beta** version 🆕
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
@@ -23,7 +23,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Load **obj** 3D models with textures and **mtl** files
 - Scale and camera properties for obj 3D models
 - Play animation
-- Play animation with loop count🆕
+- Play animation with loop count 🆕
 - Switch between animations
 - Pause animation
 - Reset animation
