@@ -2,7 +2,6 @@
 
 ### Features
 * macOS support (Beta)
-* Windows support (Beta)
 * Play animation with loop count
 
 ### Fixes
