@@ -96,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Animations : $availableAnimations --- Length : ${availableAnimations.length}');
               chosenAnimation = await showPickerDialog(
                   'Animations', availableAnimations, chosenAnimation);
+              //Play animation with loop count
               controller.playAnimation(
                 animationName: chosenAnimation,
                 loopCount: 2,

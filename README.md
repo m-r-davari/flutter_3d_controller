@@ -13,7 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - Mobile and Web **stable** version (fully support **glb**, **gltf** and **obj** format)
-- Windows and macOS **beta** version (transparent background not supported for **glb** and **gltf** format)
+- macOS **beta** version
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
@@ -49,16 +49,16 @@ Notably, when testing **other available packages**, users may experience **gestu
 - iOS
 - Web
 - macOS (Beta)
-- Windows (Beta)
+- Windows (Coming Soon)
 
 ## Mobile & Web Samples
 
 <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/lambo_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dog_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/chair_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/dash_scr.gif" alt="Model3" width="19%"/>
 <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/female_scr.gif" alt="Model1" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/bird_scr.gif" alt="Model2" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/male2_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/donut_scr.gif" alt="Model3" width="19%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/scrs_gifs_v2/multi_scr.gif" alt="Model3" width="19%"/>
 
-## Desktop(Windows & macOS) Samples
+## Desktop(macOS) Samples
 
-<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model1" width="48.25%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="Model2" width="48.25%"/> 
+<img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc.png" alt="macOS_Model1" width="48.25%"/> <img src="https://raw.githubusercontent.com/m-r-davari/content-holder/refs/heads/master/flutter_3d_controller/macos_sample_sc2.png" alt="macOS_Model2" width="48.25%"/> 
 
 
 ## Notes
@@ -244,6 +244,30 @@ Modify the `<head>` tag of your `web/index.html` to load the JavaScript, like so
 </head>
 ```
 
+### `Outgoing Connections (Client)` (macOS only)
+
+For loading 3D models in *macOS* you need to configure the macOS App Sandbox by *enabling* the `Outgoing Connections (Client)` option in your `MacOS` XCode Project, `under Runner > Signing & Capabilities`.
+
+### `AppDelegate.html` (macOS only)
+
+Add the following codes to your macOS `AppDelegate` file to support transparent background for *flutter_3d_controller*
+
+```swift
+import flutter_inappwebview_macos
+
+extension InAppWebView {
+    @objc public override func viewDidMoveToWindow() {
+        super.viewDidMoveToWindow()
+        
+        if window != nil {
+            print("InAppWebView moved to window, enforcing transparency")
+            self.setValue(false, forKey: "opaque")
+            self.setValue(false, forKey: "drawsBackground")
+            self.layer?.backgroundColor = NSColor.clear.cgColor
+        }
+    }
+}
+```
 
 ## Frequently Asked Questions
 - **macOS and Windows backgrounds are not transparent** : This is a known issue and one of the main reasons the desktop version is still in beta.
