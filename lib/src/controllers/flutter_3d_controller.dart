@@ -99,9 +99,9 @@ class Flutter3DController extends IFlutter3DController {
   }
 
   @override
-  void setCameraOrbit(double theta, double phi, double radius) {
+  void setCameraOrbit(double theta, double phi, double radius, {bool isAnimate = true}) {
     if (onModelLoaded.value) {
-      _repository?.setCameraOrbit(theta, phi, radius);
+      _repository?.setCameraOrbit(theta, phi, radius, isAnimate);
     } else {
       throw Flutter3dControllerLoadingException();
     }
