@@ -1,17 +1,20 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_3d_controller/src/controllers/i_flutter_3d_controller.dart';
-import 'package:flutter_3d_controller/src/data/repositories/i_flutter_3d_repository.dart';
 import 'package:flutter_3d_controller/src/core/exception/flutter_3d_controller_exception.dart';
+import 'package:flutter_3d_controller/src/data/repositories/i_flutter_3d_repository.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class Flutter3DController extends IFlutter3DController {
   IFlutter3DRepository? _repository;
+  InAppWebViewController? _webViewController;
 
   Flutter3DController();
 
   ValueNotifier<bool> onModelLoaded = ValueNotifier<bool>(false);
 
-  void init(IFlutter3DRepository repository) {
+  void init(IFlutter3DRepository repository, InAppWebViewController? webViewController) {
     _repository = repository;
+    _webViewController = webViewController;
   }
 
   @override
@@ -99,9 +102,9 @@ class Flutter3DController extends IFlutter3DController {
   }
 
   @override
-  void setCameraOrbit(double theta, double phi, double radius) {
+  void setCameraOrbit(double theta, double phi, double radius, {bool isAnimate = true}) {
     if (onModelLoaded.value) {
-      _repository?.setCameraOrbit(theta, phi, radius);
+      _repository?.setCameraOrbit(theta, phi, radius, isAnimate);
     } else {
       throw Flutter3dControllerLoadingException();
     }
@@ -113,6 +116,16 @@ class Flutter3DController extends IFlutter3DController {
       _repository?.resetCameraOrbit();
     } else {
       throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
+  Future<Uint8List?> takeScreenshot() async {
+    try {
+      final screenshot = await _webViewController?.takeScreenshot();
+      return screenshot;
+    } catch (e) {
+      return null;
     }
   }
 }

@@ -40,7 +40,7 @@ abstract class IFlutter3DDatasource {
   void resetCameraTarget();
 
   /// It will change camera orbit
-  void setCameraOrbit(double theta, double phi, double radius);
+  void setCameraOrbit(double theta, double phi, double radius, bool isAnimate);
 
   /// Causes camera target reset to default value
   void resetCameraOrbit();
