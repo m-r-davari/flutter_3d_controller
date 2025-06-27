@@ -101,8 +101,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
     _id = _utils.generateId();
     _controller = widget.controller ?? Flutter3DController();
     if (kIsWeb) {
-      _controller
-          .init(Flutter3DRepository(IFlutter3DDatasource(_id, null, false)));
+      _controller.init(Flutter3DRepository(IFlutter3DDatasource(_id, null, false)), null);
     }
     super.initState();
   }
@@ -167,6 +166,7 @@ class _Flutter3DViewerState extends State<Flutter3DViewer> {
                           widget.activeGestureInterceptor,
                         ),
                       ),
+                      value,
                     );
                   },
           );

@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 abstract class IFlutter3DController {
   /// Causes animations to be played, Can be use to switch animations as well.
   /// If animationName is null and model has at list one animation, it will play first model's animation
@@ -41,4 +43,7 @@ abstract class IFlutter3DController {
 
   /// Causes camera target reset to default value
   void resetCameraOrbit();
+
+  /// It will take screenshot of 3D model as [Uint8List]
+  Future<Uint8List?> takeScreenshot();
 }
