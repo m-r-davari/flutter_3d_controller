@@ -81,6 +81,15 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           IconButton(
             onPressed: () {
+              controller.resumeAnimation();
+            },
+            icon: const Icon(Icons.play_circle_outline),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          IconButton(
+            onPressed: () {
               controller.resetAnimation();
             },
             icon: const Icon(Icons.replay),

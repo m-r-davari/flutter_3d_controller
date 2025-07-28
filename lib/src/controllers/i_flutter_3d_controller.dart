@@ -14,6 +14,14 @@ abstract class IFlutter3DController {
   ///Causes animations to be paused at current frame.
   void pauseAnimation();
 
+  /// Causes animation to be resumed from the current frame (where it was paused).
+  /// This method continues the animation from exactly where it was paused,
+  /// unlike resetAnimation() which starts from the beginning.
+  void resumeAnimation();
+
+  /// Get the current animation time in seconds
+  Future<double> getCurrentAnimationTime();
+
   /// Causes animation to be played from first frame
   void resetAnimation();
 

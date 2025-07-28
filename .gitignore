@@ -30,3 +30,7 @@ migrate_working_dir/
 build/
 /lib/src/core/modules/model_viewer/f3dc_scripts.js
 /lib/src/core/modules/model_viewer/f3dc_scripts_v2.js
+
+# FVM Version Cache
+.fvm/
+.fvmrc

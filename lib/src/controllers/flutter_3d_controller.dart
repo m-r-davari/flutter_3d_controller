@@ -36,6 +36,24 @@ class Flutter3DController extends IFlutter3DController {
   }
 
   @override
+  void resumeAnimation() {
+    if (onModelLoaded.value) {
+      _repository?.resumeAnimation();
+    } else {
+      throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
+  Future<double> getCurrentAnimationTime() async {
+    if (onModelLoaded.value) {
+      return await _repository?.getCurrentAnimationTime() ?? 0.0;
+    } else {
+      throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
   void resetAnimation() {
     if (onModelLoaded.value) {
       _repository?.resetAnimation();
