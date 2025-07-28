@@ -6,6 +6,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   final InAppWebViewController? _webViewController;
   final bool _activeGestureInterceptor;
   final String _viewerId;
+  bool _wasPaused = false; // Track if animation was paused vs stopped
 
   Flutter3DDatasource(
     this._viewerId, [
@@ -18,6 +19,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
     String? animationName,
     int loopCount = 0,
   }) {
+    _wasPaused = false; // Reset pause state when starting new animation
     String loopValue = loopCount <= 0 ? 'Infinity' : loopCount.toString();
     animationName == null
         ? executeCustomJsCode(
@@ -37,6 +39,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   void pauseAnimation() {
+    _wasPaused = true; // Mark as paused so we can resume later
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();",
@@ -44,7 +47,27 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   }
 
   @override
+  void resumeAnimation() {
+    if (_wasPaused) {
+      // Resume from current position by preserving currentTime
+      executeCustomJsCode(
+        "const modelViewer = document.getElementById(\"$_viewerId\");"
+        "const currentTime = modelViewer.currentTime;"
+        "modelViewer.play();"
+        "modelViewer.currentTime = currentTime;",
+      );
+    } else {
+      // If not paused, just play from beginning
+      executeCustomJsCode(
+        "const modelViewer = document.getElementById(\"$_viewerId\");"
+        "modelViewer.play();",
+      );
+    }
+  }
+
+  @override
   void resetAnimation() {
+    _wasPaused = false; // Reset pause state when resetting
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();"
@@ -55,6 +78,7 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
 
   @override
   void stopAnimation() {
+    _wasPaused = false; // Reset pause state when stopping
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
       "modelViewer.pause();"
@@ -150,6 +174,18 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
       400,
       _activeGestureInterceptor,
     );
+  }
+
+  @override
+  Future<double> getCurrentAnimationTime() async {
+    try {
+      final result = await executeCustomJsCodeWithResult(
+        "document.getElementById(\"$_viewerId\").currentTime;",
+      );
+      return double.tryParse(result.toString()) ?? 0.0;
+    } catch (e) {
+      return 0.0;
+    }
   }
 
   @override

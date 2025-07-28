@@ -26,6 +26,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Play animation with loop count 🆕
 - Switch between animations
 - Pause animation
+- Resume animation from paused position 🆕
 - Reset animation
 - Stop animation
 - Get available animations list
@@ -94,6 +95,14 @@ controller.playAnimation(loopCount: 2, animationName: chosenAnimation);
 
 //It will pause the animation at current frame.
 controller.pauseAnimation();
+
+//It will resume the animation from the current frame (where it was paused).
+//This continues the animation from exactly where it was paused,
+//unlike resetAnimation() which starts from the beginning.
+controller.resumeAnimation();
+
+//Get the current animation time in seconds
+double currentTime = await controller.getCurrentAnimationTime();
 
 //It will reset and play animation from first frame (from beginning).
 controller.resetAnimation();

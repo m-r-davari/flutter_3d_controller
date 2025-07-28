@@ -20,6 +20,16 @@ class Flutter3DRepository extends IFlutter3DRepository {
   }
 
   @override
+  void resumeAnimation() {
+    _datasource.resumeAnimation();
+  }
+
+  @override
+  Future<double> getCurrentAnimationTime() async {
+    return await _datasource.getCurrentAnimationTime();
+  }
+
+  @override
   void resetAnimation() {
     _datasource.resetAnimation();
   }

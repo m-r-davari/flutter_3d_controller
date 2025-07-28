@@ -3,6 +3,8 @@
 ### Features
 * macOS support (Beta)
 * Play animation with loop count
+* Resume animation from paused position with proper time tracking
+* Get current animation time functionality
 
 ### Fixes
 * Fix minimum version of Flutter SDK

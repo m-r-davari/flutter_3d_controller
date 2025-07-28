@@ -14,6 +14,12 @@ abstract class IFlutter3DRepository {
   ///Causes animations to be paused at current frame.
   void pauseAnimation();
 
+  /// Causes animation to be resumed from the current frame (where it was paused)
+  void resumeAnimation();
+
+  /// Get the current animation time in seconds
+  Future<double> getCurrentAnimationTime();
+
   /// Causes animation to be played from first frame
   void resetAnimation();
 

@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/faraz/flutter_sdk_v3.27.1"
-export "FLUTTER_APPLICATION_PATH=/Users/faraz/StudioProjects/flutter_3d_controller"
+export "FLUTTER_ROOT=/Users/sd/fvm/versions/3.29.2"
+export "FLUTTER_APPLICATION_PATH=/Users/sd/StudioProjects/flutter_3d_controller"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
