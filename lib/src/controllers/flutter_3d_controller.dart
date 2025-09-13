@@ -9,8 +9,6 @@ class Flutter3DController extends IFlutter3DController {
   Flutter3DController();
 
   ValueNotifier<bool> onModelLoaded = ValueNotifier<bool>(false);
-  ValueNotifier<Map<String, dynamic>> onModelRotation =
-      ValueNotifier<Map<String, dynamic>>({});
 
   void init(IFlutter3DRepository repository) {
     _repository = repository;
