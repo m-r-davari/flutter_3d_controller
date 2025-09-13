@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
             height: 4,
           ),
           IconButton(
-            onPressed: () async{
+            onPressed: () async {
               controller.startRotation(rotationSpeed: 30);
               //controller.pauseRotation();
               //controller.stopRotation();

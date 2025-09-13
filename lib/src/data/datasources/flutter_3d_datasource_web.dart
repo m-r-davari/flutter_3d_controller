@@ -126,9 +126,9 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   void startRotation({int? rotationSpeed = 10}) {
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
-          "modelViewer.autoRotateDelay = \"500\";"
-          "modelViewer.autoRotate = \"true\";"
-          "modelViewer.rotationPerSecond = \"${rotationSpeed}deg\";",
+      "modelViewer.autoRotateDelay = \"500\";"
+      "modelViewer.autoRotate = \"true\";"
+      "modelViewer.rotationPerSecond = \"${rotationSpeed}deg\";",
     );
   }
 
@@ -136,8 +136,8 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   void pauseRotation() {
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
-          "modelViewer.autoRotate = \"false\";"
-          "modelViewer.rotationPerSecond = \"0deg\";",
+      "modelViewer.autoRotate = \"false\";"
+      "modelViewer.rotationPerSecond = \"0deg\";",
     );
   }
 
@@ -145,9 +145,9 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   void stopRotation() {
     executeCustomJsCode(
       "const modelViewer = document.getElementById(\"$_viewerId\");"
-          "modelViewer.autoRotate = \"false\";"
-          "modelViewer.rotationPerSecond = \"0deg\";"
-          "modelViewer.resetTurntableRotation(0);",
+      "modelViewer.autoRotate = \"false\";"
+      "modelViewer.rotationPerSecond = \"0deg\";"
+      "modelViewer.resetTurntableRotation(0);",
     );
   }
 

@@ -53,5 +53,4 @@ abstract class IFlutter3DRepository {
 
   /// Stops the rotation completely and resets the rotation state to the initial position.
   void stopRotation();
-
 }

@@ -78,5 +78,4 @@ class Flutter3DRepository extends IFlutter3DRepository {
   void stopRotation() {
     _datasource.stopRotation();
   }
-
 }
