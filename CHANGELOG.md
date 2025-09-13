@@ -1,3 +1,13 @@
+## v2.3.0
+
+### Features
+* Models rotation with speed setting
+
+### Fixes
+* Clear onLoaded value on widget dispose
+
+
+
 ## v2.2.0
 
 ### Features
