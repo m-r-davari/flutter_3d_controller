@@ -9,6 +9,8 @@ class Flutter3DController extends IFlutter3DController {
   Flutter3DController();
 
   ValueNotifier<bool> onModelLoaded = ValueNotifier<bool>(false);
+  ValueNotifier<Map<String, dynamic>> onModelRotation =
+      ValueNotifier<Map<String, dynamic>>({});
 
   void init(IFlutter3DRepository repository) {
     _repository = repository;
@@ -111,6 +113,33 @@ class Flutter3DController extends IFlutter3DController {
   void resetCameraOrbit() {
     if (onModelLoaded.value) {
       _repository?.resetCameraOrbit();
+    } else {
+      throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
+  void startRotation({int rotationSpeed = 10}) {
+    if (onModelLoaded.value) {
+      _repository?.startRotation(rotationSpeed: rotationSpeed);
+    } else {
+      throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
+  void pauseRotation() {
+    if (onModelLoaded.value) {
+      _repository?.pauseRotation();
+    } else {
+      throw Flutter3dControllerLoadingException();
+    }
+  }
+
+  @override
+  void stopRotation() {
+    if (onModelLoaded.value) {
+      _repository?.stopRotation();
     } else {
       throw Flutter3dControllerLoadingException();
     }

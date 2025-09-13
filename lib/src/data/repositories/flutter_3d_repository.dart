@@ -63,4 +63,20 @@ class Flutter3DRepository extends IFlutter3DRepository {
   void resetCameraOrbit() {
     _datasource.resetCameraOrbit();
   }
+
+  @override
+  void startRotation({int rotationSpeed = 10}) {
+    _datasource.startRotation(rotationSpeed: rotationSpeed);
+  }
+
+  @override
+  void pauseRotation() {
+    _datasource.pauseRotation();
+  }
+
+  @override
+  void stopRotation() {
+    _datasource.stopRotation();
+  }
+
 }

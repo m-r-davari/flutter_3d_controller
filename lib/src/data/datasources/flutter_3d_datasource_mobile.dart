@@ -153,6 +153,35 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   }
 
   @override
+  void startRotation({int? rotationSpeed = 10}) {
+    executeCustomJsCode(
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
+          "modelViewer.autoRotateDelay = \"500\";"
+          "modelViewer.autoRotate = \"true\";"
+          "modelViewer.rotationPerSecond = \"${rotationSpeed}deg\";",
+    );
+  }
+
+  @override
+  void pauseRotation() {
+    executeCustomJsCode(
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
+          "modelViewer.autoRotate = \"false\";"
+          "modelViewer.rotationPerSecond = \"0deg\";",
+    );
+  }
+
+  @override
+  void stopRotation() {
+    executeCustomJsCode(
+      "const modelViewer = document.getElementById(\"$_viewerId\");"
+          "modelViewer.autoRotate = \"false\";"
+          "modelViewer.rotationPerSecond = \"0deg\";"
+          "modelViewer.resetTurntableRotation(0);",
+    );
+  }
+
+  @override
   void executeCustomJsCode(String code,
       [int codeDelay = 0,
       int refresherDelay = 0,

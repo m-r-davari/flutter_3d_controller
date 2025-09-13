@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () {
               controller.pauseAnimation();
               //controller.stopAnimation();
+              controller.pauseRotation();
             },
             icon: const Icon(Icons.pause),
           ),
@@ -82,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             onPressed: () {
               controller.resetAnimation();
+              controller.stopRotation();
             },
             icon: const Icon(Icons.replay),
           ),
@@ -118,6 +120,17 @@ class _MyHomePageState extends State<MyHomePage> {
               controller.setTexture(textureName: chosenTexture ?? '');
             },
             icon: const Icon(Icons.list_alt_rounded),
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          IconButton(
+            onPressed: () async{
+              controller.startRotation(rotationSpeed: 30);
+              //controller.pauseRotation();
+              //controller.stopRotation();
+            },
+            icon: const Icon(Icons.threed_rotation),
           ),
           const SizedBox(
             height: 4,

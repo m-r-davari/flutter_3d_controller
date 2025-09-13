@@ -13,7 +13,7 @@ Notably, when testing **other available packages**, users may experience **gestu
 ## Features
 
 - Mobile and Web **stable** version (fully support **glb**, **gltf** and **obj** format)
-- macOS **beta** version 🆕
+- macOS **beta** version
 - Load 3D model from assets
 - Load 3D model from URL
 - Change 3D models by setState
@@ -23,12 +23,15 @@ Notably, when testing **other available packages**, users may experience **gestu
 - Load **obj** 3D models with textures and **mtl** files
 - Scale and camera properties for obj 3D models
 - Play animation
-- Play animation with loop count 🆕
+- Play animation with loop count
 - Switch between animations
 - Pause animation
 - Reset animation
 - Stop animation
 - Get available animations list
+- Start rotation & set speed 🆕
+- Pause rotation 🆕
+- Stop rotation 🆕
 - Switch between textures
 - Get available textures list
 - Set camera target
@@ -103,6 +106,18 @@ controller.stopAnimation();
 
 //It will return available animation list of 3D model.
 await controller.getAvailableAnimations();
+
+//It will Starts the rotation of the 3D model with default speed value (10deg/second).
+controller.startRotation();
+
+//It will Starts the rotation of the 3D model with desire speed value deg/s.
+controller.startRotation(rotationSpeed: 30);
+
+//It will Pauses the ongoing rotation, keeping the 3D model at its current orientation.
+controller.pauseRotation();
+
+//It will Stops the rotation completely and resets the rotation state to the initial position.
+controller.stopRotation();
 
 //It will load desired texture of 3D model, you need to pass texture name.
 controller.setTexture(textureName: chosenTexture);
@@ -191,7 +206,7 @@ Flutter3DViewer.obj(
 
 ```yaml
 dependencies:
-  flutter_3d_controller: ^2.2.0
+  flutter_3d_controller: ^2.3.0
 ```
 
 ### `AndroidManifest.xml` (Android only)

@@ -48,6 +48,18 @@ abstract class IFlutter3DDatasource {
   ///It will execute custom JS code
   void executeCustomJsCode(String code);
 
+  /// Starts the rotation of the 3D model.
+  /// [rotationSpeed] defines the speed of the rotation in degrees per second.
+  /// Defaults to 10 if not provided.
+  void startRotation({int rotationSpeed});
+
+  /// Pauses the ongoing rotation, keeping the 3D model at its current orientation.
+  /// The rotation can be resumed later without resetting the rotation state.
+  void pauseRotation();
+
+  /// Stops the rotation completely and resets the rotation state to the initial position.
+  void stopRotation();
+
   ///It will execute custom JS code and returns result
   Future<dynamic> executeCustomJsCodeWithResult(String code);
 
