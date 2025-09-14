@@ -19,6 +19,10 @@
   <title>flutter_3d_controller_example</title>
   <link rel="manifest" href="manifest.json">
   <script type="module" src="./assets/packages/flutter_3d_controller/assets/model_viewer.min.js" defer></script>
+  <script>
+    self.ModelViewerElement = self.ModelViewerElement || {};
+    self.ModelViewerElement.meshoptDecoderLocation = 'https://cdn.jsdelivr.net/npm/meshoptimizer/meshopt_decoder.min.js';
+  </script>
 </head>
 <body>
 <script src="flutter_bootstrap.js" async></script>
