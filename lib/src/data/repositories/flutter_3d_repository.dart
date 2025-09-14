@@ -55,8 +55,8 @@ class Flutter3DRepository extends IFlutter3DRepository {
   }
 
   @override
-  void setCameraOrbit(double theta, double phi, double radius) {
-    _datasource.setCameraOrbit(theta, phi, radius);
+  void setCameraOrbit(double theta, double phi, double radius, bool isAnimate) {
+    _datasource.setCameraOrbit(theta, phi, radius, isAnimate);
   }
 
   @override

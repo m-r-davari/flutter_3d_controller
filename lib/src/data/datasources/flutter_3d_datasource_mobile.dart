@@ -131,14 +131,25 @@ class Flutter3DDatasource implements IFlutter3DDatasource {
   }
 
   @override
-  void setCameraOrbit(double theta, double phi, double radius) {
-    executeCustomJsCode(
-      "const modelViewer = document.getElementById(\"$_viewerId\");"
-      "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";",
-      100,
-      400,
-      _activeGestureInterceptor,
-    );
+  void setCameraOrbit(double theta, double phi, double radius, bool isAnimate) {
+    if (isAnimate) {
+      executeCustomJsCode(
+        "const modelViewer = document.getElementById(\"$_viewerId\");"
+        "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";",
+        100,
+        400,
+        _activeGestureInterceptor,
+      );
+    } else {
+      executeCustomJsCode(
+        "const modelViewer = document.getElementById(\"$_viewerId\");"
+        "modelViewer.cameraOrbit = \"${theta}deg ${phi}deg $radius%\";"
+        "modelViewer.jumpCameraToGoal();",
+        100,
+        400,
+        _activeGestureInterceptor,
+      );
+    }
   }
 
   @override
